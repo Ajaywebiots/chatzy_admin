@@ -42,7 +42,7 @@ class DashboardBoxLayout extends StatelessWidget {
                                   .toString()
                                   .tr),
                           Container(
-                              padding: EdgeInsets.all(Insets.i15),
+                              padding: const EdgeInsets.all(Insets.i15),
                               decoration: ShapeDecoration(
                                   color: appCtrl.appTheme.primary,
                                   shape: SmoothRectangleBorder(
@@ -52,7 +52,7 @@ class DashboardBoxLayout extends StatelessWidget {
                               child: SvgPicture.asset(
                                 dashboardCtrl.listItem[index!]["icon"],
                                 height: Sizes.s30,
-                                color: appCtrl.appTheme.white,
+                                colorFilter:ColorFilter.mode(appCtrl.appTheme.white, BlendMode.srcIn)
                               ))
                         ])
                   ]))

@@ -4,10 +4,7 @@ class UserAppSettingModel {
       maintenanceMessage,
       rateApp,
       rateAppIos,
-      bannerAndroidId,
-      bannerIOSId,
-      facebookAddAndroidId,
-      facebookAddIOSId,gifAPI,firebaseServerToken;
+      gifAPI,firebaseServerToken;
   bool? allowUserBlock,
       approvalNeeded,
       isAdmobEnable,
@@ -19,10 +16,6 @@ class UserAppSettingModel {
     this.maintenanceMessage,
     this.rateApp,
     this.rateAppIos,
-    this.bannerAndroidId,
-    this.bannerIOSId,
-    this.facebookAddAndroidId,
-    this.facebookAddIOSId,
     this.gifAPI,
     this.firebaseServerToken,
     this.allowUserBlock,
@@ -39,10 +32,6 @@ class UserAppSettingModel {
     maintenanceMessage = json['maintenanceMessage'] ?? "";
     rateApp = json['rateApp'] ?? "";
     rateAppIos = json['rateAppIos'] ?? "";
-    bannerAndroidId = json['bannerAndroidId'] ?? "";
-    bannerIOSId = json['bannerIOSId'] ?? "";
-    facebookAddAndroidId = json['facebookAddAndroidId'] ?? "";
-    facebookAddIOSId = json['facebookAddIOSId'] ?? "";
     gifAPI = json['gifAPI'] ?? "";
     firebaseServerToken = json['firebaseServerToken'] ?? "";
     allowUserBlock = json['allowUserBlock'] ?? true;
@@ -59,10 +48,6 @@ class UserAppSettingModel {
     data['maintenanceMessage'] = maintenanceMessage;
     data['rateApp'] = rateApp;
     data['rateAppIos'] = rateAppIos;
-    data['bannerAndroidId'] = bannerAndroidId;
-    data['bannerIOSId'] = bannerIOSId;
-    data['facebookAddAndroidId'] = facebookAddAndroidId;
-    data['facebookAddIOSId'] = facebookAddIOSId;
     data['gifAPI'] = gifAPI;
     data['firebaseServerToken'] = firebaseServerToken;
     data['allowUserBlock'] = allowUserBlock;

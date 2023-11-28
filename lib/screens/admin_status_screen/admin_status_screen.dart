@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chatzy_admin/screens/wallpaper/layouts/image_layout.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 
 import '../../config.dart';
@@ -44,10 +45,10 @@ class AdminStatusScreen extends StatelessWidget {
                                       log("detail.files :${detail.files}");
                                     },
                                     onDragEntered: (detail) {
-                                      log("ENTER : ${detail}");
+                                      log("ENTER : $detail");
                                     },
                                     onDragExited: (detail) {
-                                      log("ExIt : ${detail}");
+                                      log("ExIt : $detail");
                                     },
                                     child:  adminStatusCtrl.imageUrl.isNotEmpty &&
                                         adminStatusCtrl.pickImage != null
@@ -84,6 +85,7 @@ class AdminStatusScreen extends StatelessWidget {
                                                 source: ImageSource.gallery,
                                                 context: context))
                                   ),
+
                                  /* DragDropLayout(
                                       onCreated: (ctrl) =>
                                       adminStatusCtrl.controller1 = ctrl,

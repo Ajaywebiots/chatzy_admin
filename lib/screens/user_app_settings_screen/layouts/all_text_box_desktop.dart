@@ -30,18 +30,7 @@ class AllTextBoxDesktop extends StatelessWidget {
                           title: fonts.rateAppIos,
                           controller: settingCtrl.txtRateAppIos),
                       const VSpace(Sizes.s30),
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().statusValidation(number),
-                          title: fonts.androidBannerId,
-                          controller: settingCtrl.txtAndroidBannerId),
-                      const VSpace(Sizes.s30),
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().statusValidation(number),
-                          title: fonts.facebookAndroidId,
-                          controller: settingCtrl.txtFBAndroidBannerId),
-                      const VSpace(Sizes.s30),
+
                       DesktopTextFieldCommon(
                           validator: (number) =>
                               Validation().statusValidation(number),
@@ -68,18 +57,7 @@ class AllTextBoxDesktop extends StatelessWidget {
                           title: fonts.maintenanceMessage,
                           controller: settingCtrl.maintenanceMessage),
                       const VSpace(Sizes.s30),
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().broadCastValidation(number),
-                          title: fonts.iosBannerId,
-                          controller: settingCtrl.txtIOSBannerId),
-                      const VSpace(Sizes.s30),
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().statusValidation(number),
-                          title: fonts.facebookIosId,
-                          controller: settingCtrl.txtFBIOSBannerId),
-                      const VSpace(Sizes.s30),
+
                           DesktopTextFieldCommon(
                               validator: (number) =>
                                   Validation().statusValidation(number),

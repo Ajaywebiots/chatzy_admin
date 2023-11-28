@@ -11,10 +11,6 @@ class UserAppSettingsController extends GetxController {
   TextEditingController maintenanceMessage = TextEditingController();
   TextEditingController txtRateApp = TextEditingController();
   TextEditingController txtRateAppIos = TextEditingController();
-  TextEditingController txtAndroidBannerId = TextEditingController();
-  TextEditingController txtIOSBannerId = TextEditingController();
-  TextEditingController txtFBAndroidBannerId = TextEditingController();
-  TextEditingController txtFBIOSBannerId = TextEditingController();
   TextEditingController txtGif = TextEditingController();
   TextEditingController txtFirebaseToken = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -35,11 +31,6 @@ class UserAppSettingsController extends GetxController {
         maintenanceMessage.text = usageCtrl!.maintenanceMessage.toString();
         txtRateApp.text = usageCtrl!.rateApp.toString();
         txtRateAppIos.text = usageCtrl!.rateAppIos.toString();
-        txtAndroidBannerId.text = usageCtrl!.bannerAndroidId.toString();
-        txtIOSBannerId.text = usageCtrl!.bannerIOSId.toString();
-        txtIOSBannerId.text = usageCtrl!.bannerIOSId.toString();
-        txtFBAndroidBannerId.text = usageCtrl!.facebookAddAndroidId.toString();
-        txtFBIOSBannerId.text = usageCtrl!.facebookAddIOSId.toString();
         txtGif.text = usageCtrl!.gifAPI.toString();
         txtFirebaseToken.text = usageCtrl!.firebaseServerToken.toString();
       }
@@ -67,10 +58,6 @@ class UserAppSettingsController extends GetxController {
         usageCtrl!.maintenanceMessage = maintenanceMessage.text;
         usageCtrl!.rateApp = txtRateApp.text;
         usageCtrl!.rateAppIos = txtRateAppIos.text;
-        usageCtrl!.bannerAndroidId = txtAndroidBannerId.text;
-        usageCtrl!.bannerIOSId = txtIOSBannerId.text;
-        usageCtrl!.facebookAddAndroidId = txtFBAndroidBannerId.text;
-        usageCtrl!.facebookAddIOSId = txtFBIOSBannerId.text;
         usageCtrl!.gifAPI = txtGif.text;
         usageCtrl!.firebaseServerToken = txtFirebaseToken.text;
 

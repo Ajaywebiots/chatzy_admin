@@ -1,14 +1,9 @@
-import 'dart:developer';
-
 import 'package:chatzy_admin/controllers/app_pages_controller/wallpaper_controller.dart';
-
 import 'package:chatzy_admin/screens/wallpaper/layouts/image_layout.dart';
 import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_layout.dart';
 import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_table.dart';
 import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_widget_class.dart';
 import 'package:chatzy_admin/widgets/common_widget_class.dart';
-import 'package:desktop_drop/desktop_drop.dart';
-
 import '../../config.dart';
 
 class WallPaper extends StatelessWidget {
@@ -24,8 +19,12 @@ class WallPaper extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
+
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +36,17 @@ class WallPaper extends StatelessWidget {
                           : wallpaperCtrl.imageUrl.isNotEmpty
                               ? Sizes.s200
                             : Sizes.s150),
+                     /* DropzoneView(
+                        operation: DragOperation.copy,
+                        cursor: CursorType.grab,
+                        onCreated: (DropzoneViewController ctrl) => controller = ctrl,
+                        onLoaded: () => print('Zone loaded'),
+                        onError: (String? ev) => print('Error: $ev'),
+                        onHover: () => print('Zone hovered'),
+                        onDrop: (dynamic ev) => print('Drop: $ev'),
+                        onDropMultiple: (List<dynamic> ev) => print('Drop multiple: $ev'),
+                        onLeave: () => print('Zone left'),
+                      ),*/
                       const VSpace(Sizes.s20),
 
                       if (wallpaperCtrl.isAlert == true &&
@@ -44,51 +54,69 @@ class WallPaper extends StatelessWidget {
                         Text("Please Upload Image",
                             style: AppCss.muktaVaaniSemiBold14
                                 .textColor(appCtrl.appTheme.redColor))
-                    ],
-                  ),
+                    ]
+                  )
                 ),
-              ],
+                Expanded(
+                  child: DropdownMenu<String>(
+                    initialSelection: wallpaperCtrl.dropdownValue,
+                    onSelected: (String? value) {
+                      // This is called when the user selects an item.
+                      wallpaperCtrl.dropdownValue = value!;
+                      wallpaperCtrl.update();
+                    },
+                    dropdownMenuEntries: wallpaperCtrl.wallpaperTypeList.map<DropdownMenuEntry<String>>((String value) {
+                      return DropdownMenuEntry<String>(value: value, label: value);
+                    }).toList(),
+                  ).alignment(Alignment.topLeft),
+                ),
+              ]
             ),
             CommonButton(
               title: wallpaperCtrl.characterId != ""
                   ? fonts.updateWallPaper.tr
                   : fonts.addWallPaper.tr,
               width: Sizes.s200,
-              onTap: () => wallpaperCtrl.characterId != ""
-                  ? wallpaperCtrl.addData()
-                  : wallpaperCtrl.uploadFile(),
+              onTap: () => wallpaperCtrl.uploadFile(),
               style: AppCss.muktaVaaniRegular14
-                  .textColor(appCtrl.appTheme.whiteColor),
+                  .textColor(appCtrl.appTheme.whiteColor)
             ).alignment(Alignment.centerRight),
             const VSpace(Sizes.s20),
             StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection(collectionName.wallpaper)
+                    .collection(collectionName.wallpaper).where("type",isEqualTo: wallpaperCtrl.dropdownValue)
                     .snapshots(),
                 builder: (context, snapShot) {
                   if (snapShot.hasData) {
+                    List image =[];
+                   if(snapShot.data!.docs.isNotEmpty){
+                     image = snapShot.data!.docs[0].data()["image"];
+                   }
                     return Responsive.isDesktop(context)
                         ? WallpaperListTable(children: [
                             WallpaperWidgetClass().tableWidget(),
-                            ...snapShot.data!.docs.asMap().entries.map((e) {
+                            ...image.asMap().entries.map((e) {
+
                               return TableRow(children: [
                                 CommonWidgetClass()
-                                    .commonValueText(e.value.id)
+                                    .commonValueText(wallpaperCtrl.dropdownValue.capitalizeFirst)
                                     .marginSymmetric(
                                         vertical: Insets.i12,
                                         horizontal: Insets.i10),
                                 CommonWidgetClass()
-                                    .commonValueText(e.value.data()["image"],
-                                        isImage: true)
+                                    .commonValueText(e.value,isImage: true
+                                )
                                     .marginSymmetric(vertical: Insets.i12),
                                 WallpaperWidgetClass()
                                     .actionLayout(
                                         onTap: () {
                                           wallpaperCtrl.imageUrl =
-                                              e.value.data()["image"];
+                                              e.value;
                                           wallpaperCtrl.characterId =
-                                              e.value.id;
+                                              snapShot.data!.docs[0].id;
+                                          wallpaperCtrl.selectedIndex =e.key;
                                           wallpaperCtrl.update();
+
                                         },
                                         deleteTap: () => accessDenied(
                                                 fonts.deleteThisWallPaper.tr,
@@ -96,14 +124,14 @@ class WallPaper extends StatelessWidget {
                                                 isDelete: true, onTap: () {
                                               Get.back();
                                               wallpaperCtrl
-                                                  .deleteData(e.value.id);
+                                                  .deleteData(snapShot.data!.docs[0].id,e.key);
                                             }))
                                     .marginSymmetric(vertical: Insets.i12)
                               ]);
                             }).toList()
                           ])
                         : WallpaperMobileLayout(
-                            snapShot: snapShot,
+                            snapShot: snapShot
                           );
                   } else {
                     return Container();

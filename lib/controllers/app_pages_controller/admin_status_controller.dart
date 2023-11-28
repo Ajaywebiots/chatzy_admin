@@ -28,6 +28,7 @@ class AdminStatusController extends GetxController {
           imageName.contains("jpg") ||
           imageName.contains("jpeg")) {
         var image = dropImage;
+        log("image: $image");
         uploadWebImage = image;
         Image image1 = Image.memory(uploadWebImage);
 

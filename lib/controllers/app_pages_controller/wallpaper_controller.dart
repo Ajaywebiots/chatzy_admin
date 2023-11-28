@@ -4,29 +4,28 @@ import 'dart:math' as math;
 import 'dart:io' as io;
 
 import '../../config.dart';
+
 class WallpaperController extends GetxController {
   dynamic usageCtrl;
   bool isLoading = false;
   XFile? imageFile;
-  bool isUploadSize = false,
-      isDarkUploadFile2 = false;
+  bool isUploadSize = false, isDarkUploadFile2 = false;
   bool isAlert = false;
   TextEditingController txtTitle = TextEditingController();
   TextEditingController txtMessage = TextEditingController();
   TextEditingController txtPrice = TextEditingController();
   TextEditingController txtType = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  List<String> wallpaperTypeList = <String>['solid', 'dark', 'light'];
   XFile? wallpaper1File, wallpaper2File;
   late DropzoneViewController? controller1, controller2;
-
+  String dropdownValue ="solid";
   Uint8List wallpaperWebImage1 = Uint8List(8);
   Uint8List wallpaperUploadWebImage2 = Uint8List(8);
   io.File? pickImage, wallpaperPickImage2, wallpaperPickImage3;
   var random = math.Random();
-   List<XFile> list = [];
-
-
+  List<XFile> list = [];
+int? selectedIndex;
   String imageName = "",
       imageUrl = "",
       imageUrl2 = "",
@@ -39,6 +38,7 @@ class WallpaperController extends GetxController {
   Uint8List wallpaperWebImage2 = Uint8List(8);
   Uint8List wallpaperWebImage3 = Uint8List(8);
 
+  List imageList = [];
   Uint8List uploadWebImage = Uint8List(8);
 
   bool sortAscending = true;
@@ -52,7 +52,33 @@ class WallpaperController extends GetxController {
 
   //add data
   addData() async {
+    List yourItemList = [];
+    await FirebaseFirestore.instance
+        .collection(collectionName.wallpaper)
+        .get()
+        .then((value) {
+      if (value.docs.isNotEmpty) {
+
+        value.docs.asMap().entries.forEach((element) {
+          if (dropdownValue == element.value.data()["type"]) {
+            characterId = element.value.id;
+            yourItemList = element.value.data()["image"];
+          }
+        });
+      }
+      if(characterId != ""){
+        log("hhhh :m${yourItemList[selectedIndex!] }");
+        yourItemList[selectedIndex!] = imageUrl;
+        log("hhhh :qq${yourItemList[selectedIndex!] }");
+      }else {
+        yourItemList.add(imageUrl);
+      }
+
+    });
+
+    update();
     log("characterId : $characterId");
+    log("characterId : ${yourItemList.length}");
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
@@ -65,14 +91,15 @@ class WallpaperController extends GetxController {
               .collection(collectionName.wallpaper)
               .doc(characterId)
               .update({
-            "image": imageUrl,
+            'type': dropdownValue,
+            "image": FieldValue.arrayUnion(yourItemList),
           }).then((value) {
             webImage = Uint8List(8);
             pickImage = null;
             imageUrl = "";
             pickImage = null;
             imageFile = null;
-
+characterId ="";
             log("usage3: $usageCtrl");
             Get.back();
             isLoading = false;
@@ -80,15 +107,14 @@ class WallpaperController extends GetxController {
           });
           update();
         } else {
-          int id = DateTime
-              .now()
-              .millisecondsSinceEpoch;
+          int id = DateTime.now().millisecondsSinceEpoch;
           update();
           await FirebaseFirestore.instance
               .collection(collectionName.wallpaper)
               .doc(id.toString())
               .set({
-            "image": imageUrl,
+            'type': dropdownValue,
+            "image": FieldValue.arrayUnion(yourItemList),
           }).then((value) {
             log("usage3: $usageCtrl");
             webImage = Uint8List(8);
@@ -138,37 +164,29 @@ class WallpaperController extends GetxController {
   }
 
 // GET IMAGE FROM GALLERY
-  Future getImage({source,
-    StateSetter? setState,
-    dropImage,
-    context,
-    uploadFile,
-    title}) async {
-    if (title == "image1") {
-      wallpaper1Upload(
-          setState: setState,
-          source: source,
-          dropImage: dropImage,
-          title: title,
-          context: context,
-          uploadFile: uploadFile);
-    } else if (title == "image2") {
-      wallpaper2Upload(
-          setState: setState,
-          source: source,
-          dropImage: dropImage,
-          title: title,
-          context: context,
-          uploadFile: uploadFile);
-    }
+  Future getImage(
+      {source,
+      StateSetter? setState,
+      dropImage,
+      context,
+      uploadFile,
+      title}) async {
+    wallpaper1Upload(
+        setState: setState,
+        source: source,
+        dropImage: dropImage,
+        title: title,
+        context: context,
+        uploadFile: uploadFile);
   }
 
-  wallpaper1Upload({source,
-    StateSetter? setState,
-    dropImage,
-    context,
-    uploadFile,
-    title}) async {
+  wallpaper1Upload(
+      {source,
+      StateSetter? setState,
+      dropImage,
+      context,
+      uploadFile,
+      title}) async {
     if (dropImage != null) {
       if (imageName.contains("png") ||
           imageName.contains("jpg") ||
@@ -219,12 +237,13 @@ class WallpaperController extends GetxController {
     }
   }
 
-  wallpaper2Upload({source,
-    StateSetter? setState,
-    dropImage,
-    context,
-    uploadFile,
-    title}) async {
+  wallpaper2Upload(
+      {source,
+      StateSetter? setState,
+      dropImage,
+      context,
+      uploadFile,
+      title}) async {
     if (dropImage != null) {
       if (wallpaperImageName2.contains("png") ||
           wallpaperImageName2.contains("jpg") ||
@@ -280,15 +299,13 @@ class WallpaperController extends GetxController {
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
+      log("picker: $pickImage");
       if (pickImage != null) {
         isAlert = false;
         isLoading = true;
         update();
         Get.forceAppUpdate();
-        String fileName = DateTime
-            .now()
-            .millisecondsSinceEpoch
-            .toString();
+        String fileName = DateTime.now().millisecondsSinceEpoch.toString();
         Reference reference = FirebaseStorage.instance.ref().child(fileName);
 
         UploadTask? uploadTask;
@@ -310,9 +327,7 @@ class WallpaperController extends GetxController {
         log("PICKED IMAGE : $pickImage");
         isAlert = true;
         isLoading = false;
-        log(
-            "wallpaperCtrl.isAlert == true && wallpaperCtrl.pickImage == null : ${isAlert ==
-                true && pickImage == null}");
+        log("wallpaperCtrl.isAlert == true && wallpaperCtrl.pickImage == null : ${isAlert == true && pickImage == null}");
         update();
       }
     }
@@ -330,15 +345,52 @@ class WallpaperController extends GetxController {
     }
   }
 
-  deleteData(id) async {
+  deleteData(id,index) async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
+      List yourItemList = [];
       await FirebaseFirestore.instance
           .collection(collectionName.wallpaper)
-          .doc(id)
-          .delete();
+          .get()
+          .then((value) {
+        if (value.docs.isNotEmpty) {
+
+          value.docs.asMap().entries.forEach((element) {
+            if (dropdownValue == element.value.data()["type"]) {
+              characterId = element.value.id;
+              yourItemList = element.value.data()["image"];
+            }
+          });
+        }
+        yourItemList.removeAt(index);
+      });
+      update();
+      if(yourItemList.isEmpty){
+        await FirebaseFirestore.instance
+            .collection(collectionName.wallpaper)
+            .doc(id)
+            .delete();
+      }else {
+        log("yourItemListyourItemList: ${characterId} // $index ");
+        log("yourItemListyourItemList: ${{
+          'type': dropdownValue,
+          "image":yourItemList,
+        }}");
+
+        await FirebaseFirestore.instance
+            .collection(collectionName.wallpaper)
+            .doc(characterId)
+            .update({
+          'type': dropdownValue,
+          "image": yourItemList
+        }).then((value) {
+          characterId = "";
+          update();
+        });
+      }
+
     }
   }
 

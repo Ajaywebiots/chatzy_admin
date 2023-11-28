@@ -22,9 +22,18 @@ class LeadingRow extends StatelessWidget {
                     },
                     child: Container(
                       color: appCtrl.appTheme.dark,
-                      child: Image.asset(
-                        imageAssets.logo,
-                        width: Sizes.s180
+                        width: value ? Sizes.s220 : Sizes.s70,
+                      child: Row(
+                        children: [
+                          Image.asset(imageAssets.logo,
+                              fit: BoxFit.contain),
+                          const HSpace(Sizes.s10),
+                          Text(
+                            fonts.chatzyAdmin.tr,
+                            style: AppCss.muktaVaaniExtraBold18
+                                .textColor(appCtrl.appTheme.white),
+                          ),
+                        ],
                       ).paddingAll(Insets.i20)
                     ));
               }
@@ -39,7 +48,7 @@ class LeadingRow extends StatelessWidget {
                           padding: const EdgeInsets.all(Insets.i10),
                           color: appCtrl.appTheme.dark,
                           height: double.infinity,
-                          child: Image.asset(imageAssets.logo,
+                          child:  Image.asset(imageAssets.logo,
                               fit: BoxFit.contain))
                       : Container());
             }),

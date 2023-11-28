@@ -2,7 +2,8 @@ import '../../../config.dart';
 
 class IndexDrawer extends StatelessWidget {
   final GlobalKey<ScaffoldState>? scaffoldKey;
-  const IndexDrawer({Key? key,this.scaffoldKey}) : super(key: key);
+
+  const IndexDrawer({Key? key, this.scaffoldKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +34,27 @@ class IndexDrawer extends StatelessWidget {
                         /*Image.asset(imageAssets.chatifyLogo1, height: Sizes.s40)*/
                         Row(
                           children: [
-                            Text(fonts.chatzyAdmin.tr,style: AppCss.muktaVaaniExtraBold18.textColor(appCtrl.appTheme.blackText),),
                             Image.asset(imageAssets.logo,
-                                height: Sizes.s40, fit: BoxFit.fill)],
+                                height: Sizes.s40, fit: BoxFit.fill),
+                            const HSpace(Sizes.s10),
+                            Text(
+                              fonts.chatzyAdmin.tr,
+                              style: AppCss.muktaVaaniExtraBold18
+                                  .textColor(appCtrl.appTheme.white),
+                            ),
+                          ],
                         ),
                         const VSpace(Sizes.s30),
                         Divider(
-                          thickness: 2,
+                            thickness: 2,
                             color: appCtrl.appTheme.primary.withOpacity(0.2),
                             indent: 12,
                             endIndent: 12),
                         const VSpace(Sizes.s20),
-                       DrawerList(value: value,scaffoldKey: scaffoldKey,)
+                        DrawerList(
+                          value: value,
+                          scaffoldKey: scaffoldKey,
+                        )
                       ])),
                 );
               }));

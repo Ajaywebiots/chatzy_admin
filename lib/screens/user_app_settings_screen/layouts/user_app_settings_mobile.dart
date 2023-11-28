@@ -75,30 +75,7 @@ class UserAppSettingsMobile extends StatelessWidget {
             title: fonts.rateAppIos,
             controller: userSettingCtrl.txtRateAppIos),
         const VSpace(Sizes.s15),
-        DesktopTextFieldCommon(
-            width: Sizes.s400,
-            isAppSettings: true,
-            validator: (number) => Validation().statusValidation(number),
-            title: fonts.androidBannerId,
-            controller: userSettingCtrl.txtAndroidBannerId),
-        DesktopTextFieldCommon(
-            width: Sizes.s400,
-            isAppSettings: true,
-            validator: (number) => Validation().statusValidation(number),
-            title: fonts.iosBannerId,
-            controller: userSettingCtrl.txtIOSBannerId),
-        DesktopTextFieldCommon(
-            width: Sizes.s400,
-            isAppSettings: true,
-            validator: (number) => Validation().statusValidation(number),
-            title: fonts.facebookAndroidId,
-            controller: userSettingCtrl.txtFBAndroidBannerId),
-        DesktopTextFieldCommon(
-            width: Sizes.s400,
-            isAppSettings: true,
-            validator: (number) => Validation().statusValidation(number),
-            title: fonts.facebookIosId,
-            controller: userSettingCtrl.txtFBIOSBannerId),
+
         DesktopTextFieldCommon(
             width: Sizes.s400,
             isAppSettings: true,

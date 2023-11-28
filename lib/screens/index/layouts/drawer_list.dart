@@ -33,7 +33,7 @@ class DrawerList extends StatelessWidget {
                           vertical: Insets.i8),
                       width: double.infinity,
                       child: Responsive.isDesktop(context) && value == false
-                          ? SvgPicture.asset(e.value["icon"]!,color: indexCtrl
+                          ? SvgPicture.asset(e.value["icon"]!,colorFilter: ColorFilter.mode( indexCtrl
                           .selectedIndex ==
                           e.key
                           ? appCtrl.appTheme.white
@@ -43,9 +43,9 @@ class DrawerList extends StatelessWidget {
                               e.key
                           ? appCtrl.appTheme.white
                           : appCtrl
-                          .appTheme.white,height: Sizes.s18,)
+                          .appTheme.white, BlendMode.srcIn),height: Sizes.s18)
                           : Row(children: [
-                              SvgPicture.asset(e.value["icon"]!,color: indexCtrl
+                              SvgPicture.asset(e.value["icon"]!,colorFilter: ColorFilter.mode(indexCtrl
                                   .selectedIndex ==
                                   e.key
                                   ? appCtrl.appTheme.white
@@ -55,7 +55,7 @@ class DrawerList extends StatelessWidget {
                                       e.key
                                   ? appCtrl.appTheme.white
                                   : appCtrl
-                                  .appTheme.white,height: Sizes.s18),
+                                  .appTheme.white, BlendMode.srcIn),height: Sizes.s18),
                               const HSpace(Sizes.s20),
                               Responsive.isDesktop(context) && value == false
                                   ? Container()

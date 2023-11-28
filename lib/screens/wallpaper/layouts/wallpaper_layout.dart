@@ -54,7 +54,7 @@ class WallpaperMobileLayout extends StatelessWidget {
                                     isModification: false,
                                     isDelete: false,
                                     onTap: () =>
-                                        charactersCtrl.deleteData(e.value.id))),
+                                        charactersCtrl.deleteData(e.value.id,e.key))),
                         CommonSwitcher(
                             isActive: e.value.data()["isActive"] ?? true,
                             onToggle: (val) =>
