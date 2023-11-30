@@ -48,9 +48,10 @@ class CommonButton extends StatelessWidget {
                 borderRadius:
                     radius > 0 ? BorderRadius.circular(radius) : null),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+
+              Text(title, textAlign: TextAlign.center, style: style),
               if (icon != null)
-                Row(children: [icon ?? const HSpace(0), const HSpace(10)]),
-              Text(title, textAlign: TextAlign.center, style: style)
+                Row(children: [const HSpace(10), icon ?? const HSpace(0), ]),
             ])));
   }
 }

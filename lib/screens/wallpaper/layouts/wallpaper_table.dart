@@ -12,7 +12,7 @@ class WallpaperListTable extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppRadius.r6),
       child: Table(
         columnWidths: const <int, TableColumnWidth>{
-          0: IntrinsicColumnWidth(flex: 1),
+          0: FlexColumnWidth(),
           1: FlexColumnWidth(),
           2: FlexColumnWidth(),
         },

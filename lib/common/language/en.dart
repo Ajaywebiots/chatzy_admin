@@ -142,4 +142,10 @@ final dynamic en = {
   "clickToUpload" : "Click to upload",
   "orDragDrop" : " or drag and drop",
   "uploadImage" : "Upload Image",
+
+  "pleasUploadAnotherImage":"Please upload another image",
+  "pleasUploadImage":"Please Upload Image",
+  "solid":"Solid",
+  "dark":"Dark",
+  "light":"Light",
 };

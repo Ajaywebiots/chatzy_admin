@@ -126,6 +126,11 @@ class Fonts{
   final orDragDrop = "orDragDrop";
   final uploadImage = "uploadImage";
   final usageOption = "usageOption";
+  final pleasUploadAnotherImage = "pleasUploadAnotherImage";
+  final pleasUploadImage = "pleasUploadImage";
+  final solid = "solid";
+  final dark = "dark";
+  final light = "light";
 
 
 }

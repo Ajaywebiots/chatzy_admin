@@ -134,4 +134,13 @@ final dynamic ar = {
   "deleteCharacterConfirmation": "هل أنت متأكد أنك تريد حذف الحرف؟",
   "gifApi": "GIF Api",
   "firebaseServerToken": "رمز خادم Firebase",
+  "usageOption": "خيار الاستخدام",
+  "clickToUpload": "انقر للتحميل",
+  "orDragDrop": " أو السحب والإفلات",
+  "uploadImage": "تحميل الصور",
+  "pleasUploadAnotherImage": "يرجى تحميل صورة أخرى",
+  "pleasUploadImage": "يرجى تحميل الصورة",
+  "solid": "صلب",
+  "dark": "مظلم",
+  "light": "ضوء",
 };

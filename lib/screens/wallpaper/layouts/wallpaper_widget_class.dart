@@ -11,7 +11,7 @@ class WallpaperWidgetClass {
             color: appCtrl.appTheme.primary ,
           ),
           children: [
-            CommonWidgetClass().commonTitleText(fonts.id),
+            CommonWidgetClass().commonTitleText(fonts.title),
             CommonWidgetClass().commonTitleText(fonts.image),
             CommonWidgetClass().commonTitleText(fonts.action),
 

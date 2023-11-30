@@ -133,4 +133,14 @@ final dynamic kr = {
   "deleteCharacterConfirmation": "캐릭터를 삭제하시겠습니까?",
   "gifApi": "GIF API",
   "firebaseServerToken": "Firebase 서버 토큰",
+
+  "usageOption": "사용 옵션",
+  "clickToUpload": "업로드하려면 클릭하세요.",
+  "orDragDrop": " 또는 드래그 앤 드롭",
+  "uploadImage": "이미지 업로드",
+  "pleasUploadAnotherImage": "다른 이미지를 업로드해주세요",
+  "pleasUploadImage": "이미지를 업로드해주세요",
+  "solid": "단단한",
+  "dark": "어두운",
+  "light": "빛",
 };

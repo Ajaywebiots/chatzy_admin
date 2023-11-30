@@ -135,4 +135,14 @@ final dynamic hi = {
   "deleteCharacterConfirmation": "क्या आप वाकई वर्ण हटाना चाहते हैं?",
   "gifApi": "जीआईएफ एपीआई",
   "firebaseServerToken": "फायरबेस सर्वर टोकन",
+
+  "usageOption": "उपयोग विकल्प",
+  "clickToUpload": "अपलोड करने के लिए क्लिक करें",
+  "orDragDrop": " या खींचें और छोड़ें",
+  "uploadImage": "तस्विर अपलोड करना",
+  "pleasUploadAnotherImage": "कृपया कोई अन्य छवि अपलोड करें",
+  "pleasUploadImage": "कृपया छवि अपलोड करें",
+  "solid": "ठोस",
+  "dark": "अँधेरा",
+  "light": "रोशनी",
 };

@@ -9,7 +9,7 @@ class WallpaperController extends GetxController {
   dynamic usageCtrl;
   bool isLoading = false;
   XFile? imageFile;
-  bool isUploadSize = false, isDarkUploadFile2 = false;
+  bool isUploadSize = false, isDarkUploadFile2 = false, isUpdate = false;
   bool isAlert = false;
   TextEditingController txtTitle = TextEditingController();
   TextEditingController txtMessage = TextEditingController();
@@ -19,13 +19,13 @@ class WallpaperController extends GetxController {
   List<String> wallpaperTypeList = <String>['solid', 'dark', 'light'];
   XFile? wallpaper1File, wallpaper2File;
   late DropzoneViewController? controller1, controller2;
-  String dropdownValue ="solid";
+  String dropdownValue = "solid";
   Uint8List wallpaperWebImage1 = Uint8List(8);
   Uint8List wallpaperUploadWebImage2 = Uint8List(8);
   io.File? pickImage, wallpaperPickImage2, wallpaperPickImage3;
   var random = math.Random();
   List<XFile> list = [];
-int? selectedIndex;
+  int? selectedIndex;
   String imageName = "",
       imageUrl = "",
       imageUrl2 = "",
@@ -37,7 +37,14 @@ int? selectedIndex;
   Uint8List webImage = Uint8List(8);
   Uint8List wallpaperWebImage2 = Uint8List(8);
   Uint8List wallpaperWebImage3 = Uint8List(8);
-
+  List<DropdownMenuItem<String>> get dropdownItems{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(value: "solid", child: Text(fonts.solid.tr)),
+      DropdownMenuItem(value: "dark", child: Text(fonts.dark.tr)),
+      DropdownMenuItem(value: "light", child: Text(fonts.light.tr))
+    ];
+    return menuItems;
+  }
   List imageList = [];
   Uint8List uploadWebImage = Uint8List(8);
 
@@ -53,12 +60,12 @@ int? selectedIndex;
   //add data
   addData() async {
     List yourItemList = [];
+
     await FirebaseFirestore.instance
         .collection(collectionName.wallpaper)
         .get()
         .then((value) {
       if (value.docs.isNotEmpty) {
-
         value.docs.asMap().entries.forEach((element) {
           if (dropdownValue == element.value.data()["type"]) {
             characterId = element.value.id;
@@ -66,25 +73,18 @@ int? selectedIndex;
           }
         });
       }
-      if(characterId != ""){
-        log("hhhh :m${yourItemList[selectedIndex!] }");
-        yourItemList[selectedIndex!] = imageUrl;
-        log("hhhh :qq${yourItemList[selectedIndex!] }");
-      }else {
-        yourItemList.add(imageUrl);
-      }
-
+      update();
+      yourItemList.add(imageUrl);
     });
-
     update();
     log("characterId : $characterId");
-    log("characterId : ${yourItemList.length}");
+
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
       isLoading = true;
-      log("usage2: $usageCtrl");
+
       if (imageUrl.isNotEmpty) {
         if (characterId != "") {
           await FirebaseFirestore.instance
@@ -99,9 +99,9 @@ int? selectedIndex;
             imageUrl = "";
             pickImage = null;
             imageFile = null;
-characterId ="";
+            characterId = "";
             log("usage3: $usageCtrl");
-            Get.back();
+
             isLoading = false;
             update();
           });
@@ -135,6 +135,60 @@ characterId ="";
         update();
       }
     }
+  }
+
+  //add data
+  updateData() async {
+    List yourItemList = [];
+    await FirebaseFirestore.instance
+        .collection(collectionName.wallpaper)
+        .doc(characterId)
+        .get()
+        .then((value) async {
+      if (value.exists) {
+        yourItemList = value.data()!["image"];
+      }
+
+      update();
+      yourItemList[selectedIndex!] = imageUrl;
+      await Future.delayed(Durations.ms150);
+
+      bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
+      if (isLoginTest) {
+        accessDenied(fonts.modification.tr);
+      } else {
+        isLoading = true;
+        if (imageUrl.isNotEmpty) {
+          await FirebaseFirestore.instance
+              .collection(collectionName.wallpaper)
+              .doc(characterId)
+              .update({
+            'type': dropdownValue,
+            "image": yourItemList,
+          }).then((value) {
+            webImage = Uint8List(8);
+            pickImage = null;
+            imageUrl = "";
+            pickImage = null;
+            imageFile = null;
+            isUpdate = false;
+            log("usage3: $usageCtrl");
+            characterId = "";
+            isLoading = false;
+            update();
+          });
+
+          update();
+        } else {
+          isLoading = false;
+          isAlert = true;
+          update();
+        }
+      }
+    });
+
+    update();
+    log("characterId : $characterId");
   }
 
   //on click Image
@@ -294,7 +348,7 @@ characterId ="";
   }
 
 // UPLOAD SELECTED IMAGE TO FIREBASE
-  Future uploadFile() async {
+  Future uploadFile(isUpdate) async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
@@ -317,8 +371,13 @@ characterId ="";
             imageUrl = downloadUrl;
             log("imageUrl : $imageUrl");
             update();
-            addData();
+
             await Future.delayed(Durations.s3);
+            if (isUpdate == false) {
+              addData();
+            } else {
+              updateData();
+            }
           }, onError: (err) {
             update();
           });
@@ -345,7 +404,7 @@ characterId ="";
     }
   }
 
-  deleteData(id,index) async {
+  deleteData(id, index) async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
@@ -356,7 +415,6 @@ characterId ="";
           .get()
           .then((value) {
         if (value.docs.isNotEmpty) {
-
           value.docs.asMap().entries.forEach((element) {
             if (dropdownValue == element.value.data()["type"]) {
               characterId = element.value.id;
@@ -367,30 +425,27 @@ characterId ="";
         yourItemList.removeAt(index);
       });
       update();
-      if(yourItemList.isEmpty){
+      if (yourItemList.isEmpty) {
         await FirebaseFirestore.instance
             .collection(collectionName.wallpaper)
             .doc(id)
             .delete();
-      }else {
+      } else {
         log("yourItemListyourItemList: ${characterId} // $index ");
         log("yourItemListyourItemList: ${{
           'type': dropdownValue,
-          "image":yourItemList,
+          "image": yourItemList,
         }}");
 
         await FirebaseFirestore.instance
             .collection(collectionName.wallpaper)
             .doc(characterId)
-            .update({
-          'type': dropdownValue,
-          "image": yourItemList
-        }).then((value) {
+            .update({'type': dropdownValue, "image": yourItemList}).then(
+                (value) {
           characterId = "";
           update();
         });
       }
-
     }
   }
 
