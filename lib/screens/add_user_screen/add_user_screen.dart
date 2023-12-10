@@ -57,7 +57,7 @@ class AddUserScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                       Text(fonts.name.tr,
-                                          style: AppCss.muktaVaaniBold16.textColor(
+                                          style: AppCss.manropeBold16.textColor(
                                               appCtrl.appTheme.blackColor)),
                                       const VSpace(Sizes.s10),
                                       CommonTextBox(
@@ -67,7 +67,7 @@ class AddUserScreen extends StatelessWidget {
                                           hinText: fonts.enterName.tr),
                                       const VSpace(Sizes.s30),
                                       Text(fonts.phoneNumber.tr,
-                                          style: AppCss.muktaVaaniBold16.textColor(
+                                          style: AppCss.manropeBold16.textColor(
                                               appCtrl.appTheme.blackColor)),
                                       const VSpace(Sizes.s10),
                                       CommonTextBox(
@@ -77,7 +77,7 @@ class AddUserScreen extends StatelessWidget {
                                           hinText: fonts.enterNumber.tr),
                                       const VSpace(Sizes.s30),
                                       Text(fonts.email.tr,
-                                          style: AppCss.muktaVaaniBold16.textColor(
+                                          style: AppCss.manropeBold16.textColor(
                                               appCtrl.appTheme.blackColor)),
                                       const VSpace(Sizes.s10),
                                       CommonTextBox(

@@ -9,7 +9,7 @@ class DarkModeLayout extends StatelessWidget {
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Text(appCtrl.isTheme ? fonts.lightMode.tr : fonts.darkMode.tr,
           style:
-              AppCss.muktaVaaniMedium14.textColor(appCtrl.appTheme.blackColor)),
+              AppCss.manropeMedium14.textColor(appCtrl.appTheme.blackColor)),
       const HSpace(Sizes.s10),
       FlutterSwitch(
         width: Sizes.s50,

@@ -73,14 +73,14 @@ class ImageLayout extends StatelessWidget {
                                         text: TextSpan(children: [
                                       TextSpan(
                                           text: fonts.clickToUpload.tr,
-                                          style: AppCss.muktaVaaniMedium14
+                                          style: AppCss.manropeMedium14
                                               .textColor(
                                                   appCtrl.appTheme.primary)
                                               .textDecoration(
                                                   TextDecoration.underline)),
                                       TextSpan(
                                           text: fonts.orDragDrop.tr,
-                                          style: AppCss.muktaVaaniMedium14
+                                          style: AppCss.manropeMedium14
                                               .textColor(appCtrl.appTheme.dark))
                                     ])).marginSymmetric(horizontal: Insets.i10)
                                   ]).width(200))

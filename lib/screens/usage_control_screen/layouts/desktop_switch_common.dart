@@ -19,7 +19,7 @@ class DesktopSwitchCommon extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(title!.tr,
-                    style: AppCss.muktaVaaniMedium16
+                    style: AppCss.manropeMedium16
                         .textColor(appCtrl.isTheme ?appCtrl.appTheme.white : appCtrl.appTheme.dark)),
                 Switch(
                     activeColor: appCtrl.appTheme.primary,

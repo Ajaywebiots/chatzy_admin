@@ -20,13 +20,13 @@ class AppArray{
 
   //Drawer list
   var drawerList = [
-    {'icon': svgAssets.dashboard, 'title': "dashboard"},
-    {'icon': svgAssets.usageControl, 'title': "usageControl"},
-    {'icon': svgAssets.appControl, 'title': "appSetting"},
-    {'icon': svgAssets.status, 'title': "sponsor"},
-    {'icon': svgAssets.gallery, 'title': "wallpaper"},
-    {'icon': svgAssets.dislike, 'title': "report"},
-    {'icon': svgAssets.logout, 'title': "logout"},
+    {'icon': svgAssets.dashboard1, 'title': "dashboard",'icon1': svgAssets.dashboard},
+    {'icon': svgAssets.usageControl, 'title': "usageControl",'icon1': svgAssets.usageControl1},
+    {'icon': svgAssets.appControl, 'title': "appSetting",'icon1': svgAssets.appControl1},
+    {'icon': svgAssets.status, 'title': "sponsor",'icon1': svgAssets.status1},
+    {'icon': svgAssets.gallery, 'title': "wallpaper",'icon1': svgAssets.gallery},
+    {'icon': svgAssets.dislike, 'title': "report",'icon1': svgAssets.dislike},
+    {'icon': svgAssets.logout, 'title': "logout",'icon1': svgAssets.logout1},
   ];
 
 }

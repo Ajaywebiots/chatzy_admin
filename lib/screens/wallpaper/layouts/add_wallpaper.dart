@@ -38,7 +38,7 @@ class AddWallpaper extends StatelessWidget {
                                       BorderSide(color: appCtrl.appTheme.gray.withOpacity(0.3)))),
                               child: Center(
                                   child: Text(fonts.addWallPaper.tr,
-                                      style: AppCss.muktaVaaniSemiBold16
+                                      style: AppCss.manropeSemiBold16
                                           .textColor(appCtrl.appTheme.blackColor)))),
                           const VSpace(Sizes.s10),
 
@@ -57,7 +57,7 @@ class AddWallpaper extends StatelessWidget {
                             Column(children: [
                               const VSpace(Sizes.s5),
                               Text(fonts.imageError.tr,
-                                  style: AppCss.muktaVaaniMedium12
+                                  style: AppCss.manropeMedium12
                                       .textColor(appCtrl.appTheme.redColor))
                             ]),
                           const VSpace(Sizes.s25),
@@ -69,7 +69,7 @@ class AddWallpaper extends StatelessWidget {
                                   : Container(),
                               title: wallpaperCtrl.characterId != "" ? fonts.update.tr: fonts.submit.tr,
                               onTap: () => wallpaperCtrl.characterId != "" ? wallpaperCtrl.addData() :wallpaperCtrl.uploadFile(),
-                              style: AppCss.muktaVaaniRegular12
+                              style: AppCss.manropeRegular12
                                   .textColor(appCtrl.appTheme.white)),
                           const VSpace(Sizes.s15)
                         ]),

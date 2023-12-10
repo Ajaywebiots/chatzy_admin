@@ -126,6 +126,11 @@ class Fonts{
   final orDragDrop = "orDragDrop";
   final uploadImage = "uploadImage";
   final usageOption = "usageOption";
+  final sendVerificationCode = "sendVerificationCode";
+  final sendSmsCode = "sendSmsCode";
+  final searchHere = "searchHere";
+  final joiningDate = "joiningDate";
+  final activeDeactive = "activeDeactive";
 
 
 }

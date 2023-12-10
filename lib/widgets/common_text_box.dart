@@ -51,39 +51,51 @@ class CommonTextBox extends StatelessWidget {
     InputBorder inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.r5),
       borderSide: BorderSide(
-          style: BorderStyle.solid, color: appCtrl.appTheme.gray.withOpacity(.5)),
+          style: BorderStyle.solid, color: appCtrl.appTheme.textBoxColor.withOpacity(.15)),
     );
     return GetBuilder<AppController>(builder: (appCtrl) {
       return TextFormField(
+          maxLines: maxLines ?? 1,
+          style: AppCss.manropeSemiBold14.textColor(appCtrl.appTheme.textBoxColor),
+          focusNode: focusNode,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          validator: validator,
           controller: controller,
           onChanged: onChanged,
-          validator: validator,
-          focusNode: focusNode,
-          keyboardType: keyboardType,
-          maxLines: maxLines,
-          textInputAction: textInputAction,
-          obscureText: obscureText,
-          onFieldSubmitted: onFieldSubmitted,
-          onTap: onTap,
-          readOnly: readOnly,
-          style: AppCss.muktaVaaniSemiBold12.textColor(appCtrl.appTheme.contentColor).letterSpace(.2) ,
+
           maxLength: maxLength,
           decoration: InputDecoration(
-              filled: filled,
-              fillColor: fillColor,
-              hintText: hinText.tr,
-              errorText: errorText,
-              counterText: "",
-              hintStyle:
-              AppCss.muktaVaaniSemiBold12.textColor(appCtrl.appTheme.contentColor).letterSpace(.2),
+
+              fillColor: fillColor ?? appCtrl.appTheme.textBoxColor.withOpacity(0.05),
+              filled: true,
               isDense: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: Insets.i15,vertical: Insets.i16),
-              border: border ?? inputBorder,
-              focusedBorder: border ?? inputBorder,
-              disabledBorder: border ?? inputBorder,
-              enabledBorder: border ?? inputBorder,
+              disabledBorder: OutlineInputBorder(
+                  borderRadius:
+                  const BorderRadius.all(Radius.circular(AppRadius.r8)),
+                  borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius:
+                  const BorderRadius.all(Radius.circular(AppRadius.r8)),
+                  borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius:
+                  const BorderRadius.all(Radius.circular(AppRadius.r8)),
+                  borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
+              ),
+              border:
+              OutlineInputBorder(
+                  borderRadius:
+                  const BorderRadius.all(Radius.circular(AppRadius.r8)),
+                  borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)),
+              contentPadding:  EdgeInsets.symmetric(
+                  horizontal: Insets.i15, vertical:  Insets.i20),
+              suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
-              suffixIcon: suffixIcon));
+              hintStyle: AppCss.manropeMedium14.textColor(appCtrl.appTheme.textBoxColor),
+              hintText: hinText));
     });
   }
 }

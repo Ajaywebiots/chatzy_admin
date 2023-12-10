@@ -45,11 +45,13 @@ dependencies:
   cloud_firestore: ^4.13.1
   flash: ^3.0.5+2
   image_picker_web: ^3.1.1
+  encrypt: ^5.0.1
   desktop_drop: ^0.4.4
   flutter_dropzone: ^3.0.6
   dotted_border: ^2.1.0
   image_picker: ^1.0.4
   drop_zone: ^1.0.2
+  smooth_corner: ^1.1.0
   percent_indicator: ^4.2.3
   figma_squircle: ^0.5.3
   flutter_switch: ^0.3.2

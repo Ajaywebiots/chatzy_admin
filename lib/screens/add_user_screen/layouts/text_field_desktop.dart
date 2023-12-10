@@ -20,7 +20,7 @@ class TextFieldDesktop extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(title!.tr,
               style:
-                  AppCss.muktaVaaniBold16.textColor(appCtrl.appTheme.blackColor)),
+                  AppCss.manropeBold16.textColor(appCtrl.appTheme.blackColor)),
           const VSpace(Sizes.s10),
           CommonTextBox(
               controller: controller,

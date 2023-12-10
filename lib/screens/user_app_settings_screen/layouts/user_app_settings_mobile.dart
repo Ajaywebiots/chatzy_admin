@@ -38,7 +38,7 @@ class UserAppSettingsMobile extends StatelessWidget {
             ).paddingAll(Insets.i55).boxExtension().marginOnly(top: Insets.i15),
             CommonButton(
               title: fonts.adShowHide.tr.toUpperCase(),
-              style: AppCss.muktaVaaniMedium12.textColor(appCtrl.appTheme.white),
+              style: AppCss.manropeMedium12.textColor(appCtrl.appTheme.white),
               width: Sizes.s250,
               margin: Insets.i15,
             ),

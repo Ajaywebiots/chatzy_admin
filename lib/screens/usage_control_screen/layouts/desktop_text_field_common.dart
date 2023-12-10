@@ -15,22 +15,22 @@ class DesktopTextFieldCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(title!.tr,
-          style: AppCss.muktaVaaniMedium18
+          style: AppCss.manropeMedium18
               .textColor(appCtrl.isTheme ?appCtrl.appTheme.white :appCtrl.appTheme.dark).textHeight(1.5)),
       if(isNote == true)
       Text(fonts.note.tr,
-          style: AppCss.muktaVaaniSemiBold12
+          style: AppCss.manropeSemiBold12
               .textColor(appCtrl.appTheme.error).textHeight(1.2)),
       const VSpace(Sizes.s15),
       TextFormField(
-        style: AppCss.muktaVaaniMedium14.textColor(appCtrl.appTheme.gray),
+        style: AppCss.manropeMedium14.textColor(appCtrl.appTheme.gray),
           validator: validator,
 
           keyboardType: TextInputType.multiline,
           cursorColor: appCtrl.appTheme.primary,
           controller: controller!,
           decoration: InputDecoration(
-                errorStyle: AppCss.muktaVaaniMedium10,
+                errorStyle: AppCss.manropeMedium10,
               isDense: true,
               filled: true,
               fillColor: appCtrl.appTheme.gray.withOpacity(0.1),

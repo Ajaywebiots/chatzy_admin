@@ -11,4 +11,8 @@ class CollectionName{
   String collectionCallHistory = "collectionCallHistory";
   String report = "report";
   String wallpaper = "wallpaper";
+  String status = "status";
+  String messages = "messages";
+  String groupMessage = "groupMessage";
+  String broadcastMessage = "broadcastMessage";
 }

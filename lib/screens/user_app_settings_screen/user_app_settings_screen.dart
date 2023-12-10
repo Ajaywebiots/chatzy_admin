@@ -70,9 +70,7 @@ class UserAppSettingsScreen extends StatelessWidget {
                           ButtonLayout(
                               onTap: () => userSettingCtrl.updateData())
                         ])
-                        .paddingSymmetric(
-                            horizontal:  Insets.i30,
-                            vertical: Insets.i25)
+                      
                         ),
                 if (userSettingCtrl.isLoading)
                   Center(

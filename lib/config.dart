@@ -15,7 +15,7 @@ export 'package:chatzy_admin/extensions/text_style_extensions.dart';
 export 'package:chatzy_admin/extensions/widget_extension.dart';
 export 'package:chatzy_admin/extensions/spacing.dart';
 export 'package:chatzy_admin/utils/extensions.dart';
-
+import 'package:encrypt/encrypt.dart' as encrypt;
 // All common files
 export 'package:chatzy_admin/common/theme/app_theme.dart';
 export 'package:chatzy_admin/common/theme/theme_service.dart';
@@ -71,3 +71,12 @@ export 'package:chatzy_admin/screens/index/index.dart';
 var appCtrl = Get.isRegistered<AppController>()
     ? Get.find<AppController>()
     : Get.put(AppController());
+
+
+final encryptKey = encrypt.Key.fromUtf8('my 32 length key................');
+final iv = encrypt.IV.fromLength(16);
+final encrypter = encrypt.Encrypter(encrypt.AES(encryptKey));
+
+String decryptMessage(content) {
+  return encrypter.decrypt(encrypt.Encrypted.fromBase64(content), iv: iv);
+}

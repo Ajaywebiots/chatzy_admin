@@ -47,6 +47,10 @@ class AppTheme {
   Color number;
   Color dark;
   Color drawerTextColor;
+  Color loginBg;
+  Color border;
+  Color textBoxColor;
+  Color bg;
 
   /// Default constructor
   AppTheme({
@@ -87,6 +91,10 @@ class AppTheme {
     required this.number,
     required this.dark,
     required this.drawerTextColor,
+    required this.loginBg,
+    required this.border,
+    required this.textBoxColor,
+    required this.bg,
   });
 
   /// fromType factory constructor
@@ -131,6 +139,10 @@ class AppTheme {
           number: const Color(0xff363941),
           dark: const Color(0xff010D21),
           drawerTextColor: const Color(0xff999EA6),
+          loginBg: const Color(0xffF0F0F0),
+          border: const Color(0xffF2F3F3),
+          textBoxColor: const Color(0xff7F8384),
+          bg: const Color(0xffF6F6F6),
         );
 
       case ThemeType.dark:
@@ -171,7 +183,10 @@ class AppTheme {
           switchThumb: Colors.grey.shade500,
             number: const Color(0xff363941),
           dark: const Color(0xff010D21),
-          drawerTextColor: const Color(0xff999EA6),
+          drawerTextColor: const Color(0xff999EA6),loginBg: const Color(0xffF0F0F0),
+          border: const Color(0xff7F8384),
+          textBoxColor: const Color(0xff7F8384),
+          bg:  const Color(0xFF2C2C2C),
         );
     }
   }

@@ -9,7 +9,7 @@ class Durations {
 }
 
 class Fonts {
-  static const String muktaVaani = "muktaVaani";
+  static const String manrope = "manrope";
 }
 
 class Insets {

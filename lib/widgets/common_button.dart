@@ -1,3 +1,6 @@
+
+import 'package:smooth_corner/smooth_corner.dart';
+
 import '../config.dart';
 
 class CommonButton extends StatelessWidget {
@@ -38,15 +41,19 @@ class CommonButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: onTap,
-        child: Container(
+        child: SmoothContainer(
             width: width ?? MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(horizontal: margin),
             height: Responsive.isMobile(context) ? Sizes.s45 : height,
-            decoration: BoxDecoration(
+            /*decoration: BoxDecoration(
                 color: color ?? appCtrl.appTheme.primary,
                 border: border,
                 borderRadius:
-                    radius > 0 ? BorderRadius.circular(radius) : null),
+                    radius > 0 ? SmoothBorderRadius(
+                        cornerRadius: 12,
+                        cornerSmoothing: 1) : null),*/
+            color: color ?? appCtrl.appTheme.primary,
+            borderRadius: BorderRadius.circular(12),smoothness: 1,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               if (icon != null)
                 Row(children: [icon ?? const HSpace(0), const HSpace(10)]),

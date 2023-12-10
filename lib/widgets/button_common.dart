@@ -17,6 +17,6 @@ class UpdateButton extends StatelessWidget {
                 vertical: Insets.i20, horizontal: Insets.i25),
             backgroundColor: appCtrl.appTheme.primary),
         child: Text(title!.tr,
-            style: AppCss.muktaVaaniMedium16.textColor(appCtrl.appTheme.white)));
+            style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white)));
   }
 }

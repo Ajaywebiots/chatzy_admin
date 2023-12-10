@@ -1,4 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 import '../config.dart';
 
@@ -8,7 +10,7 @@ class CommonWidgetClass {
         children: [
           Text(
             title.toString().tr.toUpperCase(),
-            style: AppCss.muktaVaaniMedium14.textColor(appCtrl.appTheme.white),
+            style: AppCss.manropeMedium14.textColor(appCtrl.appTheme.blackText),
           ),
         ],
       ).paddingSymmetric(vertical: Insets.i20);
@@ -35,25 +37,49 @@ class CommonWidgetClass {
                           fit: BoxFit.fill))
               : Text(
                   value,
-                  style: AppCss.muktaVaaniRegular14
+                  style: AppCss.manropeRegular14
                       .textColor(appCtrl.appTheme.blackColor),
                 )
         ],
       );
 
   //credential copy
-  Widget credentialCopy(title) => Row(
+  Widget credentialCopy(title,val,context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title,
-              style: AppCss.muktaVaaniMedium14
-                  .textColor(appCtrl.appTheme.blackColor)),
-          Icon(Icons.copy, size: Sizes.s20, color: appCtrl.appTheme.blackColor)
-              .inkWell(onTap: () {
-            Clipboard.setData(ClipboardData(text: title));
-          })
+         Row(
+           children: [
+             Text("$title : ",
+                 style: GoogleFonts.manrope(
+                   fontSize: 16,
+                   fontWeight: FontWeight.w400,
+                   color: appCtrl.appTheme.blackColor
+                 )),
+             Text(val,
+                 style: GoogleFonts.manrope(
+                     fontSize: 16,
+                     fontWeight: FontWeight.w600,
+                     color: appCtrl.appTheme.blackColor
+                 )),
+           ],
+         ),
+         SmoothContainer(
+           color: appCtrl.appTheme.white,
+           borderRadius: BorderRadius.circular(12),
+           smoothness: 1,
+           padding: const EdgeInsets.all(Insets.i8),
+           side: BorderSide(color: appCtrl.appTheme.borderColor),
+           child: SvgPicture.asset(svgAssets.copy),
+         )
         ],
-      );
+      ).inkWell(onTap: (){
+        Clipboard.setData(ClipboardData(text: val));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+
+          content: Text('Copy Text'),
+
+        ));
+  });
 
   //action layout
   Widget actionLayout({GestureTapCallback? onTap, isUser = true}) =>

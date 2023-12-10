@@ -1,3 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_corner/smooth_corner.dart';
+
 import '../../../config.dart';
 
 class AllTextBoxDesktop extends StatelessWidget {
@@ -6,10 +9,31 @@ class AllTextBoxDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserAppSettingsController>(builder: (settingCtrl) {
-      return Stack(
-        children: [
-          SizedBox(
-            child: Row(
+      return SizedBox(
+        child: Column(
+          children: [
+            SmoothContainer(
+              width: MediaQuery.of(context).size.width,
+              //margin: const EdgeInsets.symmetric(horizontal: Insets.i20),
+              padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
+              color: appCtrl.appTheme.primary.withOpacity(.08),
+              smoothness: 1,
+              borderRadius: BorderRadius.circular(6),
+              child: Row(
+                children: [
+                  Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
+                  const HSpace(Sizes.s15),
+                  Text(
+                    fonts.credential.tr,
+                    style: GoogleFonts.manrope(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800,
+                        color: appCtrl.appTheme.primary),
+                  ),
+                ],
+              ),
+            ),
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -66,16 +90,10 @@ class AllTextBoxDesktop extends StatelessWidget {
                           const VSpace(Sizes.s30),
                     ]).marginOnly(top: Insets.i15)),
               ],
-            ).paddingAll(Insets.i30),
-          ).boxExtension().marginOnly(top: Insets.i15),
-          CommonButton(
-            title: fonts.credential.tr,
-            style: AppCss.muktaVaaniMedium12.textColor(appCtrl.appTheme.white),
-            width: Sizes.s250,
-            margin: Insets.i15,
-          ),
-        ],
-      );
+            ),
+          ],
+        ).paddingAll(Insets.i30),
+      ).boxExtension().marginOnly(top: Insets.i15);
     });
   }
 }

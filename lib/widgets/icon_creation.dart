@@ -24,7 +24,7 @@ class IconCreation extends StatelessWidget {
         const VSpace(Sizes.s8),
         Text(
           text!,
-          style: AppCss.muktaVaaniblack14.textColor(appCtrl.appTheme.blackColor),
+          style: AppCss.manropeblack14.textColor(appCtrl.appTheme.blackColor),
         )
       ]),
     );

@@ -25,15 +25,15 @@ class _IndexLayoutState extends State<IndexLayout> {
             key: widget.scaffoldKey,
             backgroundColor: appCtrl.isTheme ?appCtrl.appTheme.whiteColor : appCtrl.appTheme.bg1,
             appBar: AppBar(
-              toolbarHeight: Sizes.s70,
+              toolbarHeight: Sizes.s90,
                 elevation: 0.0,
                 shadowColor: Colors.transparent,
                 centerTitle: false,
 
                 backgroundColor: appCtrl.isTheme ?appCtrl.appTheme.whiteColor : appCtrl.appTheme.bg1,
-                leadingWidth: Responsive.isDesktop(context) ? Sizes.s450 : Sizes.s100,
+                leadingWidth: Responsive.isDesktop(context) ? Sizes.s500 : Sizes.s100,
                 title: !Responsive.isDesktop(context)
-                    ? Text(indexCtrl.pageName.tr,style: AppCss.muktaVaaniSemiBold16.textColor(appCtrl.appTheme.blackColor),)
+                    ? Text(indexCtrl.pageName.tr,style: AppCss.manropeSemiBold16.textColor(appCtrl.appTheme.blackColor),)
                     : Container(),
                 leading:  LeadingRow(scaffoldKey: widget.scaffoldKey,scaffoldDrawerKey: widget.scaffoldDrawerKey),
                 actions: const [DarkLanguageLayout( )]),
@@ -58,7 +58,7 @@ class _IndexLayoutState extends State<IndexLayout> {
                                     width: value ? Sizes.s220 : Sizes.s70,
                                    decoration: BoxDecoration(
                                      boxShadow:  [BoxShadow(blurRadius: 20,color: appCtrl.appTheme.gray,spreadRadius: 4)],
-                                     color: appCtrl.appTheme.dark,
+                                     color: appCtrl.appTheme.blackText,
                                    ),
                                     child: SingleChildScrollView(
                                         controller: ScrollController(),
@@ -72,7 +72,7 @@ class _IndexLayoutState extends State<IndexLayout> {
                                             children: [
                                               Divider(
                                                   thickness: 2,
-                                                  color: appCtrl.appTheme.primary.withOpacity(0.2),
+                                                  color: appCtrl.appTheme.textBoxColor,
                                                   indent: 12,
                                                   endIndent: 12),
                                               const VSpace(Sizes.s10),

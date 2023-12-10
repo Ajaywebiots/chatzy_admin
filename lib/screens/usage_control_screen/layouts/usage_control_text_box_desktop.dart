@@ -1,3 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_corner/smooth_corner.dart';
+
 import '../../../config.dart';
 
 class UsageControlAllTextBoxDesktop extends StatelessWidget {
@@ -10,19 +13,36 @@ class UsageControlAllTextBoxDesktop extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                fonts.usageControl.tr,
-                style: AppCss.muktaVaaniSemiBold18
-                    .textColor(appCtrl.appTheme.blackColor).letterSpace(.3),
-              ).paddingOnly(top: 6),
+              Expanded(
+                child: SmoothContainer(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: Insets.i20),
+                  padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
+                  color: appCtrl.appTheme.primary.withOpacity(.08),
+                  smoothness: 1,
+                  borderRadius: BorderRadius.circular(6),
+                  child: Row(
+                    children: [
+                      Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
+                      const HSpace(Sizes.s15),
+                      Text(
+                        fonts.usageControl.tr,
+                        style: GoogleFonts.manrope(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            color: appCtrl.appTheme.primary),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               // Update button & Note
               ButtonLayout(onTap: () => usageCtrl.updateData()),
             ],
-          ).marginSymmetric(horizontal: Insets.i30),
+          ),
 
-          Divider(color: appCtrl.appTheme.primary.withOpacity(0.1)),
           SizedBox(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

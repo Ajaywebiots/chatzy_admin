@@ -1,3 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_corner/smooth_corner.dart';
+
 import '../../../config.dart';
 import '../../../models/user_setting_model.dart';
 
@@ -12,6 +15,27 @@ class UserAppSettingsDesktop extends StatelessWidget {
     return GetBuilder<UserAppSettingsController>(builder: (userSettingCtrl) {
       return Stack(children: [
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          SmoothContainer(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.symmetric(horizontal:Insets.i25,vertical: Insets.i20),
+            padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
+            color: appCtrl.appTheme.primary.withOpacity(.08),
+            smoothness: 1,
+            borderRadius: BorderRadius.circular(6),
+            child: Row(
+              children: [
+                Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
+                const HSpace(Sizes.s15),
+                Text(
+                  fonts.usageControl.tr,
+                  style: GoogleFonts.manrope(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: appCtrl.appTheme.primary),
+                ),
+              ],
+            ),
+          ),
           DesktopSwitchCommon(
               title: fonts.allowUserBlock,
               value: userAppSettingModel!.allowUserBlock,
@@ -28,13 +52,8 @@ class UserAppSettingsDesktop extends StatelessWidget {
               value: userAppSettingModel!.isMaintenanceMode,
               onChanged: (val) => userSettingCtrl.commonSwitcherValueChange(
                   "isMaintenanceMode", val))
-        ]).paddingAll(Insets.i55).boxExtension().marginOnly(top: Insets.i15),
-        CommonButton(
-          title: fonts.adShowHide.tr.toUpperCase(),
-          style: AppCss.muktaVaaniMedium12.textColor(appCtrl.appTheme.white),
-          width: Sizes.s250,
-          margin: Insets.i15,
-        ),
+        ]).marginOnly(bottom: Insets.i15).boxExtension().marginOnly(top: Insets.i15),
+
       ]);
     });
   }

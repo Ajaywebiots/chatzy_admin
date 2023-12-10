@@ -33,7 +33,7 @@ class CustomSnackBar extends StatelessWidget {
               ),
               const HSpace(Sizes.s8),
               Text(fonts.svgNotAllowed.tr,
-                  style: AppCss.muktaVaaniMedium14
+                  style: AppCss.manropeMedium14
                       .textColor(appCtrl.appTheme.whiteColor)
                       .textDecoration(TextDecoration.none)),
             ],

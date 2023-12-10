@@ -7,18 +7,15 @@ class LoginLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginCommonClass().loginBody(
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-            child: Container(
-                constraints:
-                    const BoxConstraints(maxWidth: 450, maxHeight: 700),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadius.r15),
-                    color: appCtrl.appTheme.whiteColor),
-                child: const Padding(
-                    padding:  EdgeInsets.all(Insets.i35),
-                    child: SingleChildScrollView(
-                        child: LoginBodyLayout())))));
+    return Container(
+margin: EdgeInsets.symmetric(horizontal: Responsive.isDesktop(context) ?0: Insets.i20),
+        width: 547,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: appCtrl.appTheme.whiteColor,
+          border: Border.all(color: appCtrl.appTheme.border.withOpacity(.28))
+        ),
+        child: const LoginBodyLayout())
+    ;
   }
 }

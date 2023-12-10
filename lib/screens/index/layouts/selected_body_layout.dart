@@ -15,7 +15,7 @@ class SelectedIndexBodyLayout extends StatelessWidget {
             SliverList(
                 delegate: SliverChildListDelegate([
               Container(
-                  color: appCtrl.isTheme ?appCtrl.appTheme.whiteColor : appCtrl.appTheme.bgColor,
+                  color:  appCtrl.appTheme.bg,
                   padding: const EdgeInsets.symmetric(horizontal: Insets.i24),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class SelectedIndexBodyLayout extends StatelessWidget {
                 fillOverscroll: true,
                 child: const Column(children: <Widget>[
                   Expanded(child: SizedBox.shrink())
-                ]).backgroundColor(appCtrl.isTheme ?appCtrl.appTheme.whiteColor : appCtrl.appTheme.bgColor,))
+                ]).backgroundColor(appCtrl.appTheme.bg,))
           ])));
     });
   }

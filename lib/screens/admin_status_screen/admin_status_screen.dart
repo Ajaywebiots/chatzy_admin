@@ -21,7 +21,7 @@ class AdminStatusScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(fonts.uploadImage.tr,
-                      style: AppCss.muktaVaaniSemiBold22.textColor(
+                      style: AppCss.manropeSemiBold22.textColor(
                           appCtrl.appTheme.number)).paddingOnly(top: Insets.i10),
                   SizedBox(
                       width: double.infinity,
@@ -106,7 +106,7 @@ class AdminStatusScreen extends StatelessWidget {
                   if (adminStatusCtrl.isAlert == true &&
                       adminStatusCtrl.pickImage == null)
                     Text("Please Upload Image",
-                        style: AppCss.muktaVaaniSemiBold14
+                        style: AppCss.manropeSemiBold14
                             .textColor(appCtrl.appTheme.redColor)),
                   UpdateButton(title: fonts.addStatus,
                       onPressed: adminStatusCtrl.imageFile != null
@@ -122,7 +122,7 @@ class AdminStatusScreen extends StatelessWidget {
               if (adminStatusCtrl.isLoading)
                 Container(
                     child: Text("Status Update Successfully",
-                      style: AppCss.muktaVaaniBold12.textColor(
+                      style: AppCss.manropeBold12.textColor(
                           appCtrl.appTheme.whiteColor),
                     ).paddingAll(Insets.i10).decorated(
                         color: appCtrl.appTheme.green,

@@ -5,8 +5,8 @@ part 'scale.dart';
 
 class AppCss {
   //monterrat font
-  static TextStyle muktaVaani = TextStyle(
-    fontFamily: GoogleFonts.muktaVaani().fontFamily,
+  static TextStyle manrope = TextStyle(
+    fontFamily: GoogleFonts.manrope().fontFamily,
     letterSpacing: 0,
 
     height: 1,
@@ -14,68 +14,69 @@ class AppCss {
 
 
 
-  //Text Style muktaVaani extra bold
-  static TextStyle get muktaVaaniExtraBold65 => muktaVaani.extraThickBold.size(FontSizes.f65);
-  static TextStyle get muktaVaaniExtraBold60 => muktaVaani.extraThickBold.size(FontSizes.f60);
-  static TextStyle get muktaVaaniExtraBold30 => muktaVaani.extraThickBold.size(FontSizes.f30);
+  //Text Style manrope extra bold
+  static TextStyle get manropeExtraBold65 => manrope.extraThickBold.size(FontSizes.f65);
+  static TextStyle get manropeExtraBold60 => manrope.extraThickBold.size(FontSizes.f60);
+  static TextStyle get manropeExtraBold30 => manrope.extraThickBold.size(FontSizes.f30);
 
-  //Text Style muktaVaani bold
-  static TextStyle get muktaVaaniblack28 => muktaVaani.black.size(FontSizes.f28);
-  static TextStyle get muktaVaaniblack24 => muktaVaani.black.size(FontSizes.f24);
-  static TextStyle get muktaVaaniblack20 => muktaVaani.black.size(FontSizes.f20);
-  static TextStyle get muktaVaaniblack18 => muktaVaani.black.size(FontSizes.f18);
-  static TextStyle get muktaVaaniblack16 => muktaVaani.black.size(FontSizes.f16);
-  static TextStyle get muktaVaaniblack14 => muktaVaani.black.size(FontSizes.f14);
-
-
-  //Text Style muktaVaani bold
-  static TextStyle get muktaVaaniExtraBold22 => muktaVaani.extraBold.size(FontSizes.f22);
-  static TextStyle get muktaVaaniExtraBold18 => muktaVaani.extraBold.size(FontSizes.f18);
-  static TextStyle get muktaVaaniExtraBold16 => muktaVaani.extraBold.size(FontSizes.f16);
-  static TextStyle get muktaVaaniExtraBold14 => muktaVaani.extraBold.size(FontSizes.f14);
-  static TextStyle get muktaVaaniExtraBold12 => muktaVaani.extraBold.size(FontSizes.f12);
-
-  //Text Style semi muktaVaani bold
-  static TextStyle get muktaVaaniBold50 => muktaVaani.bold.size(FontSizes.f50);
-  static TextStyle get muktaVaaniBold35 => muktaVaani.bold.size(FontSizes.f35);
-  static TextStyle get muktaVaaniBold24 => muktaVaani.bold.size(FontSizes.f24);
-  static TextStyle get muktaVaaniBold20 => muktaVaani.bold.size(FontSizes.f20);
-  static TextStyle get muktaVaaniBold18 => muktaVaani.bold.size(FontSizes.f18);
-  static TextStyle get muktaVaaniBold16 => muktaVaani.bold.size(FontSizes.f16);
-  static TextStyle get muktaVaaniBold14 => muktaVaani.bold.size(FontSizes.f14);
-  static TextStyle get muktaVaaniBold12 => muktaVaani.bold.size(FontSizes.f12);
-  static TextStyle get muktaVaaniBold10 => muktaVaani.bold.size(FontSizes.f10);
-  static TextStyle get muktaVaaniSemiBold24=> muktaVaani.semiBold.size(FontSizes.f24);
-  static TextStyle get muktaVaaniSemiBold22=> muktaVaani.semiBold.size(FontSizes.f22);
-  static TextStyle get muktaVaaniSemiBold20=> muktaVaani.semiBold.size(FontSizes.f20);
-  static TextStyle get muktaVaaniSemiBold18=> muktaVaani.semiBold.size(FontSizes.f18);
-  static TextStyle get muktaVaaniSemiBold16=> muktaVaani.semiBold.size(FontSizes.f16);
-  static TextStyle get muktaVaaniSemiBold15=> muktaVaani.semiBold.size(FontSizes.f15);
-  static TextStyle get muktaVaaniSemiBold14=> muktaVaani.semiBold.size(FontSizes.f14);
-  static TextStyle get muktaVaaniSemiBold12=> muktaVaani.semiBold.size(FontSizes.f12);
-  static TextStyle get muktaVaaniSemiBold10=> muktaVaani.semiBold.size(FontSizes.f10);
+  //Text Style manrope bold
+  static TextStyle get manropeblack28 => manrope.black.size(FontSizes.f28);
+  static TextStyle get manropeblack24 => manrope.black.size(FontSizes.f24);
+  static TextStyle get manropeblack20 => manrope.black.size(FontSizes.f20);
+  static TextStyle get manropeblack18 => manrope.black.size(FontSizes.f18);
+  static TextStyle get manropeblack16 => manrope.black.size(FontSizes.f16);
+  static TextStyle get manropeblack14 => manrope.black.size(FontSizes.f14);
 
 
-  //Text Style muktaVaani medium
-  static TextStyle get muktaVaaniMedium28 => muktaVaani.medium.size(FontSizes.f28);
-  static TextStyle get muktaVaaniMedium22 => muktaVaani.medium.size(FontSizes.f22);
-  static TextStyle get muktaVaaniMedium20 => muktaVaani.medium.size(FontSizes.f20);
-  static TextStyle get muktaVaaniMedium18 => muktaVaani.medium.size(FontSizes.f18);
-  static TextStyle get muktaVaaniMedium16 => muktaVaani.medium.size(FontSizes.f16);
-  static TextStyle get muktaVaaniMedium14 => muktaVaani.medium.size(FontSizes.f14);
-  static TextStyle get muktaVaaniMedium12 => muktaVaani.medium.size(FontSizes.f12);
-  static TextStyle get muktaVaaniMedium10 => muktaVaani.medium.size(FontSizes.f10);
+  //Text Style manrope bold
+  static TextStyle get manropeExtraBold22 => manrope.extraBold.size(FontSizes.f22);
+  static TextStyle get manropeExtraBold18 => manrope.extraBold.size(FontSizes.f18);
+  static TextStyle get manropeExtraBold16 => manrope.extraBold.size(FontSizes.f16);
+  static TextStyle get manropeExtraBold14 => manrope.extraBold.size(FontSizes.f14);
+  static TextStyle get manropeExtraBold12 => manrope.extraBold.size(FontSizes.f12);
 
-  //Text Style muktaVaani regular
-  static TextStyle get muktaVaaniRegular18 => muktaVaani.regular.size(FontSizes.f18);
-  static TextStyle get muktaVaaniRegular16 => muktaVaani.regular.size(FontSizes.f16);
-  static TextStyle get muktaVaaniRegular14 => muktaVaani.regular.size(FontSizes.f14);
-  static TextStyle get muktaVaaniRegular12 => muktaVaani.regular.size(FontSizes.f12);
-  static TextStyle get muktaVaaniRegular11 => muktaVaani.regular.size(FontSizes.f11);
+  //Text Style semi manrope bold
+  static TextStyle get manropeBold50 => manrope.bold.size(FontSizes.f50);
+  static TextStyle get manropeBold35 => manrope.bold.size(FontSizes.f35);
+  static TextStyle get manropeBold24 => manrope.bold.size(FontSizes.f24);
+  static TextStyle get manropeBold20 => manrope.bold.size(FontSizes.f20);
+  static TextStyle get manropeBold18 => manrope.bold.size(FontSizes.f18);
+  static TextStyle get manropeBold16 => manrope.bold.size(FontSizes.f16);
+  static TextStyle get manropeBold14 => manrope.bold.size(FontSizes.f14);
+  static TextStyle get manropeBold12 => manrope.bold.size(FontSizes.f12);
+  static TextStyle get manropeBold10 => manrope.bold.size(FontSizes.f10);
+  static TextStyle get manropeSemiBold26=> manrope.semiBold.size(FontSizes.f26);
+  static TextStyle get manropeSemiBold24=> manrope.semiBold.size(FontSizes.f24);
+  static TextStyle get manropeSemiBold22=> manrope.semiBold.size(FontSizes.f22);
+  static TextStyle get manropeSemiBold20=> manrope.semiBold.size(FontSizes.f20);
+  static TextStyle get manropeSemiBold18=> manrope.semiBold.size(FontSizes.f18);
+  static TextStyle get manropeSemiBold16=> manrope.semiBold.size(FontSizes.f16);
+  static TextStyle get manropeSemiBold15=> manrope.semiBold.size(FontSizes.f15);
+  static TextStyle get manropeSemiBold14=> manrope.semiBold.size(FontSizes.f14);
+  static TextStyle get manropeSemiBold12=> manrope.semiBold.size(FontSizes.f12);
+  static TextStyle get manropeSemiBold10=> manrope.semiBold.size(FontSizes.f10);
 
 
-  static TextStyle get muktaVaaniLight16 => muktaVaani.light.size(FontSizes.f16);
-  static TextStyle get muktaVaaniLight14 => muktaVaani.light.size(FontSizes.f14);
-  static TextStyle get muktaVaaniLight12 => muktaVaani.light.size(FontSizes.f12);
+  //Text Style manrope medium
+  static TextStyle get manropeMedium28 => manrope.medium.size(FontSizes.f28);
+  static TextStyle get manropeMedium22 => manrope.medium.size(FontSizes.f22);
+  static TextStyle get manropeMedium20 => manrope.medium.size(FontSizes.f20);
+  static TextStyle get manropeMedium18 => manrope.medium.size(FontSizes.f18);
+  static TextStyle get manropeMedium16 => manrope.medium.size(FontSizes.f16);
+  static TextStyle get manropeMedium14 => manrope.medium.size(FontSizes.f14);
+  static TextStyle get manropeMedium12 => manrope.medium.size(FontSizes.f12);
+  static TextStyle get manropeMedium10 => manrope.medium.size(FontSizes.f10);
+
+  //Text Style manrope regular
+  static TextStyle get manropeRegular18 => manrope.regular.size(FontSizes.f18);
+  static TextStyle get manropeRegular16 => manrope.regular.size(FontSizes.f16);
+  static TextStyle get manropeRegular14 => manrope.regular.size(FontSizes.f14);
+  static TextStyle get manropeRegular12 => manrope.regular.size(FontSizes.f12);
+  static TextStyle get manropeRegular11 => manrope.regular.size(FontSizes.f11);
+
+
+  static TextStyle get manropeLight16 => manrope.light.size(FontSizes.f16);
+  static TextStyle get manropeLight14 => manrope.light.size(FontSizes.f14);
+  static TextStyle get manropeLight12 => manrope.light.size(FontSizes.f12);
 
 }

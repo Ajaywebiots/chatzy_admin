@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../config.dart';
 
 class DashboardTitleCount extends StatelessWidget {
@@ -10,15 +12,22 @@ class DashboardTitleCount extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-              count!,
-              style: AppCss.muktaVaaniSemiBold20
-                  .textColor(appCtrl.appTheme.number)),
-          const VSpace(Sizes.s15),
-          Text(
               title!,
-              style: AppCss.muktaVaaniMedium16
-                  .textColor(appCtrl.appTheme.gray)
-                  .letterSpace(1.3))
+              style: GoogleFonts.manrope(
+                fontSize: 18,
+                color: appCtrl.appTheme.textBoxColor,
+                fontWeight: FontWeight.normal
+              )),
+          const VSpace(Sizes.s10),
+          Text(
+              count!,
+              style: GoogleFonts.manrope(
+                  fontSize: 22,
+                  color: appCtrl.appTheme.primary,
+                  fontWeight: FontWeight.w800
+              )),
+
+
         ]);
   }
 }

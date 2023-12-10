@@ -52,7 +52,7 @@ class WallPaper extends StatelessWidget {
                       if (wallpaperCtrl.isAlert == true &&
                           wallpaperCtrl.pickImage == null)
                         Text("Please Upload Image",
-                            style: AppCss.muktaVaaniSemiBold14
+                            style: AppCss.manropeSemiBold14
                                 .textColor(appCtrl.appTheme.redColor))
                     ]
                   )
@@ -78,7 +78,7 @@ class WallPaper extends StatelessWidget {
                   : fonts.addWallPaper.tr,
               width: Sizes.s200,
               onTap: () => wallpaperCtrl.uploadFile(),
-              style: AppCss.muktaVaaniRegular14
+              style: AppCss.manropeRegular14
                   .textColor(appCtrl.appTheme.whiteColor)
             ).alignment(Alignment.centerRight),
             const VSpace(Sizes.s20),

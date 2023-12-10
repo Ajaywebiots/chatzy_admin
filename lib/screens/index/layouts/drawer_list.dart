@@ -33,29 +33,27 @@ class DrawerList extends StatelessWidget {
                           vertical: Insets.i8),
                       width: double.infinity,
                       child: Responsive.isDesktop(context) && value == false
-                          ? SvgPicture.asset(e.value["icon"]!,colorFilter: ColorFilter.mode( indexCtrl
+                          ? SvgPicture.asset(indexCtrl
                           .selectedIndex ==
                           e.key
-                          ? appCtrl.appTheme.white
+                          ? e.value["icon1"]!
                           : indexCtrl.isHover &&
                           indexCtrl
                               .isSelectedHover ==
                               e.key
-                          ? appCtrl.appTheme.white
-                          : appCtrl
-                          .appTheme.white, BlendMode.srcIn),height: Sizes.s18)
+                          ? e.value["icon1"]!
+                          : e.value["icon"]!,height: Sizes.s18)
                           : Row(children: [
-                              SvgPicture.asset(e.value["icon"]!,colorFilter: ColorFilter.mode(indexCtrl
+                              SvgPicture.asset(indexCtrl
                                   .selectedIndex ==
                                   e.key
-                                  ? appCtrl.appTheme.white
+                                  ? e.value["icon1"]!
                                   : indexCtrl.isHover &&
                                   indexCtrl
                                       .isSelectedHover ==
                                       e.key
-                                  ? appCtrl.appTheme.white
-                                  : appCtrl
-                                  .appTheme.white, BlendMode.srcIn),height: Sizes.s18),
+                                  ? e.value["icon1"]!
+                                  : e.value["icon"]!,height: Sizes.s18),
                               const HSpace(Sizes.s20),
                               Responsive.isDesktop(context) && value == false
                                   ? Container()
@@ -64,7 +62,7 @@ class DrawerList extends StatelessWidget {
                                           e.value["title"] != null
                                               ? e.value["title"].toString().tr
                                               : "",
-                                          style: AppCss.muktaVaaniLight12
+                                          style: AppCss.manropeLight12
                                               .textColor(indexCtrl
                                                           .selectedIndex ==
                                                       e.key
@@ -116,13 +114,13 @@ class DrawerList extends StatelessWidget {
                       borderRadius:
                           const BorderRadius.all(Radius.circular(AppRadius.r6)),
                       color: Responsive.isDesktop(context) && value == false
-                          ? appCtrl.appTheme.dark
+                          ? appCtrl.appTheme.blackText
                           : indexCtrl.selectedIndex == e.key
                               ? appCtrl.appTheme.primary
                               : indexCtrl.isHover &&
                                       indexCtrl.isSelectedHover == e.key
                                   ? appCtrl.appTheme.primary
-                                  : appCtrl.appTheme.dark)
+                                  : appCtrl.appTheme.blackText)
                   .paddingSymmetric(
                       horizontal: Insets.i15, vertical: Insets.i8));
         }).toList()

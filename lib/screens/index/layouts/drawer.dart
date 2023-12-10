@@ -27,21 +27,19 @@ class IndexDrawer extends StatelessWidget {
                     indexCtrl.update();
                   },
                   child: Drawer(
-                      backgroundColor: appCtrl.appTheme.dark,
+                      backgroundColor: appCtrl.appTheme.blackText,
                       elevation: 2,
                       child: ListView(children: [
                         const VSpace(Sizes.s40),
                         /*Image.asset(imageAssets.chatifyLogo1, height: Sizes.s40)*/
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(imageAssets.logo,
                                 height: Sizes.s40, fit: BoxFit.fill),
                             const HSpace(Sizes.s10),
-                            Text(
-                              fonts.chatzyAdmin.tr,
-                              style: AppCss.muktaVaaniExtraBold18
-                                  .textColor(appCtrl.appTheme.white),
-                            ),
+                            Image.asset(imageAssets.logo1,
+                                height: Sizes.s40, fit: BoxFit.fill),
                           ],
                         ),
                         const VSpace(Sizes.s30),

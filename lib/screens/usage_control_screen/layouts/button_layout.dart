@@ -15,7 +15,7 @@ class ButtonLayout extends StatelessWidget {
             ? SizedBox(
                     width: Sizes.s260,
                     child: Text(fonts.note.tr,
-                        style: AppCss.muktaVaaniSemiBold12
+                        style: AppCss.manropeSemiBold12
                             .textColor(appCtrl.appTheme.error)
                             .textHeight(1.2)))
                 .paddingOnly(left: Insets.i15)
@@ -24,7 +24,7 @@ class ButtonLayout extends StatelessWidget {
                 title: fonts.update.tr,
                 onTap: onTap,
                 width: Sizes.s150,
-                style: AppCss.muktaVaaniMedium18
+                style: AppCss.manropeMedium18
                     .textColor(appCtrl.appTheme.whiteColor))
             .paddingOnly(top: Insets.i30)
       ]);

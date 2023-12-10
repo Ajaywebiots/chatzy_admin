@@ -68,7 +68,7 @@ showAlert({title, context}) async {
             child: FlashBar(
                 content: Text(title.toString().tr,
                     textAlign: TextAlign.center,
-                    style: AppCss.muktaVaaniMedium14
+                    style: AppCss.manropeMedium14
                         .textColor(appCtrl.appTheme.whiteColor)),
                 showProgressIndicator: false, controller: null,));
       });*/
@@ -85,14 +85,14 @@ accessDenied(String content,
         CommonButton(
           title: fonts.close.tr,
           width: Sizes.s80,
-          style: AppCss.muktaVaaniMedium16.textColor(appCtrl.appTheme.white),
+          style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white),
           onTap: () => Get.back(),
         ),
         if (isDelete == true)
           CommonButton(
             title: fonts.delete.tr,
             width: Sizes.s80,
-            style: AppCss.muktaVaaniMedium16.textColor(appCtrl.appTheme.white),
+            style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white),
             onTap: onTap,
           ),
       ],

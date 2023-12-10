@@ -20,7 +20,7 @@ class LanguageLayout extends StatelessWidget {
                   Visibility(
                       visible: (MediaQuery.of(context).size.width > Sizes.s768),
                       child: Text(fonts.selectLanguage.tr,
-                              style: AppCss.muktaVaaniMedium14
+                              style: AppCss.manropeMedium14
                                   .textColor(appCtrl.appTheme.blackColor))
                           .paddingSymmetric(horizontal: Insets.i16 * 0.5)),
                   Icon(CupertinoIcons.chevron_down,
@@ -81,7 +81,7 @@ class LanguageLayout extends StatelessWidget {
                         },
                         child: Text(
                             "${e.value["title"].toString().tr} - ${e.value["title"].toString().toUpperCase()}",
-                            style: AppCss.muktaVaaniMedium14
+                            style: AppCss.manropeMedium14
                                 .textColor(appCtrl.appTheme.blackColor))))
                     .toList()
               ];

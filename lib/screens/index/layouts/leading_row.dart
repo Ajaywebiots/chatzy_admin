@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../config.dart';
 
 class LeadingRow extends StatelessWidget {
@@ -21,20 +23,19 @@ class LeadingRow extends StatelessWidget {
                       log("message");
                     },
                     child: Container(
-                      color: appCtrl.appTheme.dark,
+                      alignment: Alignment.center,
+                      color: appCtrl.appTheme.blackText,
                         width: value ? Sizes.s220 : Sizes.s70,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(imageAssets.logo,
+                          Image.asset(imageAssets.logo,height: Sizes.s30,
                               fit: BoxFit.contain),
                           const HSpace(Sizes.s10),
-                          Text(
-                            fonts.chatzyAdmin.tr,
-                            style: AppCss.muktaVaaniExtraBold18
-                                .textColor(appCtrl.appTheme.white),
-                          ),
+                          Image.asset(imageAssets.logo1,height: Sizes.s28,
+                              fit: BoxFit.contain),
                         ],
-                      ).paddingAll(Insets.i20)
+                      )
                     ));
               }
               return InkWell(
@@ -83,25 +84,34 @@ class LeadingRow extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(indexCtrl.pageName.tr,
-                        style: AppCss.muktaVaaniBold16.textColor(
-                            appCtrl.appTheme.blackColor)),
-                    const VSpace(Sizes.s8),
+                        style:GoogleFonts.manrope(
+                          fontWeight: FontWeight.w700,
+                          color: appCtrl.appTheme.blackColor,
+                          fontSize: 18
+                        )),
+
                     Row(children: [
                       InkWell(
                           mouseCursor:
                           SystemMouseCursors.click,
                           child: Text(fonts.admin.tr,
-                              style: AppCss.muktaVaaniMedium12
-                                  .textColor(appCtrl
-                                  .appTheme.drawerTextColor))),
+                              style: GoogleFonts.manrope(
+      fontWeight: FontWeight.normal,
+      color: appCtrl.appTheme.textBoxColor,
+      fontSize: 14
+      ))),
                       Text('  /  ',
-                          style: AppCss.muktaVaaniMedium12
-                              .textColor(appCtrl
-                              .appTheme.drawerTextColor)),
+                         style:GoogleFonts.manrope(
+                          fontWeight: FontWeight.normal,
+                          color: appCtrl.appTheme.textBoxColor,
+                          fontSize: 14
+                        )),
                       Text(indexCtrl.pageName.tr,
-                          style: AppCss.muktaVaaniMedium12
-                              .textColor(appCtrl
-                              .appTheme.drawerTextColor))
+                         style:GoogleFonts.manrope(
+                          fontWeight: FontWeight.normal,
+                          color: appCtrl.appTheme.textBoxColor,
+                          fontSize: 14
+                        ))
                     ])
                   ]),
               GetBuilder<AppController>(builder: (context) {
