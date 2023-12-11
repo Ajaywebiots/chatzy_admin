@@ -24,8 +24,8 @@ class AppArray{
     {'icon': svgAssets.usageControl, 'title': "usageControl",'icon1': svgAssets.usageControl1},
     {'icon': svgAssets.appControl, 'title': "appSetting",'icon1': svgAssets.appControl1},
     {'icon': svgAssets.status, 'title': "sponsor",'icon1': svgAssets.status1},
-    {'icon': svgAssets.gallery, 'title': "wallpaper",'icon1': svgAssets.gallery},
-    {'icon': svgAssets.dislike, 'title': "report",'icon1': svgAssets.dislike},
+    {'icon': svgAssets.gallery, 'title': "wallpaper",'icon1': svgAssets.gallery1},
+    {'icon': svgAssets.dislike, 'title': "report",'icon1': svgAssets.dislike1},
     {'icon': svgAssets.logout, 'title': "logout",'icon1': svgAssets.logout1},
   ];
 

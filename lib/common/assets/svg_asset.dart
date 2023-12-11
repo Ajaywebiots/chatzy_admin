@@ -22,8 +22,10 @@ class SvgAssets{
   final String status = 'assets/svg/status.svg';
   final String status1 = 'assets/svg/status1.svg';
   final String gallery = 'assets/svg/gallery.svg';
+  final String gallery1 = 'assets/svg/gallery1.svg';
   final String addUser = 'assets/svg/addUser.svg';
   final String dislike = 'assets/svg/dislike.svg';
+  final String dislike1 = 'assets/svg/dislike1.svg';
   final String light = 'assets/svg/light.svg';
   final String languages = 'assets/svg/languages.svg';
   final String eye = 'assets/svg/eye.svg';
