@@ -11,36 +11,27 @@ class UsageControlAllTextBoxDesktop extends StatelessWidget {
     return GetBuilder<UsageControlController>(builder: (usageCtrl) {
       return Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: SmoothContainer(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: Insets.i20),
-                  padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
-                  color: appCtrl.appTheme.primary.withOpacity(.08),
-                  smoothness: 1,
-                  borderRadius: BorderRadius.circular(6),
-                  child: Row(
-                    children: [
-                      Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
-                      const HSpace(Sizes.s15),
-                      Text(
-                        fonts.usageControl.tr,
-                        style: GoogleFonts.manrope(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
-                            color: appCtrl.appTheme.primary),
-                      ),
-                    ],
-                  ),
+          const VSpace(Sizes.s20),
+          SmoothContainer(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.symmetric(horizontal: Insets.i20),
+            padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
+            color: appCtrl.appTheme.primary.withOpacity(.08),
+            smoothness: 1,
+            borderRadius: BorderRadius.circular(6),
+            child: Row(
+              children: [
+                Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
+                const HSpace(Sizes.s15),
+                Text(
+                  fonts.usageControl.tr,
+                  style: GoogleFonts.manrope(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: appCtrl.appTheme.primary),
                 ),
-              ),
-              // Update button & Note
-              ButtonLayout(onTap: () => usageCtrl.updateData()),
-            ],
+              ],
+            ),
           ),
 
           SizedBox(

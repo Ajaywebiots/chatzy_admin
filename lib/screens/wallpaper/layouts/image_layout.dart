@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:chatzy_admin/controllers/app_pages_controller/wallpaper_controller.dart';
 import 'package:desktop_drop/desktop_drop.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 import '../../../config.dart';
 
@@ -18,8 +19,12 @@ class ImageLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<WallpaperController>(builder: (bannerCtrl) {
       log("bannerCtrl.pickImage : ${bannerCtrl.imageUrl.isNotEmpty || bannerCtrl.pickImage != null || bannerCtrl.webImage.isNotEmpty}");
-      return SizedBox(
+      return SmoothContainer(
+          color: appCtrl.appTheme.textBoxColor.withOpacity(.06),
+          borderRadius: BorderRadius.circular(6),
+          smoothness: 1,
           height: Sizes.s50,
+          padding: EdgeInsets.all(Insets.i10),
           child: Stack(alignment: Alignment.centerLeft, children: [
             /* DragDropLayout(
                 onCreated: (ctrl) =>
@@ -64,10 +69,9 @@ class ImageLayout extends StatelessWidget {
                                     child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.center,
                                         children: [
-                                    Image.asset(imageAssets.gallery,
-                                        height: Sizes.s100),
+                                    SvgPicture.asset(svgAssets.export,),
                                     const VSpace(Sizes.s10),
                                     RichText(
                                         text: TextSpan(children: [
@@ -79,7 +83,7 @@ class ImageLayout extends StatelessWidget {
                                               .textDecoration(
                                                   TextDecoration.underline)),
                                       TextSpan(
-                                          text: fonts.orDragDrop.tr,
+                                          text: " ${fonts.image.tr}",
                                           style: AppCss.manropeMedium14
                                               .textColor(appCtrl.appTheme.dark))
                                     ])).marginSymmetric(horizontal: Insets.i10)

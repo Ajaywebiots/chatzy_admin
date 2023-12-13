@@ -35,7 +35,7 @@ class LoginBodyLayout extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: AppCss.manropeMedium14
                         .textColor(appCtrl.appTheme.textBoxColor)),
-                const VSpace(Sizes.s42),
+                const VSpace(Sizes.s40),
                 LoginCommonClass().titleLayout(title: fonts.email),
                 const VSpace(Sizes.s12),
                 CommonTextBox(
@@ -44,7 +44,7 @@ class LoginBodyLayout extends StatelessWidget {
                         LoginValidator().checkNameValidation(val),
                     hinText: fonts.enterYourEmail.tr,
                     labelText: fonts.email.tr),
-                const VSpace(Sizes.s30),
+                const VSpace(Sizes.s25),
                 LoginCommonClass().titleLayout(title: fonts.password),
                 const VSpace(Sizes.s12),
                 CommonTextBox(
@@ -87,7 +87,7 @@ class LoginBodyLayout extends StatelessWidget {
             Image.asset(imageAssets.dottedDivider),
             Column(
               children: [
-                const VSpace(Sizes.s35),
+                const VSpace(Sizes.s30),
                 CommonWidgetClass().credentialCopy(fonts.email.tr,"admin@gmail.com",context),
                 const VSpace(Sizes.s12),
                 CommonWidgetClass().credentialCopy(fonts.password.tr,"Admin1234",context),

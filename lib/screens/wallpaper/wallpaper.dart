@@ -4,6 +4,8 @@ import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_layout.dart';
 import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_table.dart';
 import 'package:chatzy_admin/screens/wallpaper/layouts/wallpaper_widget_class.dart';
 import 'package:chatzy_admin/widgets/common_widget_class.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../config.dart';
 
 class WallPaper extends StatelessWidget {
@@ -21,6 +23,7 @@ class WallPaper extends StatelessWidget {
           children: [
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
@@ -29,6 +32,14 @@ class WallPaper extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Text("Add image",style: GoogleFonts.manrope(
+                            fontSize: 20,fontWeight: FontWeight.w800,color: appCtrl.appTheme.blackText
+                          ),),
+                        ],
+                      ),
+                      const VSpace(Sizes.s22),
                       ImageLayout(
                         image: wallpaperCtrl.imageUrl,
                       ).height(wallpaperCtrl.isUploadSize
@@ -57,7 +68,7 @@ class WallPaper extends StatelessWidget {
                     ]
                   )
                 ),
-                Expanded(
+                /*Expanded(
                   child: DropdownMenu<String>(
                     initialSelection: wallpaperCtrl.dropdownValue,
                     onSelected: (String? value) {
@@ -69,18 +80,70 @@ class WallPaper extends StatelessWidget {
                       return DropdownMenuEntry<String>(value: value, label: value);
                     }).toList(),
                   ).alignment(Alignment.topLeft),
-                ),
+                ),*/
+                IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      PopupMenuButton(
+                          padding: EdgeInsets.zero,
+                          color: appCtrl.appTheme.whiteColor,
+                          position: PopupMenuPosition.under,
+                          tooltip: fonts.showLanguage.tr,
+                          child: Container(
+                              alignment: Alignment.center,
+                              constraints:
+                              const BoxConstraints(minWidth: Sizes.s48),
+                              child: Row(children: [
+                                Visibility(
+                                    visible:
+                                    (MediaQuery.of(context).size.width >
+                                        Sizes.s768),
+                                    child: Text(wallpaperCtrl.dropdownValue,
+                                        style: AppCss.manropeMedium14
+                                            .textColor(appCtrl
+                                            .appTheme.blackColor))
+                                        .paddingSymmetric(
+                                        horizontal: Insets.i16 * 0.5)),
+                                Icon(
+                                  CupertinoIcons.chevron_down,
+                                  color: appCtrl.appTheme.blackColor,
+                                  size: Sizes.s15,
+                                )
+                              ]).paddingSymmetric(horizontal: Insets.i10)),
+                          itemBuilder: (context) {
+                            return [
+                              ...wallpaperCtrl.wallpaperTypeList
+                                  .asMap()
+                                  .entries
+                                  .map((e) => PopupMenuItem<int>(
+                                  value: 0,
+                                  onTap: () {
+                                    wallpaperCtrl.dropdownValue = e.value;
+                                    wallpaperCtrl.update();
+                                  },
+                                  child: Text(e.value.toString(),
+                                      style: AppCss.manropeMedium14
+                                          .textColor(appCtrl
+                                          .appTheme.blackColor))))
+                                  .toList()
+                            ];
+                          }).height(40).decorated(
+                        color: appCtrl.appTheme.textBoxColor
+                            .withOpacity(.06),
+
+                        borderRadius: const BorderRadius.all(
+                            Radius.circular(AppRadius.r8)),
+                      ),
+                      const HSpace(Sizes.s10),
+                      CommonButton(title:wallpaperCtrl.characterId != ""
+
+                          ? fonts.updateWallPaper.tr:"Save",width: 80,height: 40,margin: 0,style: TextStyle(color: appCtrl.appTheme.whiteColor),onTap: ()=>wallpaperCtrl.uploadFile(),)
+                    ],
+                  ),
+                )
               ]
             ),
-            CommonButton(
-              title: wallpaperCtrl.characterId != ""
-                  ? fonts.updateWallPaper.tr
-                  : fonts.addWallPaper.tr,
-              width: Sizes.s200,
-              onTap: () => wallpaperCtrl.uploadFile(),
-              style: AppCss.manropeRegular14
-                  .textColor(appCtrl.appTheme.whiteColor)
-            ).alignment(Alignment.centerRight),
+
             const VSpace(Sizes.s20),
             StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -97,11 +160,18 @@ class WallPaper extends StatelessWidget {
                             WallpaperWidgetClass().tableWidget(),
                             ...image.asMap().entries.map((e) {
 
-                              return TableRow(children: [
+                              return TableRow(
+                                  decoration: BoxDecoration(
+
+                                    border: Border(bottom: BorderSide(
+                                      color: Color(0xFF313232).withOpacity(.15)
+                                    ))
+                                  ),
+                                  children: [
                                 CommonWidgetClass()
                                     .commonValueText(wallpaperCtrl.dropdownValue.capitalizeFirst)
                                     .marginSymmetric(
-                                        vertical: Insets.i12,
+                                        vertical: Insets.i25,
                                         horizontal: Insets.i10),
                                 CommonWidgetClass()
                                     .commonValueText(e.value,isImage: true

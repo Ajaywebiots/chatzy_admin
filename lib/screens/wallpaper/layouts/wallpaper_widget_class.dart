@@ -8,10 +8,10 @@ class WallpaperWidgetClass {
   //table title
   TableRow tableWidget() => TableRow(
           decoration:  BoxDecoration(
-            color: appCtrl.appTheme.primary ,
+            color: appCtrl.appTheme.textBoxColor.withOpacity(.06)
           ),
           children: [
-            CommonWidgetClass().commonTitleText(fonts.id),
+            CommonWidgetClass().commonTitleText(fonts.type),
             CommonWidgetClass().commonTitleText(fonts.image),
             CommonWidgetClass().commonTitleText(fonts.action),
 
@@ -21,9 +21,10 @@ class WallpaperWidgetClass {
   Widget actionLayout({GestureTapCallback? onTap,deleteTap}) =>
       Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(Icons.edit, color: appCtrl.appTheme.primary).inkWell(
+          SvgPicture.asset(svgAssets.edit).inkWell(
               onTap:onTap),
-          Icon(Icons.delete, color: appCtrl.appTheme.primary).inkWell(
+        const HSpace(Sizes.s20),
+        SvgPicture.asset(svgAssets.delete).inkWell(
               onTap: deleteTap)
         ])
       ]);

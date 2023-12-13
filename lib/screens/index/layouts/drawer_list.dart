@@ -94,6 +94,8 @@ class DrawerList extends StatelessWidget {
                       indexCtrl.selectedIndex = 4;
                     } else if (e.value["title"] == "report") {
                       indexCtrl.selectedIndex = 5;
+                    }  else if (e.value["title"] == "language") {
+                      indexCtrl.selectedIndex = 6;
                     } else if (e.value["title"] == "logout") {
                       FirebaseAuth.instance.signOut();
                       indexCtrl.selectedIndex = 0;

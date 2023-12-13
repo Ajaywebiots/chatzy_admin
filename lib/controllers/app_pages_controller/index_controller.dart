@@ -1,4 +1,5 @@
 import 'package:chatzy_admin/config.dart';
+import 'package:chatzy_admin/screens/language_screen/language_screen.dart';
 import 'package:chatzy_admin/screens/report/report.dart';
 import 'package:chatzy_admin/screens/wallpaper/wallpaper.dart';
 
@@ -23,6 +24,7 @@ class IndexController extends GetxController {
     AdminStatusScreen(),
     WallPaper(),
     Report(),
+    LanguageScreen(),
     Container()
   ];
 

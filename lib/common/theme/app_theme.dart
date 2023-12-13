@@ -51,6 +51,7 @@ class AppTheme {
   Color border;
   Color textBoxColor;
   Color bg;
+  Color lightGrey;
 
   /// Default constructor
   AppTheme({
@@ -95,6 +96,7 @@ class AppTheme {
     required this.border,
     required this.textBoxColor,
     required this.bg,
+    required this.lightGrey,
   });
 
   /// fromType factory constructor
@@ -143,6 +145,7 @@ class AppTheme {
           border: const Color(0xffF2F3F3),
           textBoxColor: const Color(0xff7F8384),
           bg: const Color(0xffF6F6F6),
+          lightGrey: const Color(0xffF7F8F8),
         );
 
       case ThemeType.dark:
@@ -187,6 +190,7 @@ class AppTheme {
           border: const Color(0xff7F8384),
           textBoxColor: const Color(0xff7F8384),
           bg:  const Color(0xFF2C2C2C),
+          lightGrey: const Color(0xffF7F8F8),
         );
     }
   }

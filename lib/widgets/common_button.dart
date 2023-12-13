@@ -44,6 +44,7 @@ class CommonButton extends StatelessWidget {
         child: SmoothContainer(
             width: width ?? MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(horizontal: margin),
+
             height: Responsive.isMobile(context) ? Sizes.s45 : height,
             /*decoration: BoxDecoration(
                 color: color ?? appCtrl.appTheme.primary,
@@ -53,6 +54,7 @@ class CommonButton extends StatelessWidget {
                         cornerRadius: 12,
                         cornerSmoothing: 1) : null),*/
             color: color ?? appCtrl.appTheme.primary,
+
             borderRadius: BorderRadius.circular(12),smoothness: 1,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               if (icon != null)

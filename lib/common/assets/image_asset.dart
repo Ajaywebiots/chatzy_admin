@@ -15,5 +15,14 @@ class ImageAssets{
   final String loginBg2 = 'assets/images/loginBg2.png';
   final String loginBg3 = 'assets/images/loginBg3.png';
   final String loginBg4 = 'assets/images/loginBg4.png';
+  final String loginBg5 = 'assets/images/loginBg5.png';
   final String dottedDivider = 'assets/images/dottedDivider.png';
+  final String loginBg = 'assets/images/loginBg.png';
+  final String india = 'assets/images/india.png';
+  final String us = 'assets/images/us.png';
+  final String pakistan = 'assets/images/pakistan.png';
+  final String bangla = 'assets/images/bangla.png';
+  final String turkey = 'assets/images/turkey.png';
+  final String export = 'assets/images/export.png';
+  final String line = 'assets/images/line.png';
 }

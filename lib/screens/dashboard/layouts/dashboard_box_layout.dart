@@ -19,7 +19,7 @@ class DashboardBoxLayout extends StatelessWidget {
 
               padding: EdgeInsets.symmetric(
                   horizontal: Insets.i22, vertical: Insets.i23),
-              smoothness: 1,
+              smoothness: .6,
               borderRadius: BorderRadius.circular(Insets.i8),
               side: BorderSide(
                   color: appCtrl.appTheme.textBoxColor.withOpacity(.15)),
@@ -43,8 +43,11 @@ class DashboardBoxLayout extends StatelessWidget {
                                   .toString()
                                   .tr),
 
-                          SvgPicture.asset(
-                            svgAssets.dashicon,
+                          Expanded(
+                            child: SvgPicture.asset(
+                              svgAssets.dashicon,
+                              height: Sizes.s40,
+                            ),
                           )
                         ])
                   ])),
@@ -52,7 +55,7 @@ class DashboardBoxLayout extends StatelessWidget {
             height: Sizes.s50,
             width: 4,
             color: appCtrl.appTheme.primary,
-            smoothness: 1,
+            smoothness: .6,
             borderRadius: BorderRadius.circular(Insets.i8),
           )
         ],

@@ -10,7 +10,11 @@ class CommonWidgetClass {
         children: [
           Text(
             title.toString().tr.toUpperCase(),
-            style: AppCss.manropeMedium14.textColor(appCtrl.appTheme.blackText),
+            style: GoogleFonts.poppins(
+              fontWeight:FontWeight.w500,
+              fontSize: 16,
+              color: appCtrl.appTheme.blackText
+            ),
           ),
         ],
       ).paddingSymmetric(vertical: Insets.i20);
@@ -36,7 +40,7 @@ class CommonWidgetClass {
                           width: Sizes.s50,
                           fit: BoxFit.fill))
               : Text(
-                  value,
+                  value,textAlign: TextAlign.end,
                   style: AppCss.manropeRegular14
                       .textColor(appCtrl.appTheme.blackColor),
                 )

@@ -68,7 +68,7 @@ class UserAppSettingsScreen extends StatelessWidget {
                             const AllTextBoxDesktop(),
                           // Update button & Note
                           ButtonLayout(
-                              onTap: () => userSettingCtrl.updateData())
+                              onTap: () => userSettingCtrl.updateData()).paddingOnly(bottom: 20)
                         ])
                       
                         ),

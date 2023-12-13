@@ -8,8 +8,8 @@ class CommonDottedBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return DottedBorder(
 
-      color: appCtrl.appTheme.primary,
-      radius: const Radius.circular(AppRadius.r16),
+      color: Color(0xFFAFB0B6),
+      radius: const Radius.circular(AppRadius.r5),
       dashPattern: const [6, 6],
       strokeWidth: 1.5,
       strokeCap: StrokeCap.round,

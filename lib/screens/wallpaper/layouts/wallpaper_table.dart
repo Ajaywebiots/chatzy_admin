@@ -11,15 +11,16 @@ class WallpaperListTable extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppRadius.r6),
       child: Table(
+
         columnWidths: const <int, TableColumnWidth>{
-          0: IntrinsicColumnWidth(flex: 1),
+          0: FlexColumnWidth(),
           1: FlexColumnWidth(),
           2: FlexColumnWidth(),
         },
         children: children!,
       ).decorated(
-          border: Border.all(color: appCtrl.appTheme.primary),
-          borderRadius: BorderRadius.circular(AppRadius.r6)),
+
+          borderRadius: BorderRadius.circular(AppRadius.r5)),
     );
   }
 }

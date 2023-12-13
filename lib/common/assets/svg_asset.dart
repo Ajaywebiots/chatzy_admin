@@ -31,5 +31,13 @@ class SvgAssets{
   final String eye = 'assets/svg/eye.svg';
   final String copy = 'assets/svg/copy.svg';
   final String delete = 'assets/svg/delete.svg';
+  final String edit = 'assets/svg/edit.svg';
+  final String rectangle = 'assets/svg/rectangle.svg';
+  final String india = 'assets/svg/india.svg';
+  final String user = 'assets/svg/user.svg';
+  final String translate = 'assets/svg/translate.svg';
+  final String translate1 = 'assets/svg/translate1.svg';
+  final String line = 'assets/svg/line.svg';
+  final String export = 'assets/svg/export.svg';
 
 }

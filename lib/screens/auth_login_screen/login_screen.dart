@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: appCtrl.appTheme.loginBg,
               body: Stack(
                 children: [
-                  Align(
+                  /* Align(
                       alignment: Alignment.topLeft,
                       child: Image.asset(
                         imageAssets.loginBg1,
@@ -29,29 +29,61 @@ class LoginScreen extends StatelessWidget {
                         width: Sizes.s180,
                         height: Sizes.s100,
                         fit: BoxFit.fill,
-                      ).paddingOnly(right: Insets.i20)),
+                      ).paddingOnly(right: Insets.i20)),*/
+                  Image.asset(
+                    imageAssets.loginBg,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    fit: BoxFit.fill,
+                  ),
+                  /*Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                        height: 4,
+                        width: 1300,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                  color: appCtrl.appTheme.textBoxColor
+                                      .withOpacity(.30),
+                                ))))
+
+                        .paddingOnly(top: MediaQuery.of(context).size.height /2.2),
+                  )*/
+                  Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(imageAssets.loginBg5,width: 1250,height: 500,fit: BoxFit.fill).paddingOnly( bottom:
+                      MediaQuery.of(context).size.height / 10.5)),
                   Align(
                       alignment: Alignment.center,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (Responsive.isDesktop(context))
+                          /*if (Responsive.isDesktop(context))
                             Image.asset(
                               imageAssets.loginBg3,
-                              width: 447,
-                              height: 500,
+                              height: Sizes.s500,
                               fit: BoxFit.fill,
                             ).paddingOnly(
                                 bottom:
-                                    MediaQuery.of(context).size.height / 10.5),
-                          Responsive.isDesktop(context)?const LoginLayout():
-                          const Expanded(child: LoginLayout()),
-                          if (Responsive.isDesktop(context))
-                            Image.asset(imageAssets.loginBg4,
-                                    width: 447, height: 600)
-                                .paddingOnly(
-                                    bottom: MediaQuery.of(context).size.height /
-                                        18),
+                                MediaQuery.of(context).size.height / 10.5),*/
+
+                          Row(
+                            children: [
+                              Responsive.isDesktop(context)
+                                  ? const LoginLayout()
+                                  : const Expanded(child: LoginLayout()),
+                              /* if (Responsive.isDesktop(context))
+                                Image.asset(
+                                  imageAssets.loginBg4,
+                                  height: Sizes.s500,
+                                ).paddingOnly(
+                                    bottom:
+                                    MediaQuery.of(context).size.height / 10.5)*/
+                            ],
+                          )
                         ],
                       )),
                 ],

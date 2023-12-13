@@ -41,42 +41,46 @@ class UserLayoutDesktop extends StatelessWidget {
             ...snapShot!.data!.docs.asMap().entries.map((e) {
               return TableRow(
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: appCtrl.appTheme.textBoxColor.withOpacity(.15)))
-                  ),
+                      border: Border(
+                          bottom: BorderSide(
+                              color: appCtrl.appTheme.textBoxColor
+                                  .withOpacity(.15)))),
                   children: [
-                CommonWidgetClass()
-                    .commonValueText(e.value.data()["image"] ?? "-",
-                        isImage: true)
-                    .marginSymmetric(vertical: Insets.i15),
-                CommonWidgetClass()
-                    .commonValueText(e.value.data()["name"] ?? "-")
-                    .marginSymmetric(vertical: Insets.i15),
-                CommonWidgetClass()
-                    .commonValueText(e.value.data()["email"].toString())
-                    .marginSymmetric(vertical: Insets.i15),
-                CommonWidgetClass()
-                    .commonValueText(e.value.data()["phone"].toString())
-                    .marginSymmetric(vertical: Insets.i15),
-                CommonWidgetClass()
-                    .commonValueText(e.value.data()["createdDate"] != null
-                        ? DateFormat("dd/MM/yyyy")
-                            .format(e.value.data()["createdDate"])
-                        : "-")
-                    .marginSymmetric(vertical: Insets.i15),
-                CommonSwitcher(
-                    isActive: e.value.data()["isActive"] ?? true,
-                    onToggle: (val) =>
-                        dashboardCtrl.userActiveDeActive(e.value.id, val)),
-                /*onToggle: (val) => ddash
+                    CommonWidgetClass()
+                        .commonValueText(e.value.data()["image"] ?? "-",
+                            isImage: true)
+                        .marginSymmetric( vertical: Insets.i25,),
+                    CommonWidgetClass()
+                        .commonValueText(e.value.data()["name"] ?? "-")
+                        .marginSymmetric( vertical: Insets.i25),
+                    CommonWidgetClass()
+                        .commonValueText(e.value.data()["email"].toString())
+                        .marginSymmetric( vertical: Insets.i25,),
+                    CommonWidgetClass()
+                        .commonValueText(e.value.data()["phone"].toString())
+                        .marginSymmetric( vertical: Insets.i25,),
+                    CommonWidgetClass()
+                        .commonValueText(e.value.data()["createdDate"] != null
+                            ? DateFormat("dd/MM/yyyy")
+                                .format(e.value.data()["createdDate"])
+                            : "-")
+                        .marginSymmetric( vertical: Insets.i25,),
+                    CommonSwitcher(
+                        isActive: e.value.data()["isActive"] ?? true,
+                        onToggle: (val) =>
+                            dashboardCtrl.userActiveDeActive(e.value.id, val)),
+                    /*onToggle: (val) => ddash
                           .isActiveChange(e.value.id, val)*/
-                SvgPicture.asset(svgAssets.delete)
-                    .marginSymmetric(vertical: Insets.i15)
-                    .inkWell(
-                        onTap: () => accessDenied(
-                            fonts.deleteCharacterConfirmation.tr,
-                            isModification: false,
-                            onTap: () => dashboardCtrl.deleteData(e.value.id)))
-              ]);
+                    SvgPicture.asset(svgAssets.delete)
+                        .marginSymmetric(vertical: Insets.i15)
+                        .inkWell(
+                            onTap: () => accessDenied(
+                                isDelete: true,
+                                fonts.deleteCharacterConfirmation.tr,
+                                isModification: false,
+                                onTap: () =>
+                                    dashboardCtrl.deleteData(e.value.id)))
+                  ]);
             }).toList()
           ],
         ).decorated(borderRadius: BorderRadius.circular(AppRadius.r6)),

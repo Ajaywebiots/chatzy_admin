@@ -147,4 +147,12 @@ final dynamic en = {
   "searchHere" : "Search here",
   "joiningDate" : "Joining Date",
   "activeDeactive" : "Active/Deactive",
+  "top5Country" : "Top 5 User Countries",
+  "india" : "India",
+  "us" : "United States",
+  "pakistan" : "Pakistan",
+  "bangladesh" : "Bangladesh",
+  "turkey" : "Turkey",
+  "language" : "Language",
+  "type" : "Type",
 };

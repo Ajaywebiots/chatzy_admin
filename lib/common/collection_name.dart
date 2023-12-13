@@ -15,4 +15,8 @@ class CollectionName{
   String messages = "messages";
   String groupMessage = "groupMessage";
   String broadcastMessage = "broadcastMessage";
+
+  String languages ="languages";
+  String defaultLanguage ="default_language";
+  String language ="language";
 }

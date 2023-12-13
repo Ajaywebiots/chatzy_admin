@@ -131,6 +131,13 @@ class Fonts{
   final searchHere = "searchHere";
   final joiningDate = "joiningDate";
   final activeDeactive = "activeDeactive";
+  final top5Country = "top5Country";
+  final india = "india";
+  final us = "us";
+  final pakistan = "pakistan";
+  final bangladesh = "bangladesh";
+  final turkey = "turkey";
+  final type = "type";
 
 
 }

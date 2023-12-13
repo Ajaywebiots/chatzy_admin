@@ -44,29 +44,18 @@ class UserPagination extends StatelessWidget {
             },
           ),
           ArrowForward(
-              onPressed: dashboardCtrl.currentPage +
-                  dashboardCtrl.currentPerPage! -
-                  1 >
+              onPressed: dashboardCtrl.currentPage + dashboardCtrl.currentPerPage! - 1 >
                   dashboardCtrl.total
                   ? null
                   : () {
-                log("DDDD: ${dashboardCtrl.currentPage +
-                    dashboardCtrl.currentPerPage! -
-                    1}");
-
-                var nextSet = dashboardCtrl.currentPage +
-                    dashboardCtrl.currentPerPage!;
-
-                dashboardCtrl.currentPage =
-                nextSet < dashboardCtrl.total
+                var nextSet =
+                    dashboardCtrl.currentPage + dashboardCtrl.currentPerPage!;
+                dashboardCtrl.currentPage = nextSet < dashboardCtrl.total
                     ? nextSet
-                    : dashboardCtrl.total -
-                    dashboardCtrl.currentPerPage!;
-
+                    : dashboardCtrl.total - dashboardCtrl.currentPerPage!;
                 dashboardCtrl.resetData(start: nextSet - 1);
                 dashboardCtrl.getChatsFromRefs();
                 dashboardCtrl.update();
-                log("DDDD: ${dashboardCtrl.currentPerPage}");
               })
         ],
       );
