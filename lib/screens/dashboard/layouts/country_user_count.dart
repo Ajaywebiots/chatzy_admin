@@ -53,7 +53,7 @@ class CountryUserCount extends StatelessWidget {
                             .border(color: Color(0xFFF7F8F8)),
                       ),
                       const VSpace(Sizes.s5),
-                      Text(title! ,
+                      SelectableText(title! ,
                           style: GoogleFonts.manrope(
                               fontSize:  !Responsive.isDesktop(context) ?12 :MediaQuery.of(Get.context!).size.width < 1420? 14:  16 ,
                               fontWeight: FontWeight.w500,
@@ -64,7 +64,7 @@ class CountryUserCount extends StatelessWidget {
                           children: [
                         SvgPicture.asset(svgAssets.user),
                         const HSpace(Sizes.s2),
-                            Text(count ?? "0",
+                            SelectableText(count ?? "0",
                                 style: GoogleFonts.manrope(
                                     fontSize:  !Responsive.isDesktop(context) ?16 :MediaQuery.of(Get.context!).size.width < 1420? 14:  20 ,
                                     fontWeight: FontWeight.w800,

@@ -13,14 +13,13 @@ class UserPagination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(builder: (dashboardCtrl) {
-      log("dashboardCtrl.isDisplay:${dashboardCtrl.isDisplay}");
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           if(dashboardCtrl.isDisplay)
           Container(
               padding: const EdgeInsets.symmetric(horizontal: Insets.i15),
-              child: Text(
+              child: SelectableText(
                 "${dashboardCtrl.currentPage} - ${dashboardCtrl.currentPerPage} of ${dashboardCtrl.total}",
 
               )),

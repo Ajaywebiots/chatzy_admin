@@ -36,9 +36,10 @@ class DashboardController extends GetxController {
   List<bool>? expanded;
   String? searchKey = "name";
   bool isDisplay =false;
-
+  final List<StreamSubscription> _userSubscriptions = [];
   DocumentSnapshot? last;
 
+  int lastLength = 0;
   // ignore: unused_field
   final String selectableKey = "id";
   String lastIndexId = "";
@@ -49,12 +50,16 @@ class DashboardController extends GetxController {
   dynamic lastVisibles;
   bool sortAscending = true;
   bool isLoading = true;
+  List userList =[];
   final bool showSelect = true;
 
   final List<int> perPages = [10, 20, 50, 100];
   int total = 100;
   int? currentPerPage = 7;
   TextEditingController textSearch = TextEditingController();
+  QuerySnapshot? userQuerysnapshot;
+  final CollectionReference usersCollection =
+  FirebaseFirestore.instance.collection(collectionName.users);
 
   @override
   void onReady() async {
@@ -112,7 +117,9 @@ class DashboardController extends GetxController {
       }
     });
     update();
-
+    usersCollection.get().then((value){
+      lastLength = value.docs.length;
+    });
     const oneSec = Duration(seconds: 1);
     Timer.periodic(oneSec, (Timer t) async {
       progressValue += 0.1;
@@ -126,6 +133,7 @@ class DashboardController extends GetxController {
 
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isDisplay =true;
+      update();
     });
     update();
     // TODO: implement onReady
@@ -335,5 +343,24 @@ class DashboardController extends GetxController {
     } catch (e) {}
     isLoading = false;
     update();
+  }
+
+
+
+  void addToUsers(QuerySnapshot event) {
+    for (final userDoc in event.docs) {
+      dynamic user = userDoc.data();
+      final index = userList.indexWhere((element){
+        log("USER: ${element}");
+        log("USER: $user");
+      return  user!["id"] == element["id"];
+      });
+      if (index != -1) {
+        userList.removeAt(index);
+        userList.insert(index, user);
+      } else {
+        userList.add(user);
+      }
+    }
   }
 }

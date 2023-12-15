@@ -70,17 +70,21 @@ class Dashboard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
+                              SelectableText(
                                 fonts.top5Country.tr,
                                 style: GoogleFonts.manrope(
                                     fontWeight: FontWeight.w800,
                                     fontSize: 20,
-                                    color: appCtrl.isTheme ?  appCtrl.appTheme.white :appCtrl.appTheme.blackText),
+                                    color: appCtrl.isTheme
+                                        ? appCtrl.appTheme.white
+                                        : appCtrl.appTheme.blackText),
                               ),
                               const VSpace(Sizes.s24),
                               Divider(
                                 height: 0,
-                                color:appCtrl.isTheme ?  appCtrl.appTheme.white : appCtrl.appTheme.dark.withOpacity(.12),
+                                color: appCtrl.isTheme
+                                    ? appCtrl.appTheme.white
+                                    : appCtrl.appTheme.dark.withOpacity(.12),
                               ),
                               const VSpace(Sizes.s20),
                               Row(
@@ -137,17 +141,21 @@ class Dashboard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
+                      SelectableText(
                         fonts.top5Country.tr,
                         style: GoogleFonts.manrope(
                             fontWeight: FontWeight.w800,
                             fontSize: 20,
-                            color:appCtrl.isTheme ?  appCtrl.appTheme.white :appCtrl.appTheme.blackText),
+                            color: appCtrl.isTheme
+                                ? appCtrl.appTheme.white
+                                : appCtrl.appTheme.blackText),
                       ),
                       const VSpace(Sizes.s24),
                       Divider(
                         height: 0,
-                        color:appCtrl.isTheme ?  appCtrl.appTheme.white : appCtrl.appTheme.dark.withOpacity(.12),
+                        color: appCtrl.isTheme
+                            ? appCtrl.appTheme.white
+                            : appCtrl.appTheme.dark.withOpacity(.12),
                       ),
                       const VSpace(Sizes.s20),
                       SingleChildScrollView(
@@ -174,13 +182,14 @@ class Dashboard extends StatelessWidget {
                             CountryUserCount(
                                 image: imageAssets.bangla,
                                 title: fonts.bangladesh.tr,
-                                count:
-                                    dashboardCtrl.totalBangladeshUser.toString()),
+                                count: dashboardCtrl.totalBangladeshUser
+                                    .toString()),
                             const HSpace(Sizes.s25),
                             CountryUserCount(
                                 image: imageAssets.turkey,
                                 title: fonts.turkey.tr,
-                                count: dashboardCtrl.totalTurkeyUser.toString()),
+                                count:
+                                    dashboardCtrl.totalTurkeyUser.toString()),
                           ],
                         ),
                       )
@@ -201,55 +210,60 @@ class Dashboard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        SelectableText(
                           fonts.recentJoin.tr,
                           style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w800,
                               fontSize: 20,
                               color: appCtrl.appTheme.blackText),
                         ),
-                        CommonTextBox(
-                                fillColor: appCtrl.appTheme.textBoxColor
-                                    .withOpacity(0.06),
-                                controller: dashboardCtrl.textSearch,
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(AppRadius.r5),
-                                  borderSide: BorderSide.none,
-                                ),
-                                onChanged: (value) =>
-                                    dashboardCtrl.filterData(value),
-                                hinText: fonts.searchHere.tr)
-                            .width(Responsive.isDesktop(context) ? 514 : 200),
+                        SelectionArea(
+                          child: CommonTextBox(
+                                  fillColor: appCtrl.appTheme.textBoxColor
+                                      .withOpacity(0.06),
+                                  controller: dashboardCtrl.textSearch,
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(AppRadius.r5),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  onChanged: (value) =>
+                                      dashboardCtrl.filterData(value),
+                                  hinText: fonts.searchHere.tr)
+                              .width(Responsive.isDesktop(context) ? 514 : 200),
+                        ),
                       ],
                     ),
                     const VSpace(Sizes.s20),
                     StreamBuilder(
                         stream: dashboardCtrl.textSearch.text.isNotEmpty
                             ? dashboardCtrl.searchList()
-                            : dashboardCtrl.last != null
-                                ? FirebaseFirestore.instance
-                                    .collection(collectionName.users)
-
-                                    .limit(dashboardCtrl.currentPerPage!)
-                                    .snapshots()
+                            : dashboardCtrl.lastLength > 10
+                                ? dashboardCtrl.last != null
+                                    ? FirebaseFirestore.instance
+                                        .collection(collectionName.users)
+                                        .startAfterDocument(dashboardCtrl.last!)
+                                        .limit(dashboardCtrl.currentPerPage!)
+                                        .snapshots()
+                                    : FirebaseFirestore.instance
+                                        .collection(collectionName.users)
+                                        .limit(dashboardCtrl.currentPerPage!)
+                                        .snapshots()
                                 : FirebaseFirestore.instance
                                     .collection(collectionName.users)
                                     .limit(dashboardCtrl.currentPerPage!)
                                     .snapshots(),
                         builder: (context, snapShot) {
                           if (snapShot.hasData) {
-                            log("TOTA :${snapShot.data.docs.length}");
+
                             if (snapShot.data.docs != null &&
                                 snapShot.data.docs.length > 0) {
                               dashboardCtrl.lastVisible =
                                   snapShot.data.docs.length - 1;
                               dashboardCtrl.lastIndexId = snapShot
                                   .data.docs[snapShot.data.docs.length - 1].id;
-                              dashboardCtrl.last = snapShot.data.docs.last;
-
                             }
-                            log("TOTA :${dashboardCtrl.last!.data()}");
+
                             return UserLayoutDesktop(snapShot: snapShot);
                           } else {
                             return Container();

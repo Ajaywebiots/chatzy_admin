@@ -41,7 +41,7 @@ class UserLayoutDesktop extends StatelessWidget {
                   CommonWidgetClass().commonTitleText(fonts.action),
                 ]),
             ...snapShot!.data!.docs.asMap().entries.map((e) {
-
+log("CCCC:${e.value.data()["createdDate"]}");
               return TableRow(
                   decoration: BoxDecoration(
                       border: Border(
@@ -67,7 +67,7 @@ class UserLayoutDesktop extends StatelessWidget {
                     CommonWidgetClass()
                         .commonValueText(e.value.data()["createdDate"] != null
                             ? DateFormat("dd/MM/yyyy")
-                                .format(e.value.data()["createdDate"])
+                                .format(DateTime.fromMillisecondsSinceEpoch(e.value.data()["createdDate"]))
                             : "-")
 
                     ,

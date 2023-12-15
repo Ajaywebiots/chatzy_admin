@@ -36,7 +36,7 @@ class CommonWidgetClass {
                               image: AssetImage(imageAssets.addUser),
                               fit: BoxFit.fill)),
                 ).marginOnly(top: 10)
-              : Text(
+              : SelectableText(
                   value,
                   textAlign: TextAlign.center,
                   style:TextStyle(

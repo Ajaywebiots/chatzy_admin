@@ -49,14 +49,16 @@ class LoginController extends GetxController {
                 indexCtrl.pageName = fonts.dashboard.tr;
                 indexCtrl.update();
               } else {
-                showAlert(context: context, title:fonts.inValidPassword.tr);
+
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(fonts.inValidPassword.tr)));
               }
             } else {
-              showAlert(context: context, title: fonts.invalidEmailPassword.tr);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(fonts.invalidEmailPassword.tr)));
+
             }
           });
         } else {
-          showAlert(context: context, title: fonts.invalidEmailPassword.tr);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(fonts.invalidEmailPassword.tr)));
         }
       });
     }
