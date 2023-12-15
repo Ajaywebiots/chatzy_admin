@@ -123,11 +123,11 @@ class DashboardController extends GetxController {
         return;
       }
     });
-    Future.delayed(const Duration(seconds: 5)).then((value) {
+
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       isDisplay =true;
     });
     update();
-
     // TODO: implement onReady
     super.onReady();
   }

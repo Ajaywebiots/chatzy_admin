@@ -37,22 +37,26 @@ class UserAppSettingsDesktop extends StatelessWidget {
             ),
           ),
           DesktopSwitchCommon(
+            isDivider: true,
               title: fonts.allowUserBlock,
               value: userAppSettingModel!.allowUserBlock,
               onChanged: (val) => userSettingCtrl.commonSwitcherValueChange(
-                  "allowUserBlock", val)),
+                  "allowUserBlock", val)).paddingSymmetric(horizontal: Insets.i20),
+          const VSpace(Sizes.s20),
           DesktopSwitchCommon(
+              isDivider: true,
               title: fonts.approvalNeeded,
               value: userAppSettingModel!.approvalNeeded,
               onChanged: (val) => userSettingCtrl.commonSwitcherValueChange(
-                  "approvalNeeded", val)),
+                  "approvalNeeded", val)).paddingSymmetric(horizontal: Insets.i20),
+          const VSpace(Sizes.s20),
           DesktopSwitchCommon(
               isDivider: true,
               title: fonts.isMaintenanceMode,
               value: userAppSettingModel!.isMaintenanceMode,
               onChanged: (val) => userSettingCtrl.commonSwitcherValueChange(
-                  "isMaintenanceMode", val))
-        ]).marginOnly(bottom: Insets.i15).boxExtension().marginOnly(top: Insets.i15),
+                  "isMaintenanceMode", val)).paddingSymmetric(horizontal: Insets.i20)
+        ]).marginOnly(bottom: Insets.i15,).boxExtension().marginOnly(top: Insets.i15),
 
       ]);
     });

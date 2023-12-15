@@ -13,23 +13,16 @@ class UserPagination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(builder: (dashboardCtrl) {
+      log("dashboardCtrl.isDisplay:${dashboardCtrl.isDisplay}");
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-              padding: const EdgeInsets.symmetric(horizontal: Insets.i15),
-              child: Text(
-                fonts.rowPerPage.tr,
-                style:
-                AppCss.manropeMedium14.textColor(appCtrl.appTheme.primary),
-              )),
-
+          if(dashboardCtrl.isDisplay)
           Container(
               padding: const EdgeInsets.symmetric(horizontal: Insets.i15),
               child: Text(
                 "${dashboardCtrl.currentPage} - ${dashboardCtrl.currentPerPage} of ${dashboardCtrl.total}",
-                style: AppCss.manropeMedium14
-                    .textColor(appCtrl.appTheme.blackColor),
+
               )),
           ArrowBack(
             onPressed: dashboardCtrl.currentPage == 1

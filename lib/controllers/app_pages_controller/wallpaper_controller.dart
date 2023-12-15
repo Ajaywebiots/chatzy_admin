@@ -6,7 +6,7 @@ import 'dart:io' as io;
 import '../../config.dart';
 
 class WallpaperController extends GetxController {
-  dynamic usageCtrl;
+
   bool isLoading = false;
   XFile? imageFile;
   bool isUploadSize = false, isDarkUploadFile2 = false;
@@ -19,7 +19,7 @@ class WallpaperController extends GetxController {
   List<String> wallpaperTypeList = <String>['solid', 'dark', 'light'];
   XFile? wallpaper1File, wallpaper2File;
   late DropzoneViewController? controller1, controller2;
-  String dropdownValue ="solid";
+  String dropdownValue =  "solid";
   Uint8List wallpaperWebImage1 = Uint8List(8);
   Uint8List wallpaperUploadWebImage2 = Uint8List(8);
   io.File? pickImage, wallpaperPickImage2, wallpaperPickImage3;
@@ -84,7 +84,7 @@ int? selectedIndex;
       accessDenied(fonts.modification.tr);
     } else {
       isLoading = true;
-      log("usage2: $usageCtrl");
+
       if (imageUrl.isNotEmpty) {
         if (characterId != "") {
           await FirebaseFirestore.instance
@@ -100,7 +100,7 @@ int? selectedIndex;
             pickImage = null;
             imageFile = null;
 characterId ="";
-            log("usage3: $usageCtrl");
+
             Get.back();
             isLoading = false;
             update();
@@ -116,7 +116,7 @@ characterId ="";
             'type': dropdownValue,
             "image": FieldValue.arrayUnion(yourItemList),
           }).then((value) {
-            log("usage3: $usageCtrl");
+
             webImage = Uint8List(8);
             webImage = Uint8List(8);
             pickImage = null;
@@ -187,6 +187,7 @@ characterId ="";
       context,
       uploadFile,
       title}) async {
+    log("dropImage: $imageName");
     if (dropImage != null) {
       if (imageName.contains("png") ||
           imageName.contains("jpg") ||
@@ -205,7 +206,7 @@ characterId ="";
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -230,7 +231,7 @@ characterId ="";
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -259,7 +260,7 @@ characterId ="";
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -286,7 +287,7 @@ characterId ="";
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -318,7 +319,7 @@ characterId ="";
             log("imageUrl : $imageUrl");
             update();
             addData();
-            await Future.delayed(Durations.s3);
+            await Future.delayed(DurationClass.s3);
           }, onError: (err) {
             update();
           });

@@ -11,6 +11,7 @@ class AdminStatusController extends GetxController {
   bool isLoading = false;
   Set<Uri> files = {};
   Image? image;
+  Status? status;
   File? video;
   String imageName = "", imageUrl = "";
   Uint8List webImage = Uint8List(8);
@@ -21,6 +22,30 @@ class AdminStatusController extends GetxController {
   XFile? videoFile;
   List<PhotoUrl> newPhotoList = [];
 
+  int currentPage = 1;
+  int lastVisible = 0;
+  List<bool>? expanded;
+  String? searchKey = "name";
+  bool isDisplay =false;
+
+  DocumentSnapshot? last;
+
+  // ignore: unused_field
+  final String selectableKey = "id";
+  String lastIndexId = "";
+  final List<Map<String, dynamic>> sourceOriginal = [];
+  List<Map<String, dynamic>> sourceFiltered = [];
+  List<Map<String, dynamic>> source = [];
+  String? sortColumn;
+  dynamic lastVisibles;
+  bool sortAscending = true;
+
+  final bool showSelect = true;
+
+  final List<int> perPages = [10, 20, 50, 100];
+  int total = 100;
+  int? currentPerPage = 7;
+
 // GET IMAGE FROM GALLERY
   Future getImage({source, StateSetter? setState, dropImage, context}) async {
     if (dropImage != null) {
@@ -30,6 +55,15 @@ class AdminStatusController extends GetxController {
         var image = dropImage;
         log("image: $image");
         uploadWebImage = image;
+
+        Image image1 = Image.memory(uploadWebImage);
+        log("image1 : $image1");
+        isUploadSize = true;
+        webImage = uploadWebImage;
+        pickImage = io.File("a");
+        isAlert = false;
+        update();
+        /*uploadWebImage = image;
         Image image1 = Image.memory(uploadWebImage);
 
         ImageInfo info = await getImageInfo(image1);
@@ -41,11 +75,11 @@ class AdminStatusController extends GetxController {
         } else {
           isUploadSize = true;
         }
-        isAlert = false;
+        isAlert = false;*/
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -76,7 +110,7 @@ class AdminStatusController extends GetxController {
       } else {
         isAlert = true;
         update();
-        await Future.delayed(Durations.s2);
+        await Future.delayed(DurationClass.s2);
         isAlert = false;
         update();
       }
@@ -170,7 +204,7 @@ class AdminStatusController extends GetxController {
           imageUrl = downloadUrl;
           log("imageUrl1 : $imageUrl");
           update();
-          await Future.delayed(Durations.s3);
+          await Future.delayed(DurationClass.s3);
           onAddStatus();
         }, onError: (err) {
           update();
@@ -189,6 +223,41 @@ class AdminStatusController extends GetxController {
     await addStatus(imageUrl, "image");
     isLoading = false;
     update();
+  }
+
+  deleteData(id)async{
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
+      FirebaseFirestore.instance
+          .collection(collectionName.adminStatus)
+          .get()
+          .then((value) async {
+            log("EMPETY :${value.docs.length}");
+            log("EMPETY :$id");
+        if (value.docs.isNotEmpty) {
+          Status status = Status.fromJson(value.docs[0].data());
+          log("EMPETY :${status.photoUrl!.length}");
+          status.photoUrl!.removeAt(id);
+          if (status.photoUrl!.isEmpty) {
+            FirebaseFirestore.instance
+                .collection(collectionName.adminStatus)
+                .doc(value.docs[0].id)
+                .delete();
+          } else {
+            var statusesSnapshot = await FirebaseFirestore.instance
+                .collection(collectionName.adminStatus)
+                .get();
+            await FirebaseFirestore.instance
+                .collection(collectionName.adminStatus)
+                .doc(statusesSnapshot.docs[0].id)
+                .update(
+                {'photoUrl': status.photoUrl!.map((e) => e.toJson()).toList()});
+          }
+        }
+      });
+    }
   }
 
   //status delete after 24 hours

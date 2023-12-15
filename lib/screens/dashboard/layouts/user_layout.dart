@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chatzy_admin/widgets/common_switcher.dart';
 import 'package:chatzy_admin/widgets/common_widget_class.dart';
 import 'package:intl/intl.dart';
@@ -39,32 +41,36 @@ class UserLayoutDesktop extends StatelessWidget {
                   CommonWidgetClass().commonTitleText(fonts.action),
                 ]),
             ...snapShot!.data!.docs.asMap().entries.map((e) {
+
               return TableRow(
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
-                              color: appCtrl.appTheme.textBoxColor
-                                  .withOpacity(.15)))),
+                              color: Color(0x313232).withOpacity(0.15)))),
                   children: [
                     CommonWidgetClass()
-                        .commonValueText(e.value.data()["image"] ?? "-",
+                        .commonValueText(e.value.data()["image"] ?? "",
                             isImage: true)
-                        .marginSymmetric( vertical: Insets.i25,),
+
+                    ,
                     CommonWidgetClass()
                         .commonValueText(e.value.data()["name"] ?? "-")
-                        .marginSymmetric( vertical: Insets.i25),
+                       ,
                     CommonWidgetClass()
-                        .commonValueText(e.value.data()["email"].toString())
-                        .marginSymmetric( vertical: Insets.i25,),
+                        .commonValueText(e.value.data()["email"] ?? "-")
+
+                    ,
                     CommonWidgetClass()
-                        .commonValueText(e.value.data()["phone"].toString())
-                        .marginSymmetric( vertical: Insets.i25,),
+                        .commonValueText("${e.value.data()["dialCode"] != null ? "(${e.value.data()["dialCode"]}) " :""} ${e.value.data()["phone"].toString().replaceAll(e.value.data()["dialCode"] ?? "", "")}")
+
+                    ,
                     CommonWidgetClass()
                         .commonValueText(e.value.data()["createdDate"] != null
                             ? DateFormat("dd/MM/yyyy")
                                 .format(e.value.data()["createdDate"])
                             : "-")
-                        .marginSymmetric( vertical: Insets.i25,),
+
+                    ,
                     CommonSwitcher(
                         isActive: e.value.data()["isActive"] ?? true,
                         onToggle: (val) =>

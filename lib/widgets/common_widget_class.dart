@@ -11,83 +11,80 @@ class CommonWidgetClass {
           Text(
             title.toString().tr.toUpperCase(),
             style: GoogleFonts.poppins(
-              fontWeight:FontWeight.w500,
-              fontSize: 16,
-              color: appCtrl.appTheme.blackText
-            ),
+                fontWeight: FontWeight.w500,
+                fontSize: MediaQuery.of(Get.context!).size.width < 1420? 14: 16,
+                color: appCtrl.appTheme.blackText),
           ),
         ],
       ).paddingSymmetric(vertical: Insets.i20);
 
   //common value text
   Widget commonValueText(value, {isImage = false}) => Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           isImage
-              ? value != null
-                  ? Container(
-                      height: Sizes.s50,
-                      width: Sizes.s50,
-                      decoration: BoxDecoration(
+              ? Container(
+                  height: Sizes.s42,
+                  width: Sizes.s42,
+                  decoration: BoxDecoration(
 
-                          borderRadius: BorderRadius.circular(AppRadius.r10),
-                          image: DecorationImage(
-                              image: NetworkImage(value), fit: BoxFit.fill)),
-                    )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(AppRadius.r50),
-                      child: Image.asset(imageAssets.addUser,
-                          height: Sizes.s50,
-                          width: Sizes.s50,
-                          fit: BoxFit.fill))
+                      shape: BoxShape.circle,
+                      image: value != null && value != ""
+                          ? DecorationImage(
+                              image: NetworkImage(value), fit: BoxFit.fill)
+                          : DecorationImage(
+                              image: AssetImage(imageAssets.addUser),
+                              fit: BoxFit.fill)),
+                ).marginOnly(top: 10)
               : Text(
-                  value,textAlign: TextAlign.end,
-                  style: AppCss.manropeRegular14
-                      .textColor(appCtrl.appTheme.blackColor),
-                )
+                  value,
+                  textAlign: TextAlign.center,
+                  style:TextStyle(
+                    fontSize:MediaQuery.of(Get.context!).size.width < 1420? 14: 16,
+                    fontFamily: GoogleFonts.poppins().fontFamily
+                  )
+                ).marginOnly(top: 20)
         ],
       );
 
   //credential copy
-  Widget credentialCopy(title,val,context) => Row(
+  Widget credentialCopy(title, val, context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         Row(
-           children: [
-             Text("$title : ",
-                 style: GoogleFonts.manrope(
-                   fontSize: 16,
-                   fontWeight: FontWeight.w400,
-                   color: appCtrl.appTheme.blackColor
-                 )),
-             Text(val,
-                 style: GoogleFonts.manrope(
-                     fontSize: 16,
-                     fontWeight: FontWeight.w600,
-                     color: appCtrl.appTheme.blackColor
-                 )),
-           ],
-         ),
-         SmoothContainer(
-           color: appCtrl.appTheme.white,
-           borderRadius: BorderRadius.circular(12),
-           smoothness: 1,
-           padding: const EdgeInsets.all(Insets.i8),
-           side: BorderSide(color: appCtrl.appTheme.borderColor),
-           child: SvgPicture.asset(svgAssets.copy),
-         )
+          Row(
+            children: [
+              Text("$title : ",
+                  style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: appCtrl.appTheme.blackColor)),
+              Text(val,
+                  style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: appCtrl.appTheme.blackColor)),
+            ],
+          ),
+          SmoothContainer(
+            color: appCtrl.appTheme.white,
+            borderRadius: BorderRadius.circular(12),
+            smoothness: 1,
+            padding: const EdgeInsets.all(Insets.i8),
+            side: BorderSide(color: appCtrl.appTheme.borderColor),
+            child: SvgPicture.asset(svgAssets.copy),
+          )
         ],
-      ).inkWell(onTap: (){
+      ).inkWell(onTap: () {
         Clipboard.setData(ClipboardData(text: val));
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-
           content: Text('Copy Text'),
-
         ));
-  });
+      });
 
   //action layout
   Widget actionLayout({GestureTapCallback? onTap, isUser = true}) =>
       Column(children: [
-        Icon(Icons.delete_forever,color: appCtrl.appTheme.primary).inkWell(onTap: onTap)
+        Icon(Icons.delete_forever, color: appCtrl.appTheme.primary)
+            .inkWell(onTap: onTap)
       ]).marginSymmetric(vertical: Insets.i15);
 }

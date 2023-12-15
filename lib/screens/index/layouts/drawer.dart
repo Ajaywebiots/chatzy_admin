@@ -45,7 +45,7 @@ class IndexDrawer extends StatelessWidget {
                         const VSpace(Sizes.s30),
                         Divider(
                             thickness: 2,
-                            color: appCtrl.appTheme.primary.withOpacity(0.2),
+                            color: appCtrl.appTheme.textBoxColor,
                             indent: 12,
                             endIndent: 12),
                         const VSpace(Sizes.s20),

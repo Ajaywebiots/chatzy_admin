@@ -37,14 +37,16 @@ class PhotoUrl {
   String? timestamp;
   String? statusType;
   bool? isExpired;
+  List? seenBy;
 
-  PhotoUrl({this.image, this.timestamp, this.isExpired, this.statusType});
+  PhotoUrl({this.image, this.timestamp, this.isExpired, this.statusType,this.seenBy});
 
   PhotoUrl.fromJson(Map<String, dynamic> json) {
     image = json['image'];
     timestamp = json['timestamp'];
     isExpired = json['isExpired'];
     statusType = json['statusType'];
+    seenBy = json['seenBy'] ?? [];
   }
 
   Map<String, dynamic> toJson() {
@@ -53,6 +55,9 @@ class PhotoUrl {
     data['timestamp'] = timestamp;
     data['isExpired'] = isExpired;
     data['statusType'] = statusType;
+    if (seenBy!.isNotEmpty) {
+      data['seenBy'] = seenBy;
+    }
     return data;
   }
 }

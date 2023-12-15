@@ -31,6 +31,7 @@ class Fonts{
   final product = "product";
   final collection = "collection";
   final update = "update";
+  final updateSuccess = "updateSuccess";
   final aboutUsLink = "aboutUsLink";
   final contactUsLink = "contactUsLink";
   final termsConditionLink = "termsConditionLink";
@@ -120,6 +121,7 @@ class Fonts{
   final facebookAndroidInterstitialId = "facebookAndroidInterstitialId";
   final facebookIosInterstitialId = "facebookIosInterstitialId";
   final deleteCharacterConfirmation = "deleteCharacterConfirmation";
+  final deleteCharacterConfirmation1 = "deleteCharacterConfirmatio1";
   final gifApi = "gifApi";
   final firebaseServerToken = "firebaseServerToken";
   final clickToUpload = "clickToUpload";
@@ -138,6 +140,11 @@ class Fonts{
   final bangladesh = "bangladesh";
   final turkey = "turkey";
   final type = "type";
+  final recentJoin = "recentJoin";
+  final save = "save";
+  final primaryLanguage = "primaryLanguage";
+  final languageSelection = "languageSelection";
+  final statusSeenBy = "statusSeenBy";
 
 
 }

@@ -30,7 +30,7 @@ class _IndexLayoutState extends State<IndexLayout> {
                 shadowColor: Colors.transparent,
                 centerTitle: false,
 
-                backgroundColor: appCtrl.isTheme ?appCtrl.appTheme.whiteColor : appCtrl.appTheme.bg1,
+                backgroundColor: appCtrl.isTheme ?appCtrl.appTheme.blackText : appCtrl.appTheme.bg1,
                 leadingWidth: Responsive.isDesktop(context) ? Sizes.s500 : Sizes.s100,
                 title: !Responsive.isDesktop(context)
                     ? Text(indexCtrl.pageName.tr,style: AppCss.manropeSemiBold16.textColor(appCtrl.appTheme.blackColor),)
@@ -58,7 +58,7 @@ class _IndexLayoutState extends State<IndexLayout> {
                                     width: value ? Sizes.s220 : Sizes.s70,
                                    decoration: BoxDecoration(
                                      boxShadow:  [BoxShadow(blurRadius: 20,color: appCtrl.appTheme.gray,spreadRadius: 4)],
-                                     color: appCtrl.appTheme.blackText,
+                                       color: appCtrl.appTheme.blackText,
                                    ),
                                     child: SingleChildScrollView(
                                         controller: ScrollController(),

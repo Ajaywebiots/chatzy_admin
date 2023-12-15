@@ -24,13 +24,13 @@ class DashboardTitleCount extends StatelessWidget {
               fontWeight: FontWeight.w800)),*/
       Text(title!,
           style: GoogleFonts.manrope(
-              fontSize:16 ,
+              fontSize:  MediaQuery.of(context).size.width < 1400 ?14 : 16 ,
               color: appCtrl.appTheme.textBoxColor,
               fontWeight: FontWeight.normal)),
     const  VSpace( Sizes.s5),
       Text(count!,
           style: GoogleFonts.manrope(
-              fontSize: 18 ,
+              fontSize: MediaQuery.of(context).size.width < 1400 ? 16: 18 ,
               color: appCtrl.appTheme.primary,
               fontWeight: FontWeight.w800)),
     ]);

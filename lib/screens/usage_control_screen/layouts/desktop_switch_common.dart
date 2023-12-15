@@ -21,15 +21,16 @@ class DesktopSwitchCommon extends StatelessWidget {
                 Text(title!.tr,
                     style: AppCss.manropeMedium16
                         .textColor(appCtrl.isTheme ?appCtrl.appTheme.white : appCtrl.appTheme.dark)),
-                Switch(
+
+                FlutterSwitch(
                     activeColor: appCtrl.appTheme.primary,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+width: 35,height: 22,toggleSize: 15,
                     value: value!,
-                    onChanged: onChanged)
+                    onToggle: onChanged!)
               ]
           ),
           if(isDivider != true)
             Divider(color: appCtrl.appTheme.primary.withOpacity(0.1))
-        ]).paddingSymmetric(horizontal: Insets.i30);
+        ]);
   }
 }

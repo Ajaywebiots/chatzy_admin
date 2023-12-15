@@ -20,14 +20,19 @@ class UsageControlDesktop extends StatelessWidget {
             SmoothContainer(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: Insets.i20),
-              padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i20),
+              padding: const EdgeInsets.symmetric(
+                  vertical: Insets.i15, horizontal: Insets.i20),
               color: appCtrl.appTheme.primary.withOpacity(.08),
               smoothness: 1,
               borderRadius: BorderRadius.circular(6),
               child: Row(
                 children: [
-                  Icon(Icons.circle,color: appCtrl.appTheme.primary,size: Sizes.s10,),
-const HSpace(Sizes.s15),
+                  Icon(
+                    Icons.circle,
+                    color: appCtrl.appTheme.primary,
+                    size: Sizes.s10,
+                  ),
+                  const HSpace(Sizes.s15),
                   Text(
                     fonts.usageOption.tr,
                     style: GoogleFonts.manrope(
@@ -38,8 +43,7 @@ const HSpace(Sizes.s15),
                 ],
               ),
             ),
-            const VSpace(Sizes.s10),
-
+            const VSpace(Sizes.s20),
             IntrinsicHeight(
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,21 +54,33 @@ const HSpace(Sizes.s15),
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           DesktopSwitchCommon(
+                              isDivider: true,
                               title: fonts.allowCreatingBroadcast,
                               value: usageControlModel!.allowCreatingBroadcast,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
                                   "allowCreatingBroadcast", val)),
                           DesktopSwitchCommon(
+                              isDivider: true,
                               title: fonts.allowCreatingGroup,
                               value: usageControlModel!.allowCreatingGroup,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
                                   "allowCreatingGroup", val)),
                           DesktopSwitchCommon(
+                              isDivider: true,
                               title: fonts.allowCreatingStatus,
                               value: usageControlModel!.allowCreatingStatus,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
                                   "allowCreatingStatus", val)),
+                        ]),
+                  ),
+                 Image.asset(imageAssets.line,height: Sizes.s140,fit: BoxFit.fill,)
+                      .paddingSymmetric(horizontal: Insets.i30),
+                  Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           DesktopSwitchCommon(
+                              isDivider: true,
                               title: fonts.callsAllowed,
                               value: usageControlModel!.callsAllowed,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
@@ -75,40 +91,42 @@ const HSpace(Sizes.s15),
                               value: usageControlModel!.existenceUsers,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
                                   "existenceUsers", val)),
-                        ]),
-                  ),
-                  VerticalDivider(
-                          width: 1,
-                          color: appCtrl.appTheme.primary.withOpacity(0.1))
-                      .paddingSymmetric(horizontal: Insets.i30),
-                  Expanded(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
                           DesktopSwitchCommon(
+                              isDivider: true,
                               title: fonts.mediaSendAllowed,
                               value: usageControlModel!.mediaSendAllowed,
                               onChanged: (val) => usageCtrl.onChangeSwitcher(
                                   "mediaSendAllowed", val)),
-                          DesktopSwitchCommon(
-                              title: fonts.showLogoutButton,
-                              value: usageControlModel!.showLogoutButton,
-                              onChanged: (val) => usageCtrl.onChangeSwitcher(
-                                  "showLogoutButton", val)),
-                          DesktopSwitchCommon(
-                              title: fonts.textMessageAllowed,
-                              value: usageControlModel!.textMessageAllowed,
-                              onChanged: (val) => usageCtrl.onChangeSwitcher(
-                                  "textMessageAllowed", val)),
-                          DesktopSwitchCommon(
-                              isDivider: true,
-                              title: fonts.allowUserSignup,
-                              value: usageControlModel!.allowUserSignup,
-                              onChanged: (val) => usageCtrl.onChangeSwitcher(
-                                  "allowUserSignup", val)),
                         ]),
+                  ),
+                      Image.asset(imageAssets.line,height: Sizes.s140,fit: BoxFit.fill,)
+                          .paddingSymmetric(horizontal: Insets.i30),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        DesktopSwitchCommon(
+                            isDivider: true,
+                            title: fonts.showLogoutButton,
+                            value: usageControlModel!.showLogoutButton,
+                            onChanged: (val) => usageCtrl.onChangeSwitcher(
+                                "showLogoutButton", val)),
+                        DesktopSwitchCommon(
+                            isDivider: true,
+                            title: fonts.textMessageAllowed,
+                            value: usageControlModel!.textMessageAllowed,
+                            onChanged: (val) => usageCtrl.onChangeSwitcher(
+                                "textMessageAllowed", val)),
+                        DesktopSwitchCommon(
+                            isDivider: true,
+                            title: fonts.allowUserSignup,
+                            value: usageControlModel!.allowUserSignup,
+                            onChanged: (val) => usageCtrl.onChangeSwitcher(
+                                "allowUserSignup", val)),
+                      ],
+                    ),
                   )
-                ]))
+                ]).marginSymmetric(horizontal: Insets.i20))
           ]).marginOnly(top: Insets.i15);
     });
   }

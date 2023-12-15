@@ -16,7 +16,7 @@ class LanguageLayout extends StatelessWidget {
                 alignment: Alignment.center,
                 constraints: const BoxConstraints(minWidth: Sizes.s48),
                 child: Row(children: [
-                  SvgPicture.asset(svgAssets.languages, height: Sizes.s25),
+                  SvgPicture.asset(svgAssets.languages, height: Sizes.s25,colorFilter: ColorFilter.mode(appCtrl.isTheme ? appCtrl.appTheme.white :appCtrl.appTheme.primary, BlendMode.srcIn), ),
                   Visibility(
                       visible: (MediaQuery.of(context).size.width > Sizes.s768),
                       child: Text(fonts.selectLanguage.tr,

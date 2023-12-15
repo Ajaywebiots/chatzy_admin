@@ -18,7 +18,7 @@ class ImageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WallpaperController>(builder: (bannerCtrl) {
-      log("bannerCtrl.pickImage : ${bannerCtrl.imageUrl.isNotEmpty || bannerCtrl.pickImage != null || bannerCtrl.webImage.isNotEmpty}");
+log("bannerCtrl.imageUrl. :${bannerCtrl.imageUrl}");
       return SmoothContainer(
           color: appCtrl.appTheme.textBoxColor.withOpacity(.06),
           borderRadius: BorderRadius.circular(6),
@@ -53,7 +53,7 @@ class ImageLayout extends StatelessWidget {
                 onDragExited: (detail) {
                   log("ExIt : $detail");
                 },
-                child: bannerCtrl.imageUrl.isNotEmpty &&
+                child: bannerCtrl.imageUrl.isNotEmpty &&  bannerCtrl.imageUrl != ""&&
                         bannerCtrl.pickImage != null
                     ? CommonDottedBorder(child: ClipRRect(borderRadius: BorderRadius.circular(AppRadius.r16), child: Image.memory(bannerCtrl.webImage, fit: BoxFit.fill))).inkWell(
                         onTap: () => bannerCtrl.getImage(

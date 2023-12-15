@@ -8,7 +8,7 @@ class UserListWidgetClass{
   //table row
   TableRow tableRow() =>TableRow(
       decoration: BoxDecoration(
-        color: appCtrl.appTheme.primary,
+          color: appCtrl.appTheme.textBoxColor.withOpacity(.06)
 
       ),
       children: [

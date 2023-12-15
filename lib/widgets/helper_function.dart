@@ -78,24 +78,30 @@ showAlert({title, context}) async {
 accessDenied(String content,
     {GestureTapCallback? onTap, isModification = true, isDelete = false}) {
   Get.dialog(
-    AlertDialog(
-      title: Text(fonts.report.tr),
-      content: Text(content.tr),
-      actions: <Widget>[
-        CommonButton(
-          title: fonts.close.tr,
-          width: Sizes.s80,
-          style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white),
-          onTap: () => Get.back(),
-        ),
-        if (isDelete == true)
+    Theme(
+      data: ThemeData(dialogBackgroundColor:appCtrl.appTheme.white,),
+      child: AlertDialog(
+        backgroundColor: appCtrl.appTheme.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        title: Text(fonts.report.tr),
+        content: Text(content.tr),
+        actions: <Widget>[
           CommonButton(
-            title: fonts.delete.tr,
+            title: fonts.close.tr,
             width: Sizes.s80,
             style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white),
-            onTap: onTap,
+            onTap: () => Get.back(),
           ),
-      ],
+          if (isDelete == true)
+            CommonButton(
+              title: fonts.delete.tr,
+              width: Sizes.s80,
+              style: AppCss.manropeMedium16.textColor(appCtrl.appTheme.white),
+              onTap: onTap,
+            ),
+        ],
+      ),
     ),
     barrierDismissible: false,
   );

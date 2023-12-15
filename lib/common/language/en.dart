@@ -135,7 +135,8 @@ final dynamic en = {
   "facebookAndroidInterstitialId": "Facebook Android Interstitial Id",
   "facebookIosInterstitialId": "Facebook IOS Interstitial Id",
   "facebookIosId": "Facebook IOS Banner Id",
-  "deleteCharacterConfirmation": "Are you sure you want to Delete Character?",
+  "deleteCharacterConfirmation": "क्या आप वाकई इस उपयोगकर्ता को हटाना चाहते हैं?",
+
   "gifApi": "GIF Api",
   "firebaseServerToken": "Firebase Server Token",
   "usageOption": "Usage Option",
@@ -155,4 +156,11 @@ final dynamic en = {
   "turkey" : "Turkey",
   "language" : "Language",
   "type" : "Type",
+  "recentJoin" : "Recent Join",
+  "save" : "Save",
+  "primaryLanguage" : "Primary Language",
+  "languageSelection" : "Language Selection",
+  "updateSuccess" : "Update Successfully",
+  "statusSeenBy" : "Status seen by",
+  "deleteCharacterConfirmation1": "Are you sure you want to Delete this Status?",
 };

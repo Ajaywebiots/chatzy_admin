@@ -15,10 +15,10 @@ class DashboardBoxLayout extends StatelessWidget {
         alignment: Alignment.centerLeft,
         children: [
           SmoothContainer(
-              color: appCtrl.appTheme.white,
-
+              color: appCtrl.appTheme.whiteColor,
               padding: EdgeInsets.symmetric(
                   horizontal: Insets.i22, vertical: Insets.i23),
+
               smoothness: .6,
               borderRadius: BorderRadius.circular(Insets.i8),
               side: BorderSide(
@@ -28,7 +28,6 @@ class DashboardBoxLayout extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Row(
-
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           DashboardTitleCount(
@@ -42,15 +41,21 @@ class DashboardBoxLayout extends StatelessWidget {
                               title: dashboardCtrl.listItem[index!]["title"]
                                   .toString()
                                   .tr),
-
-                          Expanded(
-                            child: SvgPicture.asset(
-                              svgAssets.dashicon,
-                              height: Sizes.s40,
-                            ),
-                          )
+                          MediaQuery.of(context).size.width < 1420
+                              ? Expanded(
+                                  child: SvgPicture.asset(
+                                  svgAssets.dashicon,
+                                  height:
+                                      MediaQuery.of(context).size.width < 1420
+                                          ? Sizes.s40
+                                          : Sizes.s60,
+                                ))
+                              : SvgPicture.asset(
+                                  svgAssets.dashicon,
+                                  height: Sizes.s60,
+                                )
                         ])
-                  ])),
+                  ])).boxExtension(),
           SmoothContainer(
             height: Sizes.s50,
             width: 4,

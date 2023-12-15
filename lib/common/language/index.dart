@@ -13,3 +13,5 @@ class Language extends Translations {
         'ko_KR': kr
       };
 }
+
+

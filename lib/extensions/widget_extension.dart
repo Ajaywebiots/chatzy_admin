@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
@@ -183,17 +182,6 @@ extension StyledWidget on Widget {
         child: this,
       );
 
-  Widget backgroundBlur(
-    double sigma, {
-    bool animate = false,
-  }) =>
-      BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: sigma,
-          sigmaY: sigma,
-        ),
-        child: this,
-      );
 
   Widget borderRadius({
     double? all,

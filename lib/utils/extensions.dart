@@ -9,6 +9,9 @@ extension ChatifyExtansion on Widget {
           color: appCtrl.isTheme
               ? appCtrl.appTheme.accentTxt
               : appCtrl.appTheme.white,
-          borderRadius: const BorderRadius.all(Radius.circular(AppRadius.r18)),
-          );
+          borderRadius: const BorderRadius.all(Radius.circular(AppRadius.r8)),
+      boxShadow: [
+        const BoxShadow(
+            color: Color.fromRGBO(44, 44, 44, 0.04), spreadRadius: 1, blurRadius: 2)
+      ]          );
 }

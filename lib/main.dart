@@ -1,13 +1,19 @@
 import 'dart:developer';
-import 'dart:ui';
 import 'package:chatzy_admin/routes/index.dart';
+import 'package:flutter/gestures.dart';
+import 'package:universal_html/html.dart';
 import 'common/language/index.dart';
 import 'config.dart';
+import 'dart:ui_web' as ui;
+
 import 'package:universal_html/html.dart' as html;
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ui.platformViewRegistry
+      .registerViewFactory('example', (_) => DivElement()..innerText = 'Hello, HTML!');
   // We're using the manual installation on non-web platforms since Google sign in plugin doesn't yet support Dart initialization.
   // See related issue: https://github.com/flutter/flutter/issues/96391
   GetStorage.init();

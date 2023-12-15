@@ -62,18 +62,31 @@ class DrawerList extends StatelessWidget {
                                           e.value["title"] != null
                                               ? e.value["title"].toString().tr
                                               : "",
-                                          style: AppCss.manropeLight12
-                                              .textColor(indexCtrl
-                                                          .selectedIndex ==
-                                                      e.key
-                                                  ? appCtrl.appTheme.white
-                                                  : indexCtrl.isHover &&
-                                                          indexCtrl
-                                                                  .isSelectedHover ==
-                                                              e.key
-                                                      ? appCtrl.appTheme.white
-                                                      : appCtrl
-                                                          .appTheme.drawerTextColor).letterSpace(.4)),
+                                          style:TextStyle(
+                                            color: indexCtrl
+                                                .selectedIndex ==
+                                                e.key
+                                                ? appCtrl.appTheme.white
+                                                : indexCtrl.isHover &&
+                                                indexCtrl
+                                                    .isSelectedHover ==
+                                                    e.key
+                                                ? appCtrl.appTheme.white
+                                                : appCtrl
+                                                .appTheme.drawerTextColor,
+                                            fontSize: 14,
+                                            fontWeight: indexCtrl
+                                                .selectedIndex ==
+                                                e.key
+                                                ? FontWeight.w800
+                                                : indexCtrl.isHover &&
+                                                indexCtrl
+                                                    .isSelectedHover ==
+                                                    e.key
+                                                ? FontWeight.w800
+                                                :
+                                                FontWeight.w500
+                                          )),
                                     )
                             ]))
                   .inkWell(onTap: () {
@@ -115,9 +128,7 @@ class DrawerList extends StatelessWidget {
                   .decorated(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(AppRadius.r6)),
-                      color: Responsive.isDesktop(context) && value == false
-                          ? appCtrl.appTheme.blackText
-                          : indexCtrl.selectedIndex == e.key
+                      color: indexCtrl.selectedIndex == e.key
                               ? appCtrl.appTheme.primary
                               : indexCtrl.isHover &&
                                       indexCtrl.isSelectedHover == e.key

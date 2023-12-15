@@ -12,9 +12,7 @@ class CommonSwitcher extends StatelessWidget {
     return Column(
       children: [
         FlutterSwitch(
-          width: Sizes.s50,
-          height: Sizes.s26,
-          toggleSize: Sizes.s20,
+          width: 35,height: 22,toggleSize: 15,
           value: isActive ?? true,
           borderRadius: 30.0,
           activeToggleColor: appCtrl.appTheme.white,

@@ -108,7 +108,7 @@ class UserListLayout extends StatelessWidget {
             ]);
           }).toList()
         ]).decorated(
-            border: Border.all(color: appCtrl.appTheme.primary),
+
             borderRadius: BorderRadius.circular(AppRadius.r6)));
   }
 }

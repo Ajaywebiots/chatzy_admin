@@ -51,25 +51,35 @@ class LanguageController extends GetxController {
   }
 
   save() async {
-    await FirebaseFirestore.instance
-        .collection(collectionName.languages)
-        .doc(collectionName.language)
-        .get()
-        .then((value) async{
-          log("message : ${value.data()}");
+    bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
+    if (isLoginTest) {
+      accessDenied(fonts.modification.tr);
+    } else {
       await FirebaseFirestore.instance
           .collection(collectionName.languages)
-          .doc(collectionName.language).update({"language": languagesLists});
-    });
-    await FirebaseFirestore.instance
-        .collection(collectionName.languages)
-        .doc(collectionName.defaultLanguage)
-        .get()
-        .then((value) async{
-      log("message : ${value.data()}");
+          .doc(collectionName.language)
+          .get()
+          .then((value) async {
+        log("message : ${value.data()}");
+        await FirebaseFirestore.instance
+            .collection(collectionName.languages)
+            .doc(collectionName.language).update({"language": languagesLists});
+      });
       await FirebaseFirestore.instance
           .collection(collectionName.languages)
-          .doc(collectionName.language).update({"language": defaultLan});
-    });
+          .doc(collectionName.defaultLanguage)
+          .get()
+          .then((value) async {
+        log("message : ${value.data()}");
+        await FirebaseFirestore.instance
+            .collection(collectionName.languages)
+            .doc(collectionName.language).update({"language": defaultLan});
+      }).then((s) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+          content: Text(fonts.update.tr),
+          backgroundColor: appCtrl.appTheme.greenColor,
+        ));
+      });
+    }
   }
 }

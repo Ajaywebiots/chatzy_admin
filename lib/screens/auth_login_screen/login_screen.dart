@@ -50,42 +50,14 @@ class LoginScreen extends StatelessWidget {
 
                         .paddingOnly(top: MediaQuery.of(context).size.height /2.2),
                   )*/
+                  if (Responsive.isDesktop(context))
                   Align(
                       alignment: Alignment.center,
-                      child: Image.asset(imageAssets.loginBg5,width: 1250,height: 500,fit: BoxFit.fill).paddingOnly( bottom:
+                      child: Image.asset(imageAssets.loginBg5,width:1145,height: Sizes.s500,fit: BoxFit.fill).paddingOnly( bottom:
                       MediaQuery.of(context).size.height / 10.5)),
-                  Align(
+                  const Align(
                       alignment: Alignment.center,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          /*if (Responsive.isDesktop(context))
-                            Image.asset(
-                              imageAssets.loginBg3,
-                              height: Sizes.s500,
-                              fit: BoxFit.fill,
-                            ).paddingOnly(
-                                bottom:
-                                MediaQuery.of(context).size.height / 10.5),*/
-
-                          Row(
-                            children: [
-                              Responsive.isDesktop(context)
-                                  ? const LoginLayout()
-                                  : const Expanded(child: LoginLayout()),
-                              /* if (Responsive.isDesktop(context))
-                                Image.asset(
-                                  imageAssets.loginBg4,
-                                  height: Sizes.s500,
-                                ).paddingOnly(
-                                    bottom:
-                                    MediaQuery.of(context).size.height / 10.5)*/
-                            ],
-                          )
-                        ],
-                      )),
+                      child: LoginLayout()),
                 ],
               ));
         }),

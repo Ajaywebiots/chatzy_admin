@@ -1,6 +1,5 @@
 library textstyle_extensions;
 
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -71,8 +70,6 @@ extension TextStyleExtensions on TextStyle {
   /// Shortcut for shadows
   TextStyle textShadows(List<Shadow> v) => copyWith(shadows: v);
 
-  /// Shortcut for fontFeatures
-  TextStyle textFeatures(List<FontFeature> v) => copyWith(fontFeatures: v);
 
   /// Shortcut for decoration
   TextStyle textDecoration(TextDecoration v, {Color? color, TextDecorationStyle? style, double thickness = 1}) =>

@@ -70,27 +70,27 @@ class CommonTextBox extends StatelessWidget {
               fillColor: fillColor ?? appCtrl.appTheme.textBoxColor.withOpacity(0.05),
               filled: true,
               isDense: true,
-              disabledBorder: OutlineInputBorder(
+              disabledBorder: border ?? OutlineInputBorder(
                   borderRadius:
                   const BorderRadius.all(Radius.circular(AppRadius.r8)),
                   borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: border ?? OutlineInputBorder(
                   borderRadius:
                   const BorderRadius.all(Radius.circular(AppRadius.r8)),
                   borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder:border ??  OutlineInputBorder(
                   borderRadius:
                   const BorderRadius.all(Radius.circular(AppRadius.r8)),
                   borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)
               ),
-              border:
-              OutlineInputBorder(
+              border:border ??
+                  OutlineInputBorder(
                   borderRadius:
                   const BorderRadius.all(Radius.circular(AppRadius.r8)),
                   borderSide: BorderSide(width: 1, color: appCtrl.appTheme.borderColor)),
-              contentPadding:  EdgeInsets.symmetric(
+              contentPadding:  const EdgeInsets.symmetric(
                   horizontal: Insets.i15, vertical:  Insets.i20),
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
