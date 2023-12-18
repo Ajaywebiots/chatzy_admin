@@ -52,10 +52,10 @@ class DashboardController extends GetxController {
   bool isLoading = true;
   List userList =[];
   final bool showSelect = true;
-
+  int count =0;
   final List<int> perPages = [10, 20, 50, 100];
   int total = 100;
-  int? currentPerPage = 7;
+  int? currentPerPage = 10;
   TextEditingController textSearch = TextEditingController();
   QuerySnapshot? userQuerysnapshot;
   final CollectionReference usersCollection =
@@ -79,7 +79,6 @@ class DashboardController extends GetxController {
         .get()
         .then((value) {
       if (value.docs.isNotEmpty) {
-        last = value.docs.last;
         value.docs.asMap().entries.forEach((e) {
           if (e.value.data()["dialCode"] != null) {
             if (e.value.data()["dialCode"] == "+91") {
@@ -150,19 +149,7 @@ class DashboardController extends GetxController {
     {'title': 'audioCalls', 'icon': svgAssets.audioCall},
   ];
 
-  Stream getChatsFromRefs() {
-    Stream<QuerySnapshot<Map<String, dynamic>>> event = FirebaseFirestore
-        .instance
-        .collection(collectionName.users)
-        .orderBy('name')
-        .startAfterDocument(last!)
-        .limit(currentPerPage!)
-      
-        .snapshots();
 
-    return event;
-  }
-  
   Stream searchList() {
     Stream<QuerySnapshot<Map<String, dynamic>>> event = FirebaseFirestore
         .instance
@@ -170,7 +157,7 @@ class DashboardController extends GetxController {
         .orderBy('name').where("name",isGreaterThanOrEqualTo: textSearch.text)
         .startAfterDocument(last!)
         .limit(currentPerPage!)
-        
+
         .snapshots();
 
     return event;
@@ -240,7 +227,7 @@ class DashboardController extends GetxController {
             String url = decryptMessage(ds.data()["content"]);
             FirebaseStorage.instance
                 .refFromURL(
-                    url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
+                url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
                 .delete();
           }
           ds.reference.delete();
@@ -262,7 +249,7 @@ class DashboardController extends GetxController {
             String url = decryptMessage(ds.data()["content"]);
             FirebaseStorage.instance
                 .refFromURL(
-                    url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
+                url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
                 .delete();
           }
           ds.reference.delete();
@@ -285,7 +272,7 @@ class DashboardController extends GetxController {
             String url = decryptMessage(ds.data()["content"]);
             FirebaseStorage.instance
                 .refFromURL(
-                    url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
+                url.contains("-BREAK-") ? url.split("-BREAK-")[0] : url)
                 .delete();
           }
           ds.reference.delete();
@@ -304,11 +291,11 @@ class DashboardController extends GetxController {
     isLoading = true;
     update();
     var expandedLen =
-        total - start < currentPerPage! ? total - start : currentPerPage;
+    total - start < currentPerPage! ? total - start : currentPerPage;
     Future.delayed(const Duration(seconds: 0)).then((value) {
       expanded = List.generate(expandedLen as int, (index) => false);
       source.clear();
-      source = sourceFiltered.getRange(start, start + expandedLen).toList();
+      // source = sourceFiltered.getRange(start, start + expandedLen).toList();
       isLoading = false;
       update();
     });
@@ -318,7 +305,6 @@ class DashboardController extends GetxController {
   filterData(value) {
     isLoading = true;
     update();
-    getChatsFromRefs();
     try {
       if (value == "" || value == null) {
         sourceFiltered = sourceOriginal;
@@ -326,9 +312,9 @@ class DashboardController extends GetxController {
         sourceFiltered = sourceOriginal.where((data) {
           log("DA :$data");
           return data[searchKey!]
-                  .toString()
-                  .toLowerCase()
-                  .contains(value.toString().toLowerCase()) ||
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase()) ||
               data["name"]
                   .toString()
                   .toLowerCase()
@@ -340,7 +326,10 @@ class DashboardController extends GetxController {
       var rangeTop = total < currentPerPage! ? total : currentPerPage!;
       expanded = List.generate(rangeTop, (index) => false);
       source = sourceFiltered.getRange(0, rangeTop).toList();
-    } catch (e) {}
+    } catch (e) {
+      isLoading = false;
+      update();
+    }
     isLoading = false;
     update();
   }
@@ -353,7 +342,7 @@ class DashboardController extends GetxController {
       final index = userList.indexWhere((element){
         log("USER: ${element}");
         log("USER: $user");
-      return  user!["id"] == element["id"];
+        return  user!["id"] == element["id"];
       });
       if (index != -1) {
         userList.removeAt(index);
@@ -363,4 +352,86 @@ class DashboardController extends GetxController {
       }
     }
   }
+  List<List<QueryDocumentSnapshot<dynamic>>> allPagedResults = [];
+
+  bool _hasMoreData = true;
+  StreamController chatController =
+  StreamController.broadcast();
+
+  Stream listenToChatsRealTime({bool? isPrevious}) {
+    _requestChats(isPrevious: isPrevious);
+    return chatController.stream;
+  }
+
+  void _requestChats({bool? isPrevious}) {
+    allPagedResults = [];
+    if(count <=0) {
+      count ++;
+      var pagechatQuery = FirebaseFirestore.instance
+          .collection(collectionName.users).orderBy("name")
+          .limit(currentPerPage!);
+      log("isPrevious: $isPrevious");
+      log("isPrevious: $last");
+      log("isPrevious: $last");
+      if (last != null) {
+        if(isPrevious == null){
+          pagechatQuery =
+              pagechatQuery .limit(currentPerPage!);
+        }else if(isPrevious == true){
+          _hasMoreData =true;
+          pagechatQuery =
+              pagechatQuery.endBeforeDocument(last!);
+        }else     {
+          _hasMoreData =true;
+          pagechatQuery =
+              pagechatQuery.startAfterDocument(last!).limit(currentPerPage!);
+        }
+
+      }
+
+
+      if (!_hasMoreData) return;
+
+      var currentRequestIndex = allPagedResults.length;
+      log("currentRequestIndex:$currentRequestIndex");
+
+      pagechatQuery.snapshots().listen(
+            (snapshot) {
+          if (snapshot.docs.isNotEmpty) {
+            log("snapshot.docs::${snapshot.docs.length}");
+            var generalChats = snapshot.docs;
+
+            var pageExists = currentRequestIndex < allPagedResults.length;
+
+            if (pageExists) {
+              allPagedResults[currentRequestIndex] = generalChats;
+            } else {
+              allPagedResults.add(generalChats);
+            }
+
+            var allChats = allPagedResults.fold([],
+                    (initialValue, pageItems) =>
+                initialValue
+                  ..addAll(pageItems));
+
+            chatController.add(allChats);
+            log("allPagedResults.length - 1: ${currentRequestIndex == allPagedResults.length - 1}");
+            if (currentRequestIndex == allPagedResults.length - 1) {
+              last = snapshot.docs.last;
+            }
+
+            _hasMoreData = generalChats.length == currentPerPage;
+          }
+        },
+
+      );
+
+      log("last: $last");
+    }
+  }
+
+
+  void requestMoreData() => _requestChats();
+
+
 }

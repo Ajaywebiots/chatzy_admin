@@ -40,13 +40,13 @@ class UserLayoutDesktop extends StatelessWidget {
                   CommonWidgetClass().commonTitleText(fonts.activeDeactive),
                   CommonWidgetClass().commonTitleText(fonts.action),
                 ]),
-            ...snapShot!.data!.docs.asMap().entries.map((e) {
-log("CCCC:${e.value.data()["createdDate"]}");
+            ...snapShot!.data!.asMap().entries.map((e) {
+
               return TableRow(
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
-                              color: Color(0x313232).withOpacity(0.15)))),
+                              color: e.key != 9? const Color(0xFF313232).withOpacity(0.15) :Colors.transparent))),
                   children: [
                     CommonWidgetClass()
                         .commonValueText(e.value.data()["image"] ?? "",

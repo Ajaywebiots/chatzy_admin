@@ -6,7 +6,6 @@ import 'dart:io' as io;
 import '../../config.dart';
 
 class WallpaperController extends GetxController {
-
   bool isLoading = false;
   XFile? imageFile;
   bool isUploadSize = false, isDarkUploadFile2 = false;
@@ -19,13 +18,13 @@ class WallpaperController extends GetxController {
   List<String> wallpaperTypeList = <String>['solid', 'dark', 'light'];
   XFile? wallpaper1File, wallpaper2File;
   late DropzoneViewController? controller1, controller2;
-  String dropdownValue =  "solid";
+  String dropdownValue = "solid";
   Uint8List wallpaperWebImage1 = Uint8List(8);
   Uint8List wallpaperUploadWebImage2 = Uint8List(8);
   io.File? pickImage, wallpaperPickImage2, wallpaperPickImage3;
   var random = math.Random();
   List<XFile> list = [];
-int? selectedIndex;
+  int? selectedIndex;
   String imageName = "",
       imageUrl = "",
       imageUrl2 = "",
@@ -58,7 +57,6 @@ int? selectedIndex;
         .get()
         .then((value) {
       if (value.docs.isNotEmpty) {
-
         value.docs.asMap().entries.forEach((element) {
           if (dropdownValue == element.value.data()["type"]) {
             characterId = element.value.id;
@@ -66,14 +64,13 @@ int? selectedIndex;
           }
         });
       }
-      if(characterId != ""){
-        log("hhhh :m${yourItemList[selectedIndex!] }");
+      if (characterId != "") {
+        log("hhhh :m${yourItemList[selectedIndex!]}");
         yourItemList[selectedIndex!] = imageUrl;
-        log("hhhh :qq${yourItemList[selectedIndex!] }");
-      }else {
+        log("hhhh :qq${yourItemList[selectedIndex!]}");
+      } else {
         yourItemList.add(imageUrl);
       }
-
     });
 
     update();
@@ -99,7 +96,7 @@ int? selectedIndex;
             imageUrl = "";
             pickImage = null;
             imageFile = null;
-characterId ="";
+            characterId = "";
 
             Get.back();
             isLoading = false;
@@ -116,7 +113,6 @@ characterId ="";
             'type': dropdownValue,
             "image": FieldValue.arrayUnion(yourItemList),
           }).then((value) {
-
             webImage = Uint8List(8);
             webImage = Uint8List(8);
             pickImage = null;
@@ -346,7 +342,7 @@ characterId ="";
     }
   }
 
-  deleteData(id,index) async {
+  deleteData(id, index) async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest);
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
@@ -357,7 +353,6 @@ characterId ="";
           .get()
           .then((value) {
         if (value.docs.isNotEmpty) {
-
           value.docs.asMap().entries.forEach((element) {
             if (dropdownValue == element.value.data()["type"]) {
               characterId = element.value.id;
@@ -368,30 +363,27 @@ characterId ="";
         yourItemList.removeAt(index);
       });
       update();
-      if(yourItemList.isEmpty){
+      if (yourItemList.isEmpty) {
         await FirebaseFirestore.instance
             .collection(collectionName.wallpaper)
             .doc(id)
             .delete();
-      }else {
+      } else {
         log("yourItemListyourItemList: ${characterId} // $index ");
         log("yourItemListyourItemList: ${{
           'type': dropdownValue,
-          "image":yourItemList,
+          "image": yourItemList,
         }}");
 
         await FirebaseFirestore.instance
             .collection(collectionName.wallpaper)
             .doc(characterId)
-            .update({
-          'type': dropdownValue,
-          "image": yourItemList
-        }).then((value) {
+            .update({'type': dropdownValue, "image": yourItemList}).then(
+                (value) {
           characterId = "";
           update();
         });
       }
-
     }
   }
 

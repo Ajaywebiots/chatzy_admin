@@ -29,7 +29,9 @@ class AdminStatusScreen extends StatelessWidget {
                     children: [
                       Text(fonts.uploadImage.tr,
                           style: AppCss.manropeSemiBold22.textColor(
-                              appCtrl.appTheme.number)).paddingOnly(top: Insets.i10),
+                              appCtrl.isTheme
+                                  ? appCtrl.appTheme.white
+                                  :   appCtrl.appTheme.number)).paddingOnly(top: Insets.i10),
                       UpdateButton(title: fonts.addStatus,
                           onPressed: adminStatusCtrl.pickImage != null
                               ? () => adminStatusCtrl.uploadImage()
@@ -93,7 +95,9 @@ class AdminStatusScreen extends StatelessWidget {
                                                 TextSpan(
                                                     text: " ${fonts.image.tr}",
                                                     style: AppCss.manropeMedium14
-                                                        .textColor(appCtrl.appTheme.dark))
+                                                        .textColor(appCtrl.isTheme
+                                                        ? appCtrl.appTheme.white
+                                                        : appCtrl.appTheme.dark))
                                               ])).marginSymmetric(horizontal: Insets.i10)
                                         ]).width(200))
                                     .inkWell(
@@ -112,7 +116,7 @@ class AdminStatusScreen extends StatelessWidget {
                             .textColor(appCtrl.appTheme.redColor)),
                   const VSpace(Sizes.s20),
                   SmoothContainer(
-                      color: appCtrl.appTheme.white,
+                      color: appCtrl.appTheme.whiteColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: Insets.i22, vertical: Insets.i23),
                       smoothness: 1,
@@ -128,7 +132,9 @@ class AdminStatusScreen extends StatelessWidget {
                               style: GoogleFonts.manrope(
                                   fontWeight: FontWeight.w800,
                                   fontSize: 20,
-                                  color: appCtrl.appTheme.blackText),
+                                  color: appCtrl.isTheme
+                                      ? appCtrl.appTheme.white
+                                      : appCtrl.appTheme.blackText),
                             ),
                             const VSpace(Sizes.s20),
                             StreamBuilder(

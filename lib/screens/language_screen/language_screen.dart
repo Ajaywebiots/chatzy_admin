@@ -25,7 +25,9 @@ class LanguageScreen extends StatelessWidget {
                   style: GoogleFonts.manrope(
                       fontSize: 20,
                       fontWeight: FontWeight.w800,
-                      color: appCtrl.appTheme.blackText)),
+                      color:  appCtrl.isTheme
+                          ? appCtrl.appTheme.white
+                          :  appCtrl.appTheme.blackText)),
               if(Responsive.isDesktop(context))
                 IntrinsicHeight(
                   child: Row(
@@ -142,7 +144,7 @@ class LanguageScreen extends StatelessWidget {
                   smoothness: 0.6,
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   borderRadius: BorderRadius.circular(6),
-                  color: appCtrl.appTheme.white,
+                  color: appCtrl.appTheme.whiteColor,
                   padding: const EdgeInsets.symmetric(
                       horizontal: 30, vertical: Insets.i10),
                   side: BorderSide(
@@ -150,7 +152,12 @@ class LanguageScreen extends StatelessWidget {
                       appCtrl.appTheme.textBoxColor.withOpacity(.15)),
                   child: Text(langCtrl.defaultLan != null
                       ? langCtrl.defaultLan["title"]
-                      : ""),
+                      : "",style:  GoogleFonts.manrope(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: appCtrl.isTheme
+                          ? appCtrl.appTheme.white
+                          : appCtrl.appTheme.blackText),),
                 ),
                 const Text(":").paddingOnly(right: Insets.i10),
                 PopupMenuButton(
@@ -265,7 +272,9 @@ class LanguageScreen extends StatelessWidget {
                               style: GoogleFonts.manrope(
                                   fontWeight: FontWeight.normal,
                                   fontSize: 18,
-                                  color: appCtrl.appTheme.blackText),
+                                  color: appCtrl.isTheme
+                                      ? appCtrl.appTheme.white
+                                      :  appCtrl.appTheme.blackText),
                             )
                           ],
                         ),

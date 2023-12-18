@@ -6,9 +6,7 @@ extension ChatifyExtansion on Widget {
   // Box extension
   Widget boxExtension() => SmoothContainer(child: this).decorated(
     border: Border.all(color: appCtrl.appTheme.textBoxColor.withOpacity(0.15)),
-          color: appCtrl.isTheme
-              ? appCtrl.appTheme.accentTxt
-              : appCtrl.appTheme.white,
+          color: appCtrl.appTheme.whiteColor,
           borderRadius: const BorderRadius.all(Radius.circular(AppRadius.r8)),
       boxShadow: [
         const BoxShadow(

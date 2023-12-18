@@ -135,7 +135,7 @@ final dynamic en = {
   "facebookAndroidInterstitialId": "Facebook Android Interstitial Id",
   "facebookIosInterstitialId": "Facebook IOS Interstitial Id",
   "facebookIosId": "Facebook IOS Banner Id",
-  "deleteCharacterConfirmation": "क्या आप वाकई इस उपयोगकर्ता को हटाना चाहते हैं?",
+  "deleteCharacterConfirmation": "Are you sure you want to delete this user?",
 
   "gifApi": "GIF Api",
   "firebaseServerToken": "Firebase Server Token",

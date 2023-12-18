@@ -96,7 +96,9 @@ class DrawerList extends StatelessWidget {
                     }
                     if (e.value["title"] == "dashboard") {
                       indexCtrl.selectedIndex = 0;
-
+                      final dash = Get.isRegistered<DashboardController>() ? Get.find<DashboardController>():Get.put(DashboardController());
+                      dash.listenToChatsRealTime();
+dash.update();
                     } else if (e.value["title"] == "usageControl") {
                       indexCtrl.selectedIndex = 1;
                     } else if (e.value["title"] == "appSetting") {

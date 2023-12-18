@@ -13,7 +13,7 @@ class CommonWidgetClass {
             style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500,
                 fontSize: MediaQuery.of(Get.context!).size.width < 1420? 14: 16,
-                color: appCtrl.appTheme.blackText),
+                color:appCtrl.isTheme  ?  appCtrl.appTheme.white: appCtrl.appTheme.blackText),
           ),
         ],
       ).paddingSymmetric(vertical: Insets.i20);
@@ -41,7 +41,8 @@ class CommonWidgetClass {
                   textAlign: TextAlign.center,
                   style:TextStyle(
                     fontSize:MediaQuery.of(Get.context!).size.width < 1420? 14: 16,
-                    fontFamily: GoogleFonts.poppins().fontFamily
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                    color: appCtrl.isTheme  ?  appCtrl.appTheme.white:appCtrl.appTheme.blackText
                   )
                 ).marginOnly(top: 20)
         ],
@@ -57,12 +58,12 @@ class CommonWidgetClass {
                   style: GoogleFonts.manrope(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
-                      color: appCtrl.appTheme.blackColor)),
+                      color:appCtrl.isTheme  ?  appCtrl.appTheme.white: appCtrl.appTheme.blackColor)),
               Text(val,
                   style: GoogleFonts.manrope(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: appCtrl.appTheme.blackColor)),
+                      color: appCtrl.isTheme  ?  appCtrl.appTheme.white:appCtrl.appTheme.blackColor)),
             ],
           ),
           SmoothContainer(

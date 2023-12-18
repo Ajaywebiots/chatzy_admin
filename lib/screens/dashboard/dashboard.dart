@@ -4,6 +4,7 @@ import 'package:chatzy_admin/screens/dashboard/layouts/country_user_count.dart';
 import 'package:chatzy_admin/screens/dashboard/layouts/dashboard_box_layout.dart';
 import 'package:chatzy_admin/screens/dashboard/layouts/user_layout.dart';
 import 'package:chatzy_admin/screens/dashboard/layouts/user_pagination.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -198,7 +199,7 @@ class Dashboard extends StatelessWidget {
           SmoothContainer(
               color: appCtrl.appTheme.whiteColor,
               padding: const EdgeInsets.symmetric(
-                  horizontal: Insets.i22, vertical: Insets.i23),
+                vertical: Insets.i23),
               smoothness: 1,
               borderRadius: BorderRadius.circular(Insets.i8),
               side: BorderSide(
@@ -215,7 +216,7 @@ class Dashboard extends StatelessWidget {
                           style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w800,
                               fontSize: 20,
-                              color: appCtrl.appTheme.blackText),
+                              color:appCtrl.isTheme  ?  appCtrl.appTheme.white: appCtrl.appTheme.blackText),
                         ),
                         SelectionArea(
                           child: CommonTextBox(
@@ -233,44 +234,28 @@ class Dashboard extends StatelessWidget {
                               .width(Responsive.isDesktop(context) ? 514 : 200),
                         ),
                       ],
-                    ),
+                    ).paddingSymmetric(   horizontal: Insets.i22),
                     const VSpace(Sizes.s20),
                     StreamBuilder(
                         stream: dashboardCtrl.textSearch.text.isNotEmpty
                             ? dashboardCtrl.searchList()
-                            : dashboardCtrl.lastLength > 10
-                                ? dashboardCtrl.last != null
-                                    ? FirebaseFirestore.instance
-                                        .collection(collectionName.users)
-                                        .startAfterDocument(dashboardCtrl.last!)
-                                        .limit(dashboardCtrl.currentPerPage!)
-                                        .snapshots()
-                                    : FirebaseFirestore.instance
-                                        .collection(collectionName.users)
-                                        .limit(dashboardCtrl.currentPerPage!)
-                                        .snapshots()
-                                : FirebaseFirestore.instance
-                                    .collection(collectionName.users)
-                                    .limit(dashboardCtrl.currentPerPage!)
-                                    .snapshots(),
+                            : dashboardCtrl.listenToChatsRealTime(),
                         builder: (context, snapShot) {
                           if (snapShot.hasData) {
-
-                            if (snapShot.data.docs != null &&
-                                snapShot.data.docs.length > 0) {
-                              dashboardCtrl.lastVisible =
-                                  snapShot.data.docs.length - 1;
-                              dashboardCtrl.lastIndexId = snapShot
-                                  .data.docs[snapShot.data.docs.length - 1].id;
-                            }
 
                             return UserLayoutDesktop(snapShot: snapShot);
                           } else {
                             return Container();
                           }
-                        }),
+                        }).paddingSymmetric(   horizontal: Insets.i22),
+                    DottedLine(
+                        direction:  Axis.horizontal,
+                        lineLength:  double.infinity,
+                        lineThickness: 1,
+                        dashLength: 2,
+                        dashColor:appCtrl.appTheme.txt.withOpacity(0.20)),
                     const VSpace(Sizes.s20),
-                    const UserPagination()
+                    const UserPagination().paddingSymmetric(horizontal: Insets.i45)
                   ])).boxExtension(),
         ],
       );
