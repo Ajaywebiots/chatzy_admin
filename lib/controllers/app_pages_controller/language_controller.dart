@@ -48,37 +48,48 @@ class LanguageController extends GetxController {
       update();
     });
     update();
+
+    await FirebaseFirestore.instance
+        .collection(collectionName.languages)
+        .doc("dummy_language")
+        .get()
+        .then((value) {
+      if (!value.exists) {
+        FirebaseFirestore.instance
+            .collection(collectionName.languages)
+            .doc("dummy_language").set({"language": languagesLists});
+      }
+      update();
+    });
   }
 
-  save() async {
+  save(context) async {
     bool isLoginTest = appCtrl.storage.read(session.isLoginTest) ?? false;
     if (isLoginTest) {
       accessDenied(fonts.modification.tr);
     } else {
       await FirebaseFirestore.instance
           .collection(collectionName.languages)
-          .doc(collectionName.language)
-          .get()
-          .then((value) async {
-        log("message : ${value.data()}");
-        await FirebaseFirestore.instance
-            .collection(collectionName.languages)
-            .doc(collectionName.language).update({"language": languagesLists});
-      });
-      await FirebaseFirestore.instance
-          .collection(collectionName.languages)
           .doc(collectionName.defaultLanguage)
           .get()
           .then((value) async {
-        log("message : ${value.data()}");
+        log("message : $languagesLists");
         await FirebaseFirestore.instance
             .collection(collectionName.languages)
-            .doc(collectionName.language).update({"language": defaultLan});
-      }).then((s) {
-        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
-          content: Text(fonts.update.tr),
-          backgroundColor: appCtrl.appTheme.greenColor,
-        ));
+            .doc(collectionName.defaultLanguage).update({"language": defaultLan});
+      });
+
+      await FirebaseFirestore.instance
+          .collection(collectionName.languages)
+          .doc(collectionName.language)
+          .get()
+          .then((value) async {
+        log("message : $languagesLists");
+        await FirebaseFirestore.instance
+            .collection(collectionName.languages)
+            .doc(collectionName.language).update({"language": languagesLists});
+      }).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Language Data Update Successfully")));
       });
     }
   }

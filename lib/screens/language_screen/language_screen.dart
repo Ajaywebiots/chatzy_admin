@@ -114,7 +114,7 @@ class LanguageScreen extends StatelessWidget {
                         width: 80,
                         margin: 0,
                         style: TextStyle(color: appCtrl.appTheme.whiteColor),
-                        onTap: () => langCtrl.save(),
+                        onTap: () => langCtrl.save(context),
                       )
                     ],
                   ),
@@ -126,7 +126,7 @@ class LanguageScreen extends StatelessWidget {
                   width: 80,
                   margin: 0,
                   style: TextStyle(color: appCtrl.appTheme.whiteColor),
-                  onTap: () => langCtrl.save(),
+                  onTap: () => langCtrl.save(context),
                 )
             ],
           ),
