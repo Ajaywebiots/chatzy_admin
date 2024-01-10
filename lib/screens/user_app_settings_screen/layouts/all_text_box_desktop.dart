@@ -69,18 +69,18 @@ class AllTextBoxDesktop extends StatelessWidget {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().broadCastValidation(number),
-                          title: fonts.approvalMessage,
-                          controller: settingCtrl.approvalMessage),
-                      const VSpace(Sizes.s30),
-                      DesktopTextFieldCommon(
-                          validator: (number) =>
-                              Validation().broadCastValidation(number),
-                          title: fonts.maintenanceMessage,
-                          controller: settingCtrl.maintenanceMessage),
-                      const VSpace(Sizes.s30),
+                          DesktopTextFieldCommon(
+                              validator: (number) =>
+                                  Validation().broadCastValidation(number),
+                              title: fonts.approvalMessage,
+                              controller: settingCtrl.approvalMessage),
+                          const VSpace(Sizes.s30),
+                          DesktopTextFieldCommon(
+                              validator: (number) =>
+                                  Validation().broadCastValidation(number),
+                              title: fonts.maintenanceMessage,
+                              controller: settingCtrl.maintenanceMessage),
+                          const VSpace(Sizes.s30),
 
                           DesktopTextFieldCommon(
                               validator: (number) =>
@@ -88,7 +88,7 @@ class AllTextBoxDesktop extends StatelessWidget {
                               title: fonts.firebaseServerToken,
                               controller: settingCtrl.txtFirebaseToken),
                           const VSpace(Sizes.s30),
-                    ]).marginOnly(top: Insets.i15)),
+                        ]).marginOnly(top: Insets.i15)),
               ],
             ),
           ],
