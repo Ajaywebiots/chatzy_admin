@@ -54,7 +54,8 @@ class DashboardController extends GetxController {
   final bool showSelect = true;
   int count =0;
   final List<int> perPages = [10, 20, 50, 100];
-  int total = 100;
+  int total = 100; List<QueryDocumentSnapshot<dynamic>>? docs;
+
   int? currentPerPage = 10;
   TextEditingController textSearch = TextEditingController();
   QuerySnapshot? userQuerysnapshot;
@@ -154,7 +155,7 @@ class DashboardController extends GetxController {
     Stream<QuerySnapshot<Map<String, dynamic>>> event = FirebaseFirestore
         .instance
         .collection(collectionName.users)
-        .orderBy('name').where("name",isGreaterThanOrEqualTo: textSearch.text)
+        .where("name",isEqualTo: textSearch.text)
         .startAfterDocument(last!)
         .limit(currentPerPage!)
 
@@ -321,7 +322,6 @@ class DashboardController extends GetxController {
                   .contains(value.toString().toLowerCase());
         }).toList();
       }
-
       total = sourceFiltered.length;
       var rangeTop = total < currentPerPage! ? total : currentPerPage!;
       expanded = List.generate(rangeTop, (index) => false);
@@ -368,7 +368,7 @@ class DashboardController extends GetxController {
     if(count <=0) {
       count ++;
       var pagechatQuery = FirebaseFirestore.instance
-          .collection(collectionName.users).orderBy("name")
+          .collection(collectionName.users)
           .limit(currentPerPage!);
       log("isPrevious: $isPrevious");
       log("isPrevious: $last");

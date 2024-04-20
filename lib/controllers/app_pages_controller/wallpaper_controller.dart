@@ -64,10 +64,14 @@ class WallpaperController extends GetxController {
           }
         });
       }
+
+      log("characterId :$characterId");
+      log("characterId :$yourItemList");
+
       if (characterId != "") {
-        log("hhhh :m${yourItemList[selectedIndex!]}");
-        yourItemList[selectedIndex!] = imageUrl;
-        log("hhhh :qq${yourItemList[selectedIndex!]}");
+        log("hhhh :m${yourItemList[selectedIndex ??0]}");
+        yourItemList[selectedIndex ??0] = imageUrl;
+        log("hhhh :qq${yourItemList[selectedIndex ??0]}");
       } else {
         yourItemList.add(imageUrl);
       }

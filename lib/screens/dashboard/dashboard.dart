@@ -223,6 +223,7 @@ class Dashboard extends StatelessWidget {
                                   fillColor: appCtrl.appTheme.textBoxColor
                                       .withOpacity(0.06),
                                   controller: dashboardCtrl.textSearch,
+
                                   border: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(AppRadius.r5),
@@ -236,14 +237,42 @@ class Dashboard extends StatelessWidget {
                       ],
                     ).paddingSymmetric(   horizontal: Insets.i22),
                     const VSpace(Sizes.s20),
+                    if(dashboardCtrl.textSearch.text.isNotEmpty)
+                      StreamBuilder(
+                          stream: FirebaseFirestore
+                              .instance
+                              .collection(collectionName.users)
+                              .snapshots(),
+                          builder: (context, snapShot) {
+                            dashboardCtrl.docs =[];
+                            if (snapShot.hasData) {
+
+                              snapShot.data!.docs.asMap().entries.forEach((element) {
+
+                                if(element.value.data()['name'].toString().toLowerCase().replaceAll(" ", "").contains(dashboardCtrl.textSearch.text)){
+                                  if(dashboardCtrl.docs != null) {
+                                    if (!dashboardCtrl.docs!.contains(
+                                        element.value)) {
+                                      dashboardCtrl.docs!.add(element.value);
+                                    }
+                                  }else{
+                                    dashboardCtrl.docs = [element.value];
+                                  }
+                                }
+                              });
+                              return dashboardCtrl.docs != null ? UserLayoutDesktop(snapShot: dashboardCtrl.docs):Container();
+                            } else {
+                              return Container();
+                            }
+                          }).paddingSymmetric(   horizontal: Insets.i22),
+
+                      if(dashboardCtrl.textSearch.text.isEmpty)
                     StreamBuilder(
-                        stream: dashboardCtrl.textSearch.text.isNotEmpty
-                            ? dashboardCtrl.searchList()
-                            : dashboardCtrl.listenToChatsRealTime(),
+                        stream: dashboardCtrl.listenToChatsRealTime(),
                         builder: (context, snapShot) {
                           if (snapShot.hasData) {
 
-                            return UserLayoutDesktop(snapShot: snapShot);
+                            return UserLayoutDesktop(snapShot: snapShot.data);
                           } else {
                             return Container();
                           }

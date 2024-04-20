@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../config.dart';
 
 class UserLayoutDesktop extends StatelessWidget {
-  final AsyncSnapshot<dynamic>? snapShot;
+  final List? snapShot;
 
   const UserLayoutDesktop({Key? key, this.snapShot}) : super(key: key);
 
@@ -40,54 +40,50 @@ class UserLayoutDesktop extends StatelessWidget {
                   CommonWidgetClass().commonTitleText(fonts.activeDeactive),
                   CommonWidgetClass().commonTitleText(fonts.action),
                 ]),
-            ...snapShot!.data!.asMap().entries.map((e) {
 
-              return TableRow(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: e.key != 9? const Color(0xFF313232).withOpacity(0.15) :Colors.transparent))),
-                  children: [
-                    CommonWidgetClass()
-                        .commonValueText(e.value.data()["image"] ?? "",
-                            isImage: true)
-
-                    ,
-                    CommonWidgetClass()
-                        .commonValueText(e.value.data()["name"] ?? "-")
-                       ,
-                    CommonWidgetClass()
-                        .commonValueText(e.value.data()["email"] ?? "-")
-
-                    ,
-                    CommonWidgetClass()
-                        .commonValueText("${e.value.data()["dialCode"] != null ? "(${e.value.data()["dialCode"]}) " :""} ${e.value.data()["phone"].toString().replaceAll(e.value.data()["dialCode"] ?? "", "")}")
-
-                    ,
-                    CommonWidgetClass()
-                        .commonValueText(e.value.data()["createdDate"] != null
-                            ? DateFormat("dd/MM/yyyy")
-                                .format(DateTime.fromMillisecondsSinceEpoch(e.value.data()["createdDate"]))
-                            : "-")
-
-                    ,
-                    CommonSwitcher(
-                        isActive: e.value.data()["isActive"] ?? true,
-                        onToggle: (val) =>
-                            dashboardCtrl.userActiveDeActive(e.value.id, val)),
-                    /*onToggle: (val) => ddash
+                    ...snapShot!.asMap().entries.map((e) {
+                      return TableRow(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: e.key != 9
+                                          ? const Color(0xFF313232)
+                                              .withOpacity(0.15)
+                                          : Colors.transparent))),
+                          children: [
+                            CommonWidgetClass().commonValueText(
+                                e.value.data()["image"] ?? "",
+                                isImage: true),
+                            CommonWidgetClass()
+                                .commonValueText(e.value.data()["name"] ?? "-"),
+                            CommonWidgetClass().commonValueText(
+                                e.value.data()["email"] ?? "-"),
+                            CommonWidgetClass().commonValueText(
+                                "${e.value.data()["dialCode"] != null ? "(${e.value.data()["dialCode"]}) " : ""} ${e.value.data()["phone"].toString().replaceAll(e.value.data()["dialCode"] ?? "", "")}"),
+                            CommonWidgetClass().commonValueText(
+                                e.value.data()["createdDate"] != null
+                                    ? DateFormat("dd/MM/yyyy").format(
+                                        DateTime.fromMillisecondsSinceEpoch(
+                                            e.value.data()["createdDate"]))
+                                    : "-"),
+                            CommonSwitcher(
+                                isActive: e.value.data()["isActive"] ?? true,
+                                onToggle: (val) => dashboardCtrl
+                                    .userActiveDeActive(e.value.id, val)),
+                            /*onToggle: (val) => ddash
                           .isActiveChange(e.value.id, val)*/
-                    SvgPicture.asset(svgAssets.delete)
-                        .marginSymmetric(vertical: Insets.i15)
-                        .inkWell(
-                            onTap: () => accessDenied(
-                                isDelete: true,
-                                fonts.deleteCharacterConfirmation.tr,
-                                isModification: false,
-                                onTap: () =>
-                                    dashboardCtrl.deleteData(e.value.id)))
-                  ]);
-            }).toList()
+                            SvgPicture.asset(svgAssets.delete)
+                                .marginSymmetric(vertical: Insets.i15)
+                                .inkWell(
+                                    onTap: () => accessDenied(
+                                        isDelete: true,
+                                        fonts.deleteCharacterConfirmation.tr,
+                                        isModification: false,
+                                        onTap: () => dashboardCtrl
+                                            .deleteData(e.value.id)))
+                          ]);
+                    }).toList(),
+
           ],
         ).decorated(borderRadius: BorderRadius.circular(AppRadius.r6)),
       );
