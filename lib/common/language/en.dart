@@ -43,6 +43,7 @@ final dynamic en = {
   "approvalMessage": "Approval Message",
   "approvalNeeded": "Approval Needed",
   "isMaintenanceMode": "Is Maintenance Mode",
+  "isSubscription": "Is Subscription Show",
   "maintenanceMessage": "Maintenance Message",
   "phoneNumber": "Phone Number",
   "enterNumber": "Enter Number",

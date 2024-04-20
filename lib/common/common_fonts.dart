@@ -71,6 +71,7 @@ class Fonts{
   final approvalMessage = "approvalMessage";
   final approvalNeeded = "approvalNeeded";
   final isMaintenanceMode = "isMaintenanceMode";
+  final isSubscription = "isSubscription";
   final maintenanceMessage = "maintenanceMessage";
   final phoneNumber = "phoneNumber";
   final enterNumber = "enterNumber";

@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 class UserAppSettingModel {
   String? approvalMessage,
       maintenanceMessage,
@@ -9,7 +11,7 @@ class UserAppSettingModel {
       approvalNeeded,
       isAdmobEnable,
       isGoogleAdEnable,
-      isMaintenanceMode,isFacebookAdEnable;
+      isMaintenanceMode,isFacebookAdEnable,isSubscription;
 
   UserAppSettingModel({
     this.approvalMessage,
@@ -24,9 +26,11 @@ class UserAppSettingModel {
     this.isGoogleAdEnable,
     this.isMaintenanceMode,
     this.isFacebookAdEnable,
+    this.isSubscription,
   });
 
   UserAppSettingModel.fromJson(Map<String, dynamic> json) {
+    log("DATA :$json");
     approvalMessage = json['approvalMessage'] ??
         "You can start using Chatter once the admin approves it.";
     maintenanceMessage = json['maintenanceMessage'] ?? "";
@@ -40,6 +44,7 @@ class UserAppSettingModel {
     isGoogleAdEnable = json['isGoogleAdEnable'] ?? true;
     isMaintenanceMode = json['isMaintenanceMode'] ?? false;
     isFacebookAdEnable = json['isGoogleAdEnable'] == true ? false : true;
+    isSubscription = json['isSubscription'] ?? true;
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +61,7 @@ class UserAppSettingModel {
     data['isGoogleAdEnable'] = isGoogleAdEnable;
     data['isMaintenanceMode'] = isMaintenanceMode;
     data['isFacebookAdEnable'] = isFacebookAdEnable;
+    data['isSubscription'] = isSubscription;
     return data;
   }
 }

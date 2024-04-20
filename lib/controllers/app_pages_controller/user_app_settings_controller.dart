@@ -22,9 +22,10 @@ class UserAppSettingsController extends GetxController {
         .doc(collectionName.userAppSettings)
         .get()
         .then((value) {
-      log("get data Inc11: ${value.exists}");
+
       if (value.exists) {
         id = value.id;
+
         usageCtrl = UserAppSettingModel.fromJson(value.data()!);
 
         approvalMessage.text = usageCtrl!.approvalMessage.toString();
@@ -35,7 +36,6 @@ class UserAppSettingsController extends GetxController {
         txtFirebaseToken.text = usageCtrl!.firebaseServerToken.toString();
       }
     });
-
     update();
   }
 

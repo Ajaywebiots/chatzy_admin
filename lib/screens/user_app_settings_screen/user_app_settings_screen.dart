@@ -21,7 +21,7 @@ class UserAppSettingsScreen extends StatelessWidget {
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              log("CHECK DATA : ${snapshot.data!.data()}");
+
               userSettingCtrl.usageCtrl =
                   UserAppSettingModel.fromJson(snapshot.data!.data()!);
               return SingleChildScrollView(

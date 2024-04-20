@@ -157,4 +157,5 @@ final dynamic kr = {
   "updateSuccess" : "업데이트가 성공적으로 완료되었습니다.",
   "statusSeenBy" : "상태를 본 사람",
   "deleteCharacterConfirmation1": "이 상태를 삭제하시겠습니까?",
+  "isSubscription": "구독 쇼인가요?",
 };

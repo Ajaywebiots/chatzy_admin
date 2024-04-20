@@ -160,4 +160,5 @@ final dynamic hi = {
   "updateSuccess" : "सफलतापूर्वक अद्यतन करें",
   "statusSeenBy" : "द्वारा स्थिति देखी गई",
   "deleteCharacterConfirmation1": "क्या आप वाकई इस स्थिति को हटाना चाहते हैं?",
+  "isSubscription": "सब्सक्रिप्शन शो है",
 };

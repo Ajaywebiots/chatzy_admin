@@ -159,4 +159,5 @@ final dynamic ar = {
   "updateSuccess" : "تم التحديث بنجاح",
   "statusSeenBy" : "الحالة التي شاهدها",
   "deleteCharacterConfirmation1": "هل أنت متأكد أنك تريد حذف هذه الحالة؟",
+  "isSubscription": "هو عرض الاشتراك",
 };
